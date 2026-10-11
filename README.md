@@ -4,7 +4,7 @@ A fully local Retrieval-Augmented Generation (RAG) system over an Obsidian vault
 
 What makes Oracle *Obsidian* RAG rather than generic RAG: retrieval uses the vault's link graph (`[[wikilinks]]`) in addition to vector similarity, so related notes are pulled in the way you actually connected them.
 
-> **Status:** in active development. Ingestion, chunking, and incremental indexing are implemented and tested; retrieval and question answering are in progress.
+> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector retrieval, and cited answers. Graph-aware retrieval and the evaluation suite are in progress.
 
 ## Goals
 
@@ -57,8 +57,8 @@ oracle/
 │   ├── ingest.py        # parse notes, frontmatter, tags, links, backlinks
 │   ├── chunking.py      # heading-based, size-capped chunks for embedding
 │   ├── index.py         # embed chunks into Chroma; re-embeds only changed notes
-│   ├── retrieve.py      # vector search + graph expansion              (planned)
-│   └── query.py         # answer(question) -> answer + sources         (planned)
+│   ├── retrieve.py      # retrieval strategies (vector search; graph expansion planned)
+│   └── query.py         # answer(question) -> answer + cited sources
 ├── tests/               # pytest suite
 ├── eval/                # retrieval evaluation: recall@k, MRR          (planned)
 ├── DEVLOG.md            # dated progress log and design decisions
@@ -86,6 +86,9 @@ python src/chunking.py --vault sample-vault --show 3
 
 # Embed the chunks into a local Chroma index (re-runs only re-embed changed notes)
 python src/index.py --vault sample-vault
+
+# Ask a question
+python src/query.py "what learning rate worked best in my project?"
 
 # Run the tests
 pytest

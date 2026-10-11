@@ -61,3 +61,31 @@
 - Cosine distance, and the embedding model is recorded on the collection; switching models refuses to run until `--rebuild`, since vectors from different models aren't comparable.
 - `search_document: ` prefix added here (nomic-embed-text's convention); queries will use `search_query: `.
 - Embedding function is injected (`embed` parameter) — tests pass a fake, and it's the seam for trying other embedding models later.
+
+## 2026-10-11 — Retrieval and answers (first end-to-end run)
+
+**Done**
+- `src/retrieve.py`: `vector_retriever()` — embeds the question with the `search_query: ` prefix and returns the top-k chunks as `Hit`s with cosine similarity scores.
+- `src/query.py`: `answer(question, retrieve, generate, k)` returns an `Answer` (text + numbered sources); CLI prints the answer and marks which sources were actually cited.
+- 9 tests with fake embedding/generation (60 total).
+
+**First results (llama3.2, k=5)**
+| Question | Top hit | Answer |
+|---|---|---|
+| what learning rate worked best in my project? | Gradient Descent > Learning rate (0.76) | Correct, cited [1] |
+| how do I avoid blocking the thread pool in Scala? | Futures > ExecutionContext (0.68) | Correct, cited [1] |
+| what is my favorite pizza topping? | Futures > Pitfall (0.50) | Correctly declined |
+
+Latency 5–10s on CPU (the first call includes loading the model).
+
+**Decisions**
+- A retriever is just a function `(question, k) -> list[Hit]`, so graph expansion and hybrid search can be swapped in and compared by the eval script without touching `answer()`.
+- `answer()` takes its retriever and generator as arguments: tests use fakes, and swapping LLMs is a flag (`--model`).
+- Prompt: numbered excerpts, "use only these", cite as `[n]`, and an exact refusal phrase. `Answer.cited` parses the citations, which sets up a later check for unsupported citations.
+- Temperature 0 so the same question gives the same answer — needed for repeatable evaluation.
+- If nothing is retrieved, the LLM isn't called at all.
+
+**Observations to follow up**
+- Similarity scores are compressed: relevant ~0.65–0.76, irrelevant ~0.47–0.50. A minimum-score cutoff might drop junk context; worth testing once the eval set exists.
+- Only 1 of 5 retrieved chunks was cited in each answer; the other 4 are noise. Lower k vs. reranking is another eval question.
+- No streaming yet — the whole answer appears at once.
