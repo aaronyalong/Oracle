@@ -58,9 +58,10 @@ oracle/
 │   ├── chunking.py      # heading-based, size-capped chunks for embedding
 │   ├── index.py         # embed chunks into Chroma; re-embeds only changed notes
 │   ├── retrieve.py      # retrieval strategies (vector search; graph expansion planned)
-│   └── query.py         # answer(question) -> answer + cited sources
+│   ├── query.py         # answer(question) -> answer + cited sources
+│   └── evaluate.py      # score retrieval strategies: hit@k, recall@k, MRR
 ├── tests/               # pytest suite
-├── eval/                # retrieval evaluation: recall@k, MRR          (planned)
+├── eval/                # question set and saved results
 ├── DEVLOG.md            # dated progress log and design decisions
 └── requirements.txt
 ```
@@ -90,9 +91,14 @@ python src/index.py --vault sample-vault
 # Ask a question
 python src/query.py "what learning rate worked best in my project?"
 
+# Score retrieval against the question set
+python src/evaluate.py --vault sample-vault
+
 # Run the tests
 pytest
 ```
+
+**Guided demo:** `scripts/demo.sh` runs every step above on the sample vault, then lets you ask questions interactively. Pass a vault path to use your own: `scripts/demo.sh ~/path/to/vault`.
 
 To parse your own vault, point `--vault` at it. Use `--exclude templates` to skip folders such as templates.
 

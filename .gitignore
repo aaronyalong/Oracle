@@ -6,6 +6,7 @@ __pycache__/
 
 # Local data — never commit
 chroma/
+chroma-*/
 *.sqlite3
 vaults/
 
