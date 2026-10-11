@@ -1,0 +1,92 @@
+[
+  {
+    "id": "lr-best",
+    "question": "What learning rate worked best in my CS4100 project?",
+    "expected": ["AI/Gradient Descent.md"],
+    "type": "direct"
+  },
+  {
+    "id": "nomic-dims",
+    "question": "How many dimensions does nomic-embed-text produce?",
+    "expected": ["AI/Embeddings.md"],
+    "type": "direct"
+  },
+  {
+    "id": "chroma-index",
+    "question": "Which index type does Chroma use by default for approximate nearest neighbour search?",
+    "expected": ["AI/Vector Databases.md"],
+    "type": "direct"
+  },
+  {
+    "id": "sqrt-dk",
+    "question": "Why are attention scores divided by the square root of d_k?",
+    "expected": ["AI/Attention Mechanism.md"],
+    "type": "direct"
+  },
+  {
+    "id": "chroma-distance",
+    "question": "Does Chroma report similarity or distance, and is lower better?",
+    "expected": ["AI/Cosine Similarity.md"],
+    "type": "direct"
+  },
+  {
+    "id": "train-vs-new",
+    "question": "My model does great on the data it learned from but badly on anything new. What can I do about it?",
+    "expected": ["AI/Overfitting.md"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "auto-args",
+    "question": "How do I get the compiler to fill in an argument automatically in Scala 3?",
+    "expected": ["Scala/Implicits and Givens.md"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "eager-async",
+    "question": "Why is Scala's built-in async type harder to retry than Cats Effect or ZIO?",
+    "expected": ["Scala/Futures.md"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "server-free-store",
+    "question": "Which place to store vectors needs no server and suits a single-user app?",
+    "expected": ["AI/Vector Databases.md"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "middle-ignored",
+    "question": "Why might a language model overlook information placed in the middle of a long prompt?",
+    "expected": ["AI/Retrieval-Augmented Generation.md", "Reading List.md"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "what-is-rag",
+    "question": "What is RAG?",
+    "expected": ["AI/Retrieval-Augmented Generation.md"],
+    "type": "alias"
+  },
+  {
+    "id": "what-is-ml",
+    "question": "Give me an overview of ML.",
+    "expected": ["AI/Machine Learning.md"],
+    "type": "alias"
+  },
+  {
+    "id": "oracle-metric",
+    "question": "Which metrics should I use to check whether link expansion helps in Oracle, and what do they measure?",
+    "expected": ["Project Ideas.md", "AI/Retrieval-Augmented Generation.md"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "oracle-dims",
+    "question": "How many dimensions do the embeddings in my Oracle project have?",
+    "expected": ["Project Ideas.md", "AI/Embeddings.md"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "softmax-attention",
+    "question": "Which activation function turns attention scores into weights, and what does it do?",
+    "expected": ["AI/Attention Mechanism.md", "AI/Neural Networks.md"],
+    "type": "multi-hop"
+  }
+]

@@ -1,0 +1,686 @@
+{
+  "questions": "eval/questions.json",
+  "embed_model": "nomic-embed-text",
+  "runs": [
+    {
+      "strategy": "vector",
+      "k": 1,
+      "summary": {
+        "hit": 1.0,
+        "recall": 0.8666666666666667,
+        "mrr": 1.0
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Futures.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "vector",
+      "k": 3,
+      "summary": {
+        "hit": 1.0,
+        "recall": 1.0,
+        "mrr": 1.0
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "AI/Machine Learning.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md",
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/Scala.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Futures.md",
+            "Scala/Scala.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "vector",
+      "k": 5,
+      "summary": {
+        "hit": 1.0,
+        "recall": 1.0,
+        "mrr": 1.0
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "AI/Machine Learning.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Overfitting.md",
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Attention Mechanism.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md",
+            "Reading List.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md",
+            "AI/Gradient Descent.md",
+            "Scala/Pattern Matching.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Overfitting.md",
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/Scala.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Futures.md",
+            "Scala/Scala.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Overfitting.md",
+            "AI/Transformers.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md",
+            "Reading List.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Attention Mechanism.md",
+            "AI/Vector Databases.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0
+        }
+      ]
+    }
+  ]
+}

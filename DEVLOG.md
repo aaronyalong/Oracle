@@ -89,3 +89,26 @@ Latency 5–10s on CPU (the first call includes loading the model).
 - Similarity scores are compressed: relevant ~0.65–0.76, irrelevant ~0.47–0.50. A minimum-score cutoff might drop junk context; worth testing once the eval set exists.
 - Only 1 of 5 retrieved chunks was cited in each answer; the other 4 are noise. Lower k vs. reranking is another eval question.
 - No streaming yet — the whole answer appears at once.
+
+## 2026-10-11 — Evaluation harness and baseline
+
+**Done**
+- `eval/questions.json`: 15 questions, each with the note(s) that contain the answer, tagged by type: direct (5), paraphrase (5), alias (2), multi-hop (3).
+- `src/evaluate.py`: runs each retrieval strategy at several k and reports hit@k, recall@k, and MRR, overall and per type, plus every miss. `--save` writes per-question results to JSON.
+- 9 tests (69 total), including one that fails if a question names a note that doesn't exist.
+
+**Baseline: vector search**
+| k | hit | recall | MRR |
+|---|---|---|---|
+| 1 | 1.00 | 0.87 | 1.00 |
+| 3 | 1.00 | 1.00 | 1.00 |
+| 5 | 1.00 | 1.00 | 1.00 |
+
+At k=1 the only misses are the multi-note questions (each found one of its two notes). By k=3 everything is found.
+
+**Finding: the eval is saturated.** With 18 notes and 58 chunks, k=3 already covers ~5% of the whole vault, so almost anything relevant gets retrieved. Graph expansion can't show an improvement over a perfect score. Before Phase 3 the benchmark needs to be harder — more notes, near-duplicate distractor topics, multi-hop questions whose second note isn't similar to the question, and/or section-level (chunk) scoring instead of note-level.
+
+**Decisions**
+- Scoring is note-level: several chunks from one note count once, so a strategy can't look better just by returning more chunks of the same note.
+- Questions are typed so results can show *where* a strategy helps or hurts (e.g. graph expansion should help multi-hop and might hurt direct questions).
+- Questions were written before seeing results and not tuned afterwards.
