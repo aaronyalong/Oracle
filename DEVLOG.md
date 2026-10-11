@@ -46,3 +46,18 @@
 - The model-specific `search_document:` prefix is left to the indexer, so chunking stays model-agnostic.
 - IDs are `<note path>::<n>`: deterministic, and the indexer will replace all of a note's chunks when it changes.
 - Embeds (`![[...]]`) are not inlined yet — a candidate experiment once there's an eval baseline.
+
+## 2026-10-11 — Indexing
+
+**Done**
+- `src/index.py`: embeds chunks with `nomic-embed-text` via Ollama and stores them in a persistent Chroma collection (`chroma/`, git-ignored). Sample vault: 58 chunks in 2.6s; an unchanged re-run takes 0.1s and embeds nothing.
+- 8 tests using a fake embedder, so the suite runs without Ollama (51 total).
+- Sanity check: "what learning rate worked best in my project?" → `Gradient Descent > Learning rate` ranked first; "how do I avoid blocking the thread pool in Scala?" → `Futures > ExecutionContext` first.
+
+**Decisions**
+- Incremental by note: each chunk stores a hash of its note's chunk texts + model name. Unchanged hash → skip; changed → delete all of that note's chunks and add the new ones; note gone from the vault → delete. Simpler than diffing individual chunks, and notes are small.
+- Embed first, then delete/add, so if Ollama fails mid-run the old index survives.
+- The link graph is not stored in Chroma. Backlinks change when *other* notes change, so stored copies would go stale; retrieval will rebuild the graph from the vault with `load_vault()` (milliseconds).
+- Cosine distance, and the embedding model is recorded on the collection; switching models refuses to run until `--rebuild`, since vectors from different models aren't comparable.
+- `search_document: ` prefix added here (nomic-embed-text's convention); queries will use `search_query: `.
+- Embedding function is injected (`embed` parameter) — tests pass a fake, and it's the seam for trying other embedding models later.
