@@ -72,7 +72,7 @@ oracle/
 ## Roadmap
 
 ### Phase 1 — Setup
-- [ ] Create sample vault (15–20 linked notes)
+- [x] Create sample vault (15–20 linked notes)
 - [ ] Install Ollama, pull `nomic-embed-text` and `llama3.2`
 - [ ] Python venv, dependencies, `.gitignore` (keep real vaults out of git)
 
@@ -99,6 +99,10 @@ oracle/
 ## Getting Started
 
 ```bash
+# 0. Prerequisites (Ubuntu/Debian)
+sudo apt install python3-venv          # or python3.X-venv matching your Python
+curl -fsSL https://ollama.com/install.sh | sh
+
 # 1. Models
 ollama pull nomic-embed-text
 ollama pull llama3.2

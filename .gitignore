@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local data — never commit
+chroma/
+*.sqlite3
+vaults/
+
+# Obsidian workspace state (keep sample-vault/.obsidian/app.json)
+.obsidian/workspace*.json
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
