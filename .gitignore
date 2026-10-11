@@ -16,3 +16,6 @@ vaults/
 .vscode/
 .idea/
 .DS_Store
+
+# Private planning notes
+ROADMAP.md

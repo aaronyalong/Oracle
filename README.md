@@ -4,6 +4,8 @@
 
 What makes Oracle *Obsidian* RAG rather than generic RAG: retrieval uses the vault's link graph (`[[wikilinks]]`) in addition to vector similarity, so related notes are pulled in the way you actually connected them.
 
+> **Status:** in active development. Vault ingestion (notes, frontmatter, tags, links, backlinks) is implemented and tested; chunking, indexing, and querying are in progress.
+
 ## Goals
 
 - **Local-first**: embeddings, vector store, and LLM all run on-device (no cloud APIs)
@@ -43,78 +45,47 @@ flowchart LR
 | LLM | `llama3.2` (configurable) | Fast enough on a laptop CPU; swap for a larger model if needed |
 | Vector store | Chroma | Embedded, no server to run |
 | Tests | pytest | Parsing and chunking are easy to get subtly wrong |
-| API (Phase 4) | FastAPI | Lightweight Python web server |
-| UI (Phase 4) | Streamlit or Gradio | Chat UI in a few lines |
+| API (planned) | FastAPI | Lightweight Python web server |
+| UI (planned) | Streamlit or Gradio | Chat UI in a few lines |
 
 ## Project Structure
 
 ```
 oracle/
-├── README.md
-├── DEVLOG.md            # dated progress log + design decisions
-├── requirements.txt
-├── .gitignore
-├── sample-vault/        # demo notes so anyone can run the project
+├── sample-vault/        # demo vault so anyone can run the project
 ├── src/
-│   ├── ingest.py        # walk vault, parse notes, links, tags
-│   ├── chunk.py         # heading-based, size-capped chunking with metadata
-│   ├── index.py         # embed chunks, store in Chroma (incremental)
-│   ├── retrieve.py      # vector search + graph expansion
-│   └── query.py         # answer(question) -> (text, sources); CLI wrapper
-├── tests/
-│   ├── test_ingest.py   # link/tag/frontmatter parsing
-│   └── test_chunk.py    # chunk boundaries and size limits
-└── eval/
-    ├── questions.json   # question → expected source note pairs
-    └── evaluate.py      # recall@k / MRR across retrieval strategies
+│   ├── ingest.py        # parse notes, frontmatter, tags, links, backlinks
+│   ├── chunk.py         # heading-based, size-capped chunking          (planned)
+│   ├── index.py         # embed chunks, store in Chroma (incremental)  (planned)
+│   ├── retrieve.py      # vector search + graph expansion              (planned)
+│   └── query.py         # answer(question) -> answer + sources         (planned)
+├── tests/               # pytest suite
+├── eval/                # retrieval evaluation: recall@k, MRR          (planned)
+├── DEVLOG.md            # dated progress log and design decisions
+└── requirements.txt
 ```
-
-## Roadmap
-
-### Phase 1 — Setup
-- [x] Create sample vault (15–20 linked notes)
-- [ ] Install Ollama, pull `nomic-embed-text` and `llama3.2`
-- [ ] Python venv, dependencies, `.gitignore` (keep real vaults out of git)
-
-### Phase 2 — Minimal pipeline (CLI)
-- [ ] `ingest.py`: parse notes, frontmatter, `#tags`, and links — including `[[note|alias]]`, `[[note#heading]]`, and `![[embeds]]`; skip `.obsidian/`
-- [ ] `chunk.py`: split by heading, cap chunk size, prefix each chunk with note title + heading
-- [ ] `index.py`: embed + persist to Chroma; re-embed only changed files (content hash), handle deletes
-- [ ] `query.py`: `answer(question)` function returning answer + sources; thin CLI on top
-- [ ] Tests for parsing and chunking
-- [ ] Evaluation set (10–15 questions) and **baseline** retrieval scores (vector search only)
-
-### Phase 3 — Obsidian-specific
-- [ ] Graph expansion: add chunks from 1-hop linked/backlinked notes
-- [ ] Keep only expanded chunks still relevant to the question; cap how many are added
-- [ ] Compare against baseline (recall@k, MRR); record what helped and what didn't
-
-### Phase 4 — Interface & polish
-- [ ] FastAPI backend wrapping `answer()`
-- [ ] Streamlit/Gradio chat UI
-- [ ] Sources as `obsidian://` links that open the note
-- [ ] File watcher for automatic re-indexing
-- [ ] (Stretch) Obsidian sidebar plugin calling the local backend
 
 ## Getting Started
 
-```bash
-# 0. Prerequisites (Ubuntu/Debian)
-sudo apt install python3-venv          # or python3.X-venv matching your Python
-curl -fsSL https://ollama.com/install.sh | sh
+**Prerequisites:** Python 3.12+ and [Ollama](https://ollama.com).
 
-# 1. Models
+```bash
+# Models
 ollama pull nomic-embed-text
 ollama pull llama3.2
 
-# 2. Environment
+# Environment
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-# 3. Index the sample vault and ask a question
-python src/index.py --vault sample-vault
-python src/query.py "your question here"
+# Parse the sample vault and print a summary of notes, links, and tags
+python src/ingest.py --vault sample-vault
+
+# Run the tests
+pytest
 ```
+
+To parse your own vault, point `--vault` at it. Use `--exclude templates` to skip folders such as templates.
 
 ## Design Decisions
 
@@ -128,4 +99,4 @@ See `DEVLOG.md` for the reasoning behind decisions as the project evolves.
 
 ## Results
 
-_To be filled in after Phase 3 evaluation._
+_Retrieval benchmarks (vector-only vs. graph-aware) will be published here once the evaluation set is complete._
