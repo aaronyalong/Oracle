@@ -4,7 +4,7 @@
 
 What makes Oracle *Obsidian* RAG rather than generic RAG: retrieval uses the vault's link graph (`[[wikilinks]]`) in addition to vector similarity, so related notes are pulled in the way you actually connected them.
 
-> **Status:** in active development. Vault ingestion (notes, frontmatter, tags, links, backlinks) is implemented and tested; chunking, indexing, and querying are in progress.
+> **Status:** in active development. Vault ingestion (notes, frontmatter, tags, links, backlinks) and chunking are implemented and tested; indexing and querying are in progress.
 
 ## Goals
 
@@ -55,7 +55,7 @@ oracle/
 ├── sample-vault/        # demo vault so anyone can run the project
 ├── src/
 │   ├── ingest.py        # parse notes, frontmatter, tags, links, backlinks
-│   ├── chunk.py         # heading-based, size-capped chunking          (planned)
+│   ├── chunking.py      # heading-based, size-capped chunks for embedding
 │   ├── index.py         # embed chunks, store in Chroma (incremental)  (planned)
 │   ├── retrieve.py      # vector search + graph expansion              (planned)
 │   └── query.py         # answer(question) -> answer + sources         (planned)
@@ -80,6 +80,9 @@ pip install -r requirements.txt
 
 # Parse the sample vault and print a summary of notes, links, and tags
 python src/ingest.py --vault sample-vault
+
+# Split it into chunks and preview the first few
+python src/chunking.py --vault sample-vault --show 3
 
 # Run the tests
 pytest

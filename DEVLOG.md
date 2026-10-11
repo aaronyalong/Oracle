@@ -30,3 +30,19 @@
 - Broken frontmatter logs a warning instead of failing the whole run.
 
 **Known gaps:** links inside frontmatter properties, standard Markdown links `[text](note.md)`, `.canvas` files and attachments.
+
+## 2026-10-11 — Chunking
+
+**Done**
+- `src/chunking.py`: `chunk_note()` / `chunk_vault()` turn notes into `Chunk`s with an ID, source note, heading path, raw content, and the text to embed. Sample vault: 18 notes → 58 chunks (112–527 chars).
+- 16 new tests (43 total).
+
+**Decisions**
+- Named `chunking.py`, not `chunk.py`: Python ≤ 3.12 has a standard-library `chunk` module that ours would shadow.
+- Split on headings up to `###`; deeper headings stay inside their section. A note's own `# Title` isn't a section.
+- Sections under 100 chars merge into the next section (heading kept as bold text); sections over 1500 chars split on paragraph boundaries, keeping code blocks whole when they fit.
+- Sizes are measured in characters, not tokens: no tokenizer dependency, and ~4 chars/token is close enough for a cap.
+- Embedded text starts with a breadcrumb — `Title (aliases) > Heading > Subheading` — so each chunk makes sense on its own and alias searches ("RAG") match.
+- The model-specific `search_document:` prefix is left to the indexer, so chunking stays model-agnostic.
+- IDs are `<note path>::<n>`: deterministic, and the indexer will replace all of a note's chunks when it changes.
+- Embeds (`![[...]]`) are not inlined yet — a candidate experiment once there's an eval baseline.
