@@ -2,14 +2,14 @@
 
 A fully local Retrieval-Augmented Generation (RAG) system over an Obsidian vault. Ask questions in natural language and get answers grounded in your own notes — with sources — without any data leaving your machine.
 
-What makes Oracle *Obsidian* RAG rather than generic RAG: retrieval uses the vault's link graph (`[[wikilinks]]`) in addition to vector similarity, so related notes are pulled in the way you actually connected them.
+What makes Oracle *Obsidian* RAG rather than generic RAG: it understands the vault's structure — frontmatter, tags, aliases, and the `[[wikilink]]` graph — and measures whether following those links improves retrieval over vector similarity alone (see [Results](#results)).
 
-> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector retrieval, and cited answers. Graph-aware retrieval and the evaluation suite are in progress.
+> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector and graph-aware retrieval, cited answers, and a retrieval benchmark. Next: answer-quality evaluation and a local API.
 
 ## Goals
 
 - **Local-first**: embeddings, vector store, and LLM all run on-device (no cloud APIs)
-- **Graph-aware retrieval**: expand vector search results with linked notes
+- **Graph-aware retrieval, measured**: test whether expanding results with linked notes beats vector search
 - **Grounded answers**: every answer cites the notes it came from
 - **Measured, not assumed**: an evaluation set to compare retrieval strategies against a baseline
 
@@ -57,7 +57,7 @@ oracle/
 │   ├── ingest.py        # parse notes, frontmatter, tags, links, backlinks
 │   ├── chunking.py      # heading-based, size-capped chunks for embedding
 │   ├── index.py         # embed chunks into Chroma; re-embeds only changed notes
-│   ├── retrieve.py      # retrieval strategies (vector search; graph expansion planned)
+│   ├── retrieve.py      # retrieval strategies: vector search, graph expansion
 │   ├── query.py         # answer(question) -> answer + cited sources
 │   └── evaluate.py      # score retrieval strategies: hit@k, recall@k, MRR
 ├── tests/               # pytest suite
@@ -114,4 +114,12 @@ See `DEVLOG.md` for the reasoning behind decisions as the project evolves.
 
 ## Results
 
-_Retrieval benchmarks (vector-only vs. graph-aware) will be published here once the evaluation set is complete._
+Retrieval is evaluated on a 59-note sample vault with 31 development questions and 10 held-out questions written before the final strategy was chosen. The **evidence** score is the fraction of answer phrases present in the retrieved chunks, with every strategy given the same number of chunks (k).
+
+| Strategy | Dev, k=3 | Dev, k=5 | Held-out, k=3 | Held-out, k=5 |
+|---|---|---|---|---|
+| Vector search | 0.89 | **0.97** | 0.75 | 0.95 |
+| + note-level link expansion | 0.87 | 0.92 | 0.80 | 1.00 |
+| + chunk-level link expansion | **0.90** | 0.92 | 0.75 | 0.95 |
+
+**Finding:** at a fixed context budget, link expansion does not reliably beat vector search — differences are one or two questions in either direction. Linked notes are usually also semantically similar to the question, so vector search already finds them, and following links from the wrong section displaces good results. Following only the links inside the retrieved section is clearly better than following every link in the note. Full analysis in [`DEVLOG.md`](DEVLOG.md); raw results in [`eval/results/`](eval/results/).

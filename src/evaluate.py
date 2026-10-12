@@ -29,9 +29,11 @@ DEFAULT_QUESTIONS = Path("eval/questions.json")
 def build_strategies(collection, embed, notes: dict[str, Note]) -> dict[str, Retriever]:
     """Every strategy to compare. Graph variants differ in seed count and how much linked notes are favoured."""
     strategies: dict[str, Retriever] = {"vector": vector_retriever(collection, embed)}
-    for seeds in (1, 2):
-        for boost in (0.03, 0.05, 0.1, 1.0):
-            strategies[f"graph-s{seeds}-b{boost:g}"] = graph_retriever(collection, embed, notes, seeds, boost)
+    for links in ("note", "chunk", "chunk+back"):
+        for seeds in (1, 2):
+            for boost in (0.05, 1.0):
+                name = f"{links}-s{seeds}-b{boost:g}"
+                strategies[name] = graph_retriever(collection, embed, notes, seeds, boost, links)
     return strategies
 
 

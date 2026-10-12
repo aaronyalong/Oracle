@@ -10,7 +10,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 
 from index import EmbedFn
-from ingest import Note
+from ingest import Note, name_index, parse_links, resolve_link
 
 QUERY_PREFIX = "search_query: "  # nomic-embed-text's prefix for questions (documents use search_document:)
 CANDIDATE_POOL = 30  # how many vector results graph expansion chooses from
@@ -59,16 +59,47 @@ def vector_retriever(collection, embed: EmbedFn) -> Retriever:
     return retrieve
 
 
-def graph_retriever(collection, embed: EmbedFn, notes: dict[str, Note], seeds: int = 1, boost: float = 0.05) -> Retriever:
-    """Vector search, then favour notes linked to (or from) the top results.
+def _linked_notes(seeds: list[Hit], notes: dict[str, Note], by_name: dict[str, list[str]], links: str) -> set[str]:
+    """Notes one link away from the seed hits.
+
+    links="note":       every outgoing link and backlink of the seed notes.
+    links="chunk":      only the links written inside the seed chunks themselves.
+    links="chunk+back": chunk links, plus notes that link to the seed notes.
+    """
+    linked: set[str] = set()
+    for hit in seeds:
+        note = notes.get(hit.note_key)
+        if note is None:
+            continue
+        if links == "note":
+            linked |= note.outgoing | note.backlinks
+            continue
+        for link in parse_links(hit.text):
+            target = resolve_link(link.target, note, notes, by_name)
+            if target:
+                linked.add(target)
+        if links == "chunk+back":
+            linked |= note.backlinks
+    return linked - {hit.note_key for hit in seeds}
+
+
+def graph_retriever(
+    collection, embed: EmbedFn, notes: dict[str, Note], seeds: int = 1, boost: float = 0.05, links: str = "note"
+) -> Retriever:
+    """Vector search, then favour notes linked from the top results.
 
     1. The top `seeds` vector hits are kept as-is.
-    2. Their notes' 1-hop neighbours (outgoing links + backlinks) become "linked" notes.
+    2. Notes one link away from them become "linked" notes (which links count depends on `links`;
+       see _linked_notes).
     3. Remaining slots go to the best of: other vector candidates, and the best chunks of the linked
        notes (fetched even if they weren't in the vector results), with `boost` added to linked
        chunks' scores. boost=0 behaves like plain vector search; a large boost fills every
        remaining slot from linked notes.
     """
+
+    if links not in ("note", "chunk", "chunk+back"):
+        raise ValueError(f"links must be 'note', 'chunk', or 'chunk+back', not {links!r}")
+    by_name = name_index(notes)
 
     def retrieve(question: str, k: int) -> list[Hit]:
         if collection.count() == 0:
@@ -76,12 +107,7 @@ def graph_retriever(collection, embed: EmbedFn, notes: dict[str, Note], seeds: i
         [vector] = embed([QUERY_PREFIX + question])
         pool = _search(collection, vector, min(max(CANDIDATE_POOL, k), collection.count()))
         top = pool[: min(seeds, k)]
-
-        seed_notes = {hit.note_key for hit in top}
-        linked = set()
-        for key in seed_notes & notes.keys():
-            linked |= notes[key].outgoing | notes[key].backlinks
-        linked -= seed_notes
+        linked = _linked_notes(top, notes, by_name, links)
 
         candidates = {hit.chunk_id: hit for hit in pool[len(top) :]}
         if linked:

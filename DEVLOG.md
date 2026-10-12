@@ -167,3 +167,45 @@ Every graph variant is at or below the baseline, and more boost is worse. Full s
 3. **Only expand from confident seeds** (top score clearly above the rest).
 
 **Caution:** all of this is tuned on the same 31 questions. Before claiming a win, confirm on questions written *after* the strategy is fixed (a held-out set).
+
+## 2026-10-12 — Graph expansion, second attempt: chunk-level links + held-out test
+
+**Done**
+- `graph_retriever(..., links=...)` now supports three ways of choosing linked notes:
+  - `note` — every outgoing link and backlink of the seed notes (v1).
+  - `chunk` — only links written inside the retrieved seed chunks.
+  - `chunk+back` — chunk links plus the seed notes' backlinks.
+- `ingest.resolve_link()` / `name_index()` made public so retrieval resolves links found in chunk text the same way ingestion does.
+- 10 **held-out questions** (`eval/questions-holdout.json`), written *before* implementing v2 and run once, after picking the strategy on the 31 dev questions.
+- 4 new tests (85 total).
+
+**Dev set (31 questions), evidence score**
+| strategy | k=3 | k=5 |
+|---|---|---|
+| vector | 0.89 | **0.97** |
+| note links, 2 seeds, boost 0.05 | 0.87 | 0.92 |
+| **chunk links, 2 seeds, boost 0.05** | **0.90** | 0.92 |
+| chunk+back, 2 seeds, boost 0.05 | 0.87 | 0.92 |
+
+Chunk-level links clearly beat note-level links and backlinks hurt, but nothing beats vector at k=5. Picked `chunk-s2-b0.05` for the held-out run: tied-best at k=3 and stable across boost values.
+
+**Held-out set (10 questions), evidence score**
+| strategy | k=3 | k=5 |
+|---|---|---|
+| vector | 0.75 | 0.95 |
+| note links, 2 seeds, boost 0.05 | 0.80 | 1.00 |
+| chunk links, 2 seeds, boost 0.05 (chosen) | 0.75 | 0.95 |
+
+The chosen strategy is **identical to vector** on held-out. Note-level links did one question better here, after being worse on dev — differences are 1–2 questions in either direction, i.e. noise at this sample size.
+
+**Conclusion: at a fixed context budget, graph expansion doesn't reliably beat vector search on this vault.**
+
+**Why (from inspecting misses)**
+- Linked notes are usually *also* semantically similar to the question, so vector search already finds them; the link rarely adds information the embedding didn't have.
+- When a fact truly is link-only, expansion depends on the right *section* being a seed. In `h-cs4100-optimizer` the seed was CS4100 > *Topics* (links to Machine Learning, a dead end); the *Final project* section that links to Gradient Descent ranked 3rd.
+- When expansion does find the right note (`h-planner-build`: Study Planner > Stack → sbt), the small boost often isn't enough to beat ranks 2–3, and a large boost hurts elsewhere.
+
+**What this means for Oracle**
+- Keep vector search as the default retriever; keep graph expansion as an option.
+- Better uses of the link graph that don't compete for the same k slots: show linked notes as "related notes" in the UI; or give the model the k vector chunks *plus* a few linked chunks, and judge that on answer quality (it costs longer prompts).
+- Bigger likely wins are elsewhere: hybrid keyword search (paraphrase misses), the chunk-merging bug (`auto-args`), and answer quality (false refusals).

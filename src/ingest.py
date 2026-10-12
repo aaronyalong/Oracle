@@ -141,7 +141,15 @@ def parse_note(path: Path, root: Path) -> Note:
     )
 
 
-def _resolve(target: str, source: Note, notes: dict[str, Note], by_name: dict[str, list[str]]) -> str | None:
+def name_index(notes: dict[str, Note]) -> dict[str, list[str]]:
+    """Lower-cased note name -> keys of notes with that name (several if names repeat across folders)."""
+    by_name: dict[str, list[str]] = defaultdict(list)
+    for key, note in notes.items():
+        by_name[note.name.lower()].append(key)
+    return by_name
+
+
+def resolve_link(target: str, source: Note, notes: dict[str, Note], by_name: dict[str, list[str]]) -> str | None:
     """Find the key of the note a link points to, matching Obsidian's case-insensitive rules."""
     if not target:
         return source.key
@@ -172,14 +180,11 @@ def load_vault(root: str | Path, exclude: tuple[str, ...] = ()) -> Vault:
         note = parse_note(path, root)
         notes[note.key] = note
 
-    by_name: dict[str, list[str]] = defaultdict(list)
-    for key, note in notes.items():
-        by_name[note.name.lower()].append(key)
-
+    by_name = name_index(notes)
     unresolved = []
     for note in notes.values():
         for link in note.links:
-            target_key = _resolve(link.target, note, notes, by_name)
+            target_key = resolve_link(link.target, note, notes, by_name)
             if target_key is None:
                 unresolved.append((note.key, link.target))
             elif target_key != note.key:

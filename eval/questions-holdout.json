@@ -1,0 +1,72 @@
+[
+  {
+    "id": "h-ts-rank",
+    "question": "How does Postgres's built-in text ranking differ from BM25?",
+    "expected": ["Databases/Full-Text Search.md"],
+    "evidence": ["It is not BM25"],
+    "type": "direct"
+  },
+  {
+    "id": "h-sbt-percent",
+    "question": "What does %% do in a build.sbt dependency?",
+    "expected": ["Scala/sbt.md"],
+    "evidence": ["appends the Scala version to the artifact name"],
+    "type": "direct"
+  },
+  {
+    "id": "h-stop-early",
+    "question": "How do I stop a training run before the model starts memorizing the training set?",
+    "expected": ["AI/Overfitting.md"],
+    "evidence": ["stop when validation loss hasn't improved"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "h-actor-locks",
+    "question": "How can concurrent components keep private state safe without using locks?",
+    "expected": ["Scala/Akka.md"],
+    "evidence": ["its state needs no locks"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "h-what-is-cnn",
+    "question": "What is a CNN?",
+    "expected": ["AI/Convolutional Neural Networks.md"],
+    "evidence": ["built for grid data such as images"],
+    "type": "alias"
+  },
+  {
+    "id": "h-cs4100-optimizer",
+    "question": "Which optimizer did I train my CS4100 final project with, and what are its default beta values?",
+    "expected": ["AI/Gradient Descent.md", "AI/Adam Optimizer.md"],
+    "evidence": ["0.001 with Adam", "beta1 = 0.9"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "h-planner-build",
+    "question": "What builds my Study Planner backend, and how do I make it re-run tests on every change?",
+    "expected": ["Projects/Study Planner.md", "Scala/sbt.md"],
+    "evidence": ["built with [[sbt]]", "sbt ~test"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "h-planner-isolation",
+    "question": "What transaction isolation level does my Study Planner's database use by default?",
+    "expected": ["Projects/Study Planner.md", "Databases/Transactions.md"],
+    "evidence": ["Database: [[PostgreSQL]]", "Read Committed is PostgreSQL's default"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "h-long-context-advice",
+    "question": "What did I take away from the long-context paper on my reading list?",
+    "expected": ["Reading List.md", "Daily/2026-09-14.md"],
+    "evidence": ["Lost in the Middle", "put the most relevant context first or last"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "h-oracle-index-m",
+    "question": "Which index does the vector store in my Oracle plan use by default, and what does its M parameter control?",
+    "expected": ["AI/Vector Databases.md", "AI/HNSW.md"],
+    "evidence": ["which Chroma uses by default", "the number of links per node"],
+    "type": "multi-hop"
+  }
+]
