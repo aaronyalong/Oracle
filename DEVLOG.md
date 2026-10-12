@@ -137,3 +137,33 @@ By type at k=3, multi-hop is the weakest on evidence (0.83) along with paraphras
 **Findings**
 - k=5 is still close to saturated; k=1 and k=3 are where strategies can be told apart. Graph expansion adds chunks, so comparisons must hold the total number of chunks given to the LLM fixed, or a strategy can win just by retrieving more.
 - `auto-args` finds the right note but never the right section, even at k=5: the note's one-line intro was merged forward into the *Scala 2* section, and that chunk matches the question best. The Scala 3 `given`/`using` section isn't in the top 5. A chunking side effect to revisit (e.g. merge the intro into every section's breadcrumb instead of the first section).
+
+## 2026-10-12 — Graph expansion, first attempt: it hurts
+
+**Done**
+- `graph_retriever(collection, embed, notes, seeds, boost)` in `src/retrieve.py`: keep the top `seeds` vector hits, collect their notes' 1-hop neighbours (outgoing links + backlinks), fetch those notes' best chunks, and fill the remaining slots by similarity with `boost` added to linked chunks. Always returns at most k chunks, so it's compared with vector search at the same context budget.
+- `evaluate.py` sweeps seeds ∈ {1, 2} × boost ∈ {0.03, 0.05, 0.1, 1.0}; `--strategies` and `--by-type` flags.
+- 8 tests with hand-placed fake embeddings (81 total).
+
+**Results (evidence score)**
+| strategy | k=3 | k=5 |
+|---|---|---|
+| vector | **0.89** | **0.97** |
+| graph, 1 seed, boost 0.05 | 0.84 | 0.90 |
+| graph, 1 seed, boost 1.0 | 0.76 | 0.81 |
+| graph, 2 seeds, boost 0.05 | 0.87 | 0.92 |
+
+Every graph variant is at or below the baseline, and more boost is worse. Full sweep in `eval/results/graph-sweep.json`.
+
+**Why (per-question diff at k=3)**
+- *Helps* when the top hit is the question's subject note: `oracle-reranker` (Project Ideas → Reranking), `planner-search-index` with 2 seeds (Study Planner → Full-Text Search).
+- *Hurts* when the top hit is a **distractor** — `planner-blocking` seeds from Cats Effect, so its links lead away from ZIO and push the correct ZIO chunk out.
+- *Hurts* when the top hit is a **hub** — the RAG note links to 6+ notes, so its neighbours are loosely related and displace good rank-2/3 hits (`merge-rankings`, `slow-first-answer`).
+- With a fixed budget every linked chunk added is a vector hit removed, so expansion only pays off if the linked chunk is more useful than what it replaces.
+
+**Ideas for a second attempt**
+1. **Follow links from the retrieved chunk, not the whole note.** The Study Planner "Stack" section links exactly ZIO, sbt, PostgreSQL, and Full-Text Search; note-level neighbours also include everything else the note links to. This is closer to how a person follows links while reading.
+2. **Down-weight hub notes** (e.g. boost ÷ number of links), like IDF for links.
+3. **Only expand from confident seeds** (top score clearly above the rest).
+
+**Caution:** all of this is tuned on the same 31 questions. Before claiming a win, confirm on questions written *after* the strategy is fixed (a held-out set).

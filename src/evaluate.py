@@ -21,9 +21,18 @@ import ollama
 
 from index import DEFAULT_DB, EMBED_MODEL, get_collection, ollama_embedder
 from ingest import Note, load_vault
-from retrieve import Hit, Retriever, vector_retriever
+from retrieve import Hit, Retriever, graph_retriever, vector_retriever
 
 DEFAULT_QUESTIONS = Path("eval/questions.json")
+
+
+def build_strategies(collection, embed, notes: dict[str, Note]) -> dict[str, Retriever]:
+    """Every strategy to compare. Graph variants differ in seed count and how much linked notes are favoured."""
+    strategies: dict[str, Retriever] = {"vector": vector_retriever(collection, embed)}
+    for seeds in (1, 2):
+        for boost in (0.03, 0.05, 0.1, 1.0):
+            strategies[f"graph-s{seeds}-b{boost:g}"] = graph_retriever(collection, embed, notes, seeds, boost)
+    return strategies
 
 
 @dataclass(frozen=True)
@@ -101,13 +110,14 @@ def _format(s: dict[str, float]) -> str:
     return f"hit {s['hit']:.2f} | recall {s['recall']:.2f} | MRR {s['mrr']:.2f} | evidence {s['evidence']:.2f}"
 
 
-def _print_report(strategy: str, k: int, results: list[QuestionResult], show_misses: bool) -> None:
-    print(f"\n{strategy}, k={k}: {_format(summarize(results))}")
-    by_type = defaultdict(list)
-    for r in results:
-        by_type[r.type].append(r)
-    for qtype, group in by_type.items():
-        print(f"  {qtype:<11} (n={len(group):>2})  {_format(summarize(group))}")
+def _print_report(strategy: str, k: int, results: list[QuestionResult], show_misses: bool, by_type: bool) -> None:
+    print(f"{strategy:<18} k={k}  {_format(summarize(results))}")
+    if by_type:
+        groups = defaultdict(list)
+        for r in results:
+            groups[r.type].append(r)
+        for qtype, group in groups.items():
+            print(f"  {qtype:<11} (n={len(group):>2})  {_format(summarize(group))}")
     if show_misses:
         for r in results:
             if r.recall < 1 or r.evidence < 1:
@@ -124,18 +134,27 @@ def main() -> None:
     parser.add_argument("--k", type=int, nargs="+", default=[1, 3, 5], help="cutoffs to report")
     parser.add_argument("--save", type=Path, help="write per-question results as JSON")
     parser.add_argument("--misses", action="store_true", help="list every question that wasn't fully answered")
+    parser.add_argument("--strategies", nargs="+", help="only run these strategies (default: all)")
+    parser.add_argument("--by-type", action="store_true", help="break results down by question type")
     args = parser.parse_args()
 
     try:
-        questions = load_questions(args.questions, load_vault(args.vault).notes)
+        notes = load_vault(args.vault).notes
+        questions = load_questions(args.questions, notes)
         collection = get_collection(args.db, args.embed_model)
-        strategies: dict[str, Retriever] = {"vector": vector_retriever(collection, ollama_embedder(args.embed_model))}
+        strategies = build_strategies(collection, ollama_embedder(args.embed_model), notes)
+        if args.strategies:
+            unknown = set(args.strategies) - set(strategies)
+            if unknown:
+                raise ValueError(f"Unknown strategies {sorted(unknown)}; choose from {list(strategies)}")
+            strategies = {name: strategies[name] for name in args.strategies}
 
         report = {"questions": str(args.questions), "embed_model": args.embed_model, "runs": []}
-        for name, retrieve in strategies.items():
-            for k in args.k:
+        for k in args.k:
+            print()
+            for name, retrieve in strategies.items():
                 results = evaluate(retrieve, questions, k)
-                _print_report(name, k, results, args.misses)
+                _print_report(name, k, results, args.misses, args.by_type)
                 report["runs"].append(
                     {"strategy": name, "k": k, "summary": summarize(results), "results": [asdict(r) for r in results]}
                 )
