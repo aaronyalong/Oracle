@@ -3,90 +3,220 @@
     "id": "lr-best",
     "question": "What learning rate worked best in my CS4100 project?",
     "expected": ["AI/Gradient Descent.md"],
+    "evidence": ["0.001 with Adam"],
     "type": "direct"
   },
   {
     "id": "nomic-dims",
     "question": "How many dimensions does nomic-embed-text produce?",
     "expected": ["AI/Embeddings.md"],
+    "evidence": ["768 dimensions"],
     "type": "direct"
   },
   {
     "id": "chroma-index",
     "question": "Which index type does Chroma use by default for approximate nearest neighbour search?",
     "expected": ["AI/Vector Databases.md"],
+    "evidence": ["which Chroma uses by default"],
     "type": "direct"
   },
   {
     "id": "sqrt-dk",
     "question": "Why are attention scores divided by the square root of d_k?",
     "expected": ["AI/Attention Mechanism.md"],
+    "evidence": ["so that the softmax doesn't saturate"],
     "type": "direct"
   },
   {
     "id": "chroma-distance",
     "question": "Does Chroma report similarity or distance, and is lower better?",
     "expected": ["AI/Cosine Similarity.md"],
+    "evidence": ["Chroma reports distances, so lower is better"],
+    "type": "direct"
+  },
+  {
+    "id": "adam-defaults",
+    "question": "What are Adam's default beta values?",
+    "expected": ["AI/Adam Optimizer.md"],
+    "evidence": ["beta1 = 0.9"],
+    "type": "direct"
+  },
+  {
+    "id": "hnsw-ef-search",
+    "question": "What does the ef_search parameter control in HNSW?",
+    "expected": ["AI/HNSW.md"],
+    "evidence": ["trades speed for recall at query time"],
+    "type": "direct"
+  },
+  {
+    "id": "pg-isolation",
+    "question": "What is PostgreSQL's default transaction isolation level?",
+    "expected": ["Databases/Transactions.md"],
+    "evidence": ["Read Committed is PostgreSQL's default"],
+    "type": "direct"
+  },
+  {
+    "id": "akka-license",
+    "question": "What happened to Akka's license, and what is the open-source fork called?",
+    "expected": ["Scala/Akka.md"],
+    "evidence": ["Apache Pekko"],
+    "type": "direct"
+  },
+  {
+    "id": "list-append",
+    "question": "Why is appending to a Scala List slow?",
+    "expected": ["Scala/Collections.md"],
+    "evidence": ["appending is O(n)"],
     "type": "direct"
   },
   {
     "id": "train-vs-new",
     "question": "My model does great on the data it learned from but badly on anything new. What can I do about it?",
     "expected": ["AI/Overfitting.md"],
+    "evidence": ["L2 weight decay penalizes large weights"],
     "type": "paraphrase"
   },
   {
     "id": "auto-args",
     "question": "How do I get the compiler to fill in an argument automatically in Scala 3?",
     "expected": ["Scala/Implicits and Givens.md"],
+    "evidence": ["marks a parameter the compiler should fill in"],
     "type": "paraphrase"
   },
   {
     "id": "eager-async",
     "question": "Why is Scala's built-in async type harder to retry than Cats Effect or ZIO?",
     "expected": ["Scala/Futures.md"],
+    "evidence": ["they start running as soon as they're created"],
     "type": "paraphrase"
   },
   {
     "id": "server-free-store",
     "question": "Which place to store vectors needs no server and suits a single-user app?",
     "expected": ["AI/Vector Databases.md"],
+    "evidence": ["persists to a local folder, no server"],
     "type": "paraphrase"
   },
   {
     "id": "middle-ignored",
     "question": "Why might a language model overlook information placed in the middle of a long prompt?",
     "expected": ["AI/Retrieval-Augmented Generation.md", "Reading List.md"],
+    "evidence": [
+      "LLMs pay less attention to context in the middle of a long prompt",
+      "use information at the start and end of long contexts better than the middle"
+    ],
+    "type": "paraphrase"
+  },
+  {
+    "id": "warmup",
+    "question": "Why start training with a tiny step size and increase it over the first steps?",
+    "expected": ["AI/Learning Rate Schedules.md"],
+    "evidence": ["avoids large, unstable updates"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "sqlite-writers",
+    "question": "Why does an embedded single-file database struggle when many users save changes at once?",
+    "expected": ["Databases/SQLite.md"],
+    "evidence": ["allows only one writer at a time"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "merge-rankings",
+    "question": "How can I combine the ranked lists from keyword search and vector search into one list?",
+    "expected": ["AI/Hybrid Search.md"],
+    "evidence": ["Reciprocal Rank Fusion"],
+    "type": "paraphrase"
+  },
+  {
+    "id": "slow-first-answer",
+    "question": "Why is the first answer slow after I haven't asked anything for a while?",
+    "expected": ["AI/Ollama.md"],
+    "evidence": ["unloads a model after 5 minutes"],
     "type": "paraphrase"
   },
   {
     "id": "what-is-rag",
     "question": "What is RAG?",
     "expected": ["AI/Retrieval-Augmented Generation.md"],
+    "evidence": ["RAG answers a question by first retrieving relevant passages"],
     "type": "alias"
   },
   {
     "id": "what-is-ml",
     "question": "Give me an overview of ML.",
     "expected": ["AI/Machine Learning.md"],
+    "evidence": ["improve at a task by learning from data"],
+    "type": "alias"
+  },
+  {
+    "id": "what-is-lora",
+    "question": "What is LoRA?",
+    "expected": ["AI/Fine-tuning.md"],
+    "evidence": ["Low-Rank Adaptation freezes the original weights"],
     "type": "alias"
   },
   {
     "id": "oracle-metric",
     "question": "Which metrics should I use to check whether link expansion helps in Oracle, and what do they measure?",
     "expected": ["Project Ideas.md", "AI/Retrieval-Augmented Generation.md"],
+    "evidence": ["using recall@k", "mean reciprocal rank of the first correct hit"],
     "type": "multi-hop"
   },
   {
     "id": "oracle-dims",
     "question": "How many dimensions do the embeddings in my Oracle project have?",
     "expected": ["Project Ideas.md", "AI/Embeddings.md"],
+    "evidence": ["Embeddings with nomic-embed-text", "768 dimensions"],
     "type": "multi-hop"
   },
   {
     "id": "softmax-attention",
     "question": "Which activation function turns attention scores into weights, and what does it do?",
     "expected": ["AI/Attention Mechanism.md", "AI/Neural Networks.md"],
+    "evidence": ["softmax(Q Kᵀ / √d_k) V", "turns a vector into a probability distribution"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "planner-blocking",
+    "question": "What should I use for blocking calls in the effect library my Study Planner backend is built on?",
+    "expected": ["Projects/Study Planner.md", "Scala/ZIO.md"],
+    "evidence": ["Scala 3 with [[ZIO]]", "ZIO.attemptBlocking"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "planner-search-index",
+    "question": "Which index type speeds up task search in my Study Planner's database?",
+    "expected": ["Projects/Study Planner.md", "Databases/Full-Text Search.md"],
+    "evidence": ["Task search uses the database's built-in full-text search", "Create a GIN index on the tsvector column"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "cs4100-professor",
+    "question": "Who teaches the course where I ran my learning-rate experiments?",
+    "expected": ["AI/Gradient Descent.md", "Courses/CS4100.md"],
+    "evidence": ["In my [[CS4100]] project", "Taught by Professor Lena Rao"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "oracle-reranker",
+    "question": "How does the model I planned to use for reordering Oracle's search results score passages?",
+    "expected": ["Project Ideas.md", "AI/Reranking.md"],
+    "evidence": ["bge-reranker-base", "scores the query and passage together"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "planner-db-why",
+    "question": "Why did the Study Planner move off its original database?",
+    "expected": ["Projects/Study Planner.md", "Daily/2026-09-20.md"],
+    "evidence": ["We moved off the original database", "the whole database is locked during a write"],
+    "type": "multi-hop"
+  },
+  {
+    "id": "cs4100-layers",
+    "question": "What accuracy did my CS4100 final project reach, and what kind of layers does that model use to detect local patterns?",
+    "expected": ["Courses/CS4100.md", "AI/Convolutional Neural Networks.md"],
+    "evidence": ["84% test accuracy", "Small learned filters"],
     "type": "multi-hop"
   }
 ]

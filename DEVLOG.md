@@ -112,3 +112,28 @@ At k=1 the only misses are the multi-note questions (each found one of its two n
 - Scoring is note-level: several chunks from one note count once, so a strategy can't look better just by returning more chunks of the same note.
 - Questions are typed so results can show *where* a strategy helps or hurts (e.g. graph expansion should help multi-hop and might hurt direct questions).
 - Questions were written before seeing results and not tuned afterwards.
+
+## 2026-10-12 — Harder benchmark
+
+**Why:** the first baseline was perfect at k=3 (see 2026-10-11), leaving nothing for graph expansion to improve.
+
+**Changes**
+- Sample vault grown from 18 to 59 notes (158 chunks), adding:
+  - **Distractors** next to existing answers: Adam Optimizer and Learning Rate Schedules beside Gradient Descent; HNSW beside Vector Databases; Cats Effect, ZIO, and Akka beside Futures; Type Classes beside Implicits and Givens.
+  - A **Databases** cluster (PostgreSQL, Indexes, SQLite, Transactions, Redis, Full-Text Search).
+  - **Personal notes** — a course (CS4100), a project (Study Planner), and daily notes — whose facts are spread across linked notes.
+- 31 questions (was 15): 10 direct, 9 paraphrase, 3 alias, 9 multi-hop. Six new multi-hop questions are *link-only*: the second note doesn't mention the subject of the question (e.g. "blocking calls in the effect library my Study Planner uses" → Study Planner links to ZIO; the ZIO note never mentions Study Planner).
+- New **evidence** metric: each question lists short phrases that answer it, and the score is the fraction found in the retrieved chunk text. It checks the right *section* was retrieved, independent of chunking settings. Questions fail to load if a phrase isn't in one of their expected notes.
+
+**Baseline (vector search, 59 notes)**
+| k | hit | recall | MRR | evidence |
+|---|---|---|---|---|
+| 1 | 0.74 | 0.63 | 0.74 | 0.56 |
+| 3 | 1.00 | 0.97 | 0.87 | 0.89 |
+| 5 | 1.00 | 1.00 | 0.87 | 0.97 |
+
+By type at k=3, multi-hop is the weakest on evidence (0.83) along with paraphrase (0.78). Link-only misses at k=3: `planner-search-index` (Full-Text Search not found), `cs4100-professor` (Gradient Descent not found).
+
+**Findings**
+- k=5 is still close to saturated; k=1 and k=3 are where strategies can be told apart. Graph expansion adds chunks, so comparisons must hold the total number of chunks given to the LLM fixed, or a strategy can win just by retrieving more.
+- `auto-args` finds the right note but never the right section, even at k=5: the note's one-line intro was merged forward into the *Scala 2* section, and that chunk matches the question best. The Scala 3 `given`/`using` section isn't in the top 5. A chunking side effect to revisit (e.g. merge the intro into every section's breadcrumb instead of the first section).

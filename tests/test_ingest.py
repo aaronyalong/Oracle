@@ -66,7 +66,7 @@ def vault():
 
 
 def test_loads_all_notes_and_skips_hidden_folders(vault):
-    assert len(vault.notes) == 18
+    assert len(vault.notes) == 59
     assert not any(k.startswith(".obsidian") for k in vault.notes)
 
 

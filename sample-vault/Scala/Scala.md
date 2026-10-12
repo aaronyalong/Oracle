@@ -9,7 +9,8 @@ Scala is a JVM language that combines object-oriented and functional programming
 - Immutable data by default with [[Case Classes]].
 - Powerful [[Pattern Matching]].
 - Contextual abstractions: [[Implicits and Givens]].
-- Concurrency with [[Futures]].
+- Concurrency with [[Futures]], [[Cats Effect]], [[ZIO]], or [[Akka]].
+- Build with [[sbt]].
 
 ## Tooling
 - **sbt** is the standard build tool; `sbt ~compile` recompiles on every save.

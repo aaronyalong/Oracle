@@ -9,6 +9,7 @@ A fully local [[Retrieval-Augmented Generation|RAG]] system over this Obsidian v
 - Generation with llama3.2 through Ollama.
 - The twist: use `[[wikilinks]]` to pull in linked notes, not just similar chunks.
 - Must measure whether link expansion actually helps, using recall@k.
+- Later: reorder the top results with bge-reranker-base (see [[Reranking]]).
 
 ## Scala typeclass derivation demo
 Show how Scala 3 can automatically derive typeclass instances for [[Case Classes]] using `derives`. Builds on [[Implicits and Givens]].

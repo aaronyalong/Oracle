@@ -14,7 +14,7 @@ RAG answers a question by first retrieving relevant passages from a document col
 5. Put those chunks in the prompt and ask the LLM to answer using only that context.
 
 ## Common failure modes
-- **Retrieval miss** — the right chunk exists but isn't in the top-k. Fix with better chunking, hybrid keyword + vector search, or reranking.
+- **Retrieval miss** — the right chunk exists but isn't in the top-k. Fix with better chunking, [[Hybrid Search|hybrid keyword + vector search]], or [[Reranking|reranking]].
 - **Lost in the middle** — LLMs pay less attention to context in the middle of a long prompt.
 - **Hallucinated citations** — the model cites a source that doesn't support the claim.
 
