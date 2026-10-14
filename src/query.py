@@ -18,11 +18,18 @@ from retrieve import Hit, Retriever, vector_retriever
 LLM_MODEL = "llama3.2"
 DEFAULT_K = 5
 
-SYSTEM_PROMPT = """You answer questions using only the user's notes, which are given as numbered excerpts.
+REFUSAL = "I couldn't find that in your notes."
+
+# Versioned so answer quality can be compared across prompts (see src/evaluate_answers.py).
+PROMPTS = {
+    "v1": f"""You answer questions using only the user's notes, which are given as numbered excerpts.
 - Base every statement on the excerpts. Do not use outside knowledge.
 - Cite the excerpts you used with their numbers in square brackets, e.g. [2] or [1][3].
-- If the excerpts don't contain the answer, say "I couldn't find that in your notes." and stop.
-- Be concise."""
+- If the excerpts don't contain the answer, say "{REFUSAL}" and stop.
+- Be concise.""",
+}
+DEFAULT_PROMPT = "v1"
+SYSTEM_PROMPT = PROMPTS[DEFAULT_PROMPT]
 
 NO_RESULTS = "I couldn't find anything in your notes. Has the vault been indexed? Run src/index.py first."
 
@@ -58,11 +65,13 @@ def ollama_generator(model: str = LLM_MODEL) -> GenerateFn:
     return generate
 
 
-def answer(question: str, retrieve: Retriever, generate: GenerateFn, k: int = DEFAULT_K) -> Answer:
+def answer(
+    question: str, retrieve: Retriever, generate: GenerateFn, k: int = DEFAULT_K, system: str = SYSTEM_PROMPT
+) -> Answer:
     hits = retrieve(question, k)
     if not hits:
         return Answer(NO_RESULTS, [])
-    return Answer(generate(SYSTEM_PROMPT, build_prompt(question, hits)).strip(), hits)
+    return Answer(generate(system, build_prompt(question, hits)).strip(), hits)
 
 
 def main() -> None:
@@ -72,13 +81,14 @@ def main() -> None:
     parser.add_argument("--db", type=Path, default=DEFAULT_DB, help="index location")
     parser.add_argument("--embed-model", default=EMBED_MODEL)
     parser.add_argument("--model", default=LLM_MODEL, help="Ollama model that writes the answer")
+    parser.add_argument("--prompt", choices=PROMPTS, default=DEFAULT_PROMPT, help="system prompt version")
     parser.add_argument("--show-context", action="store_true", help="print the retrieved excerpts")
     args = parser.parse_args()
 
     try:
         collection = get_collection(args.db, args.embed_model)
         retrieve = vector_retriever(collection, ollama_embedder(args.embed_model))
-        result = answer(args.question, retrieve, ollama_generator(args.model), args.k)
+        result = answer(args.question, retrieve, ollama_generator(args.model), args.k, PROMPTS[args.prompt])
     except ValueError as e:
         sys.exit(str(e))
     except ConnectionError:

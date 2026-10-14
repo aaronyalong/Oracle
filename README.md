@@ -4,7 +4,7 @@ A fully local Retrieval-Augmented Generation (RAG) system over an Obsidian vault
 
 What makes Oracle *Obsidian* RAG rather than generic RAG: it understands the vault's structure — frontmatter, tags, aliases, and the `[[wikilink]]` graph — and measures whether following those links improves retrieval over vector similarity alone (see [Results](#results)).
 
-> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector and graph-aware retrieval, cited answers, and a retrieval benchmark. Next: answer-quality evaluation and a local API.
+> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector and graph-aware retrieval, cited answers, and retrieval and answer-quality benchmarks. Next: answer-quality experiments and a local API.
 
 ## Goals
 
@@ -59,7 +59,8 @@ oracle/
 │   ├── index.py         # embed chunks into Chroma; re-embeds only changed notes
 │   ├── retrieve.py      # retrieval strategies: vector search, graph expansion
 │   ├── query.py         # answer(question) -> answer + cited sources
-│   └── evaluate.py      # score retrieval strategies: hit@k, recall@k, MRR
+│   ├── evaluate.py      # score retrieval strategies: hit@k, recall@k, MRR
+│   └── evaluate_answers.py  # score answers: facts, refusals, made-up answers, citations
 ├── tests/               # pytest suite
 ├── eval/                # question set and saved results
 ├── DEVLOG.md            # dated progress log and design decisions
@@ -93,6 +94,9 @@ python src/query.py "what learning rate worked best in my project?"
 
 # Score retrieval against the question set
 python src/evaluate.py --vault sample-vault
+
+# Score answer quality (runs the LLM on every question; a few minutes)
+python src/evaluate_answers.py
 
 # Run the tests
 pytest

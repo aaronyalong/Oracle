@@ -209,3 +209,32 @@ The chosen strategy is **identical to vector** on held-out. Note-level links did
 - Keep vector search as the default retriever; keep graph expansion as an option.
 - Better uses of the link graph that don't compete for the same k slots: show linked notes as "related notes" in the UI; or give the model the k vector chunks *plus* a few linked chunks, and judge that on answer quality (it costs longer prompts).
 - Bigger likely wins are elsewhere: hybrid keyword search (paraphrase misses), the chunk-merging bug (`auto-args`), and answer quality (false refusals).
+
+## 2026-10-12 — Answer-quality benchmark and baseline
+
+**Done**
+- `eval/answers.json` (42 dev questions) and `eval/answers-holdout.json` (15): the retrieval questions plus **key facts** a correct answer must mention (each with acceptable spellings), 7 broad **topic** questions that should be summarized, and 9 **unanswerable** questions that should be refused — some tempting, like Redis's default port, which the model knows but the notes don't say (`forbidden: ["6379"]`).
+- `src/evaluate_answers.py`: runs the full pipeline per question and reports facts found, fully-correct answers, wrong refusals, citation support (does a cited excerpt contain a fact?), correct refusals, made-up answers, and latency. `--show` prints every answer; `--save` keeps them.
+- Prompts are now versioned (`PROMPTS` in `query.py`, `--prompt` flag) so prompt changes can be compared.
+- 20 tests (105 total).
+
+**Grader fixes after reading the first run.** Three "failures" were grading mistakes, not model mistakes, and were fixed: two answerable questions required a specific word when the answer was correct without it (`hnsw-ef-search`, `warmup`), and a good topic summary ending in a caveat ("I couldn't find general characteristics…") was counted as a refusal. Topic answers now only count as refusals if they cite nothing. Model mistakes were left as failures.
+
+**Baseline: prompt v1, llama3.2, k=5 (dev)**
+| | |
+|---|---|
+| Answerable: facts found | 0.92 |
+| Answerable: fully correct | 0.87 (27/31) |
+| Answerable: wrong refusals | 0.00 |
+| Citations supported | 0.97 |
+| Topic: wrong refusals | 0.00 |
+| Unanswerable: correctly refused | 1.00 (6/6, including Redis port) |
+| Average latency | 3.1 s (model warm) |
+
+**Findings**
+- The "artificial intelligence" wrong refusal from the 18-note vault no longer happens: the CS4100 note now literally says "Artificial Intelligence", and with that excerpt the model answers. Wrong refusals are 0 on this vault — the strict prompt isn't the problem it looked like.
+- The remaining errors are **reasoning and completeness**, not refusals:
+  - `planner-blocking` — had both the Study Planner (uses ZIO) and ZIO excerpts but answered with Cats Effect's `IO.blocking`. A 3B model failing to connect two excerpts.
+  - `oracle-metric`, `softmax-attention` — answered only one part of a two-part question.
+  - `auto-args` — retrieval issue (the chunk-merging bug), not generation.
+- Next experiments should target these: a larger model, and a prompt that asks the model to answer every part of the question and to connect excerpts.

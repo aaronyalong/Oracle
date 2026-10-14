@@ -1,0 +1,164 @@
+[
+  {
+    "id": "h-ts-rank",
+    "question": "How does Postgres's built-in text ranking differ from BM25?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "ts_rank"
+      ],
+      [
+        "frequency",
+        "not BM25",
+        "isn't BM25",
+        "no BM25"
+      ]
+    ]
+  },
+  {
+    "id": "h-sbt-percent",
+    "question": "What does %% do in a build.sbt dependency?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Scala version"
+      ]
+    ]
+  },
+  {
+    "id": "h-stop-early",
+    "question": "How do I stop a training run before the model starts memorizing the training set?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "early stopping"
+      ],
+      [
+        "validation"
+      ]
+    ]
+  },
+  {
+    "id": "h-actor-locks",
+    "question": "How can concurrent components keep private state safe without using locks?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "actor"
+      ],
+      [
+        "message",
+        "mailbox"
+      ]
+    ]
+  },
+  {
+    "id": "h-what-is-cnn",
+    "question": "What is a CNN?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "convolution"
+      ],
+      [
+        "image"
+      ]
+    ]
+  },
+  {
+    "id": "h-cs4100-optimizer",
+    "question": "Which optimizer did I train my CS4100 final project with, and what are its default beta values?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Adam"
+      ],
+      [
+        "0.9"
+      ],
+      [
+        "0.999"
+      ]
+    ]
+  },
+  {
+    "id": "h-planner-build",
+    "question": "What builds my Study Planner backend, and how do I make it re-run tests on every change?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "sbt"
+      ],
+      [
+        "~test"
+      ]
+    ]
+  },
+  {
+    "id": "h-planner-isolation",
+    "question": "What transaction isolation level does my Study Planner's database use by default?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Read Committed"
+      ]
+    ]
+  },
+  {
+    "id": "h-long-context-advice",
+    "question": "What did I take away from the long-context paper on my reading list?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "first or last",
+        "beginning or end",
+        "start or end",
+        "start and end",
+        "beginning and end"
+      ]
+    ]
+  },
+  {
+    "id": "h-oracle-index-m",
+    "question": "Which index does the vector store in my Oracle plan use by default, and what does its M parameter control?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "HNSW"
+      ],
+      [
+        "links per node",
+        "number of links",
+        "connections"
+      ]
+    ]
+  },
+  {
+    "id": "ht-optimizers",
+    "question": "machine learning optimizers",
+    "kind": "topic"
+  },
+  {
+    "id": "ht-search",
+    "question": "What do I know about search?",
+    "kind": "topic"
+  },
+  {
+    "id": "hu-calendar-date",
+    "question": "When is the Study Planner's calendar sync launching?",
+    "kind": "unanswerable"
+  },
+  {
+    "id": "hu-sam-next",
+    "question": "What did Sam work on after the Study Planner sync meeting?",
+    "kind": "unanswerable"
+  },
+  {
+    "id": "hu-brin",
+    "question": "What does the BRIN in BRIN index stand for?",
+    "kind": "unanswerable",
+    "forbidden": [
+      "Block Range"
+    ]
+  }
+]

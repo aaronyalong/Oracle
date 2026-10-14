@@ -1,0 +1,445 @@
+[
+  {
+    "id": "lr-best",
+    "question": "What learning rate worked best in my CS4100 project?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "0.001",
+        "1e-3"
+      ],
+      [
+        "Adam"
+      ]
+    ]
+  },
+  {
+    "id": "nomic-dims",
+    "question": "How many dimensions does nomic-embed-text produce?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "768"
+      ]
+    ]
+  },
+  {
+    "id": "chroma-index",
+    "question": "Which index type does Chroma use by default for approximate nearest neighbour search?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "HNSW",
+        "Hierarchical Navigable Small World"
+      ]
+    ]
+  },
+  {
+    "id": "sqrt-dk",
+    "question": "Why are attention scores divided by the square root of d_k?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "softmax"
+      ],
+      [
+        "saturat",
+        "too large",
+        "large values",
+        "small gradients"
+      ]
+    ]
+  },
+  {
+    "id": "chroma-distance",
+    "question": "Does Chroma report similarity or distance, and is lower better?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "distance"
+      ],
+      [
+        "lower"
+      ]
+    ]
+  },
+  {
+    "id": "adam-defaults",
+    "question": "What are Adam's default beta values?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "0.9"
+      ],
+      [
+        "0.999"
+      ]
+    ]
+  },
+  {
+    "id": "hnsw-ef-search",
+    "question": "What does the ef_search parameter control in HNSW?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "candidates",
+        "recall"
+      ]
+    ]
+  },
+  {
+    "id": "pg-isolation",
+    "question": "What is PostgreSQL's default transaction isolation level?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Read Committed"
+      ]
+    ]
+  },
+  {
+    "id": "akka-license",
+    "question": "What happened to Akka's license, and what is the open-source fork called?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Business Source",
+        "BSL"
+      ],
+      [
+        "Pekko"
+      ]
+    ]
+  },
+  {
+    "id": "list-append",
+    "question": "Why is appending to a Scala List slow?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "O(n)",
+        "linear",
+        "copied",
+        "copy"
+      ]
+    ]
+  },
+  {
+    "id": "train-vs-new",
+    "question": "My model does great on the data it learned from but badly on anything new. What can I do about it?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "regulari",
+        "dropout",
+        "early stopping",
+        "more data",
+        "augment",
+        "weight decay"
+      ]
+    ]
+  },
+  {
+    "id": "auto-args",
+    "question": "How do I get the compiler to fill in an argument automatically in Scala 3?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "given"
+      ],
+      [
+        "using"
+      ]
+    ]
+  },
+  {
+    "id": "eager-async",
+    "question": "Why is Scala's built-in async type harder to retry than Cats Effect or ZIO?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "eager",
+        "start running",
+        "immediately",
+        "as soon as"
+      ]
+    ]
+  },
+  {
+    "id": "server-free-store",
+    "question": "Which place to store vectors needs no server and suits a single-user app?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Chroma"
+      ]
+    ]
+  },
+  {
+    "id": "middle-ignored",
+    "question": "Why might a language model overlook information placed in the middle of a long prompt?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "start and end",
+        "beginning and end",
+        "less attention",
+        "Lost in the Middle"
+      ]
+    ]
+  },
+  {
+    "id": "warmup",
+    "question": "Why start training with a tiny step size and increase it over the first steps?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "unstable",
+        "stabil"
+      ]
+    ]
+  },
+  {
+    "id": "sqlite-writers",
+    "question": "Why does an embedded single-file database struggle when many users save changes at once?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "one writer",
+        "single writer",
+        "lock"
+      ]
+    ]
+  },
+  {
+    "id": "merge-rankings",
+    "question": "How can I combine the ranked lists from keyword search and vector search into one list?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Reciprocal Rank Fusion",
+        "RRF"
+      ]
+    ]
+  },
+  {
+    "id": "slow-first-answer",
+    "question": "Why is the first answer slow after I haven't asked anything for a while?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "5 minutes",
+        "five minutes",
+        "keep_alive",
+        "unload"
+      ]
+    ]
+  },
+  {
+    "id": "what-is-rag",
+    "question": "What is RAG?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "retriev"
+      ],
+      [
+        "generat",
+        "LLM",
+        "language model"
+      ]
+    ]
+  },
+  {
+    "id": "what-is-ml",
+    "question": "Give me an overview of ML.",
+    "kind": "answerable",
+    "facts": [
+      [
+        "data"
+      ],
+      [
+        "learn"
+      ]
+    ]
+  },
+  {
+    "id": "what-is-lora",
+    "question": "What is LoRA?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Low-Rank",
+        "low rank"
+      ]
+    ]
+  },
+  {
+    "id": "oracle-metric",
+    "question": "Which metrics should I use to check whether link expansion helps in Oracle, and what do they measure?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "recall"
+      ],
+      [
+        "MRR",
+        "reciprocal rank"
+      ]
+    ]
+  },
+  {
+    "id": "oracle-dims",
+    "question": "How many dimensions do the embeddings in my Oracle project have?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "768"
+      ]
+    ]
+  },
+  {
+    "id": "softmax-attention",
+    "question": "Which activation function turns attention scores into weights, and what does it do?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "softmax"
+      ],
+      [
+        "probabilit"
+      ]
+    ]
+  },
+  {
+    "id": "planner-blocking",
+    "question": "What should I use for blocking calls in the effect library my Study Planner backend is built on?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "attemptBlocking"
+      ]
+    ]
+  },
+  {
+    "id": "planner-search-index",
+    "question": "Which index type speeds up task search in my Study Planner's database?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "GIN"
+      ]
+    ]
+  },
+  {
+    "id": "cs4100-professor",
+    "question": "Who teaches the course where I ran my learning-rate experiments?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "Rao"
+      ]
+    ]
+  },
+  {
+    "id": "oracle-reranker",
+    "question": "How does the model I planned to use for reordering Oracle's search results score passages?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "cross-encoder",
+        "together",
+        "jointly"
+      ]
+    ]
+  },
+  {
+    "id": "planner-db-why",
+    "question": "Why did the Study Planner move off its original database?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "SQLite"
+      ],
+      [
+        "lock",
+        "one writer",
+        "single writer"
+      ]
+    ]
+  },
+  {
+    "id": "cs4100-layers",
+    "question": "What accuracy did my CS4100 final project reach, and what kind of layers does that model use to detect local patterns?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "84%",
+        "84 %",
+        "84 percent"
+      ],
+      [
+        "convolution",
+        "filter"
+      ]
+    ]
+  },
+  {
+    "id": "t-ai",
+    "question": "artificial intelligence",
+    "kind": "topic"
+  },
+  {
+    "id": "t-databases",
+    "question": "Tell me about databases.",
+    "kind": "topic"
+  },
+  {
+    "id": "t-scala-concurrency",
+    "question": "Scala concurrency",
+    "kind": "topic"
+  },
+  {
+    "id": "t-evaluation",
+    "question": "What do my notes say about evaluation?",
+    "kind": "topic"
+  },
+  {
+    "id": "t-study-planner",
+    "question": "Summarize my Study Planner project.",
+    "kind": "topic"
+  },
+  {
+    "id": "u-pizza",
+    "question": "What is my favorite pizza topping?",
+    "kind": "unanswerable"
+  },
+  {
+    "id": "u-gpu",
+    "question": "What GPU did I train my CS4100 project on?",
+    "kind": "unanswerable"
+  },
+  {
+    "id": "u-midterm-grade",
+    "question": "What grade did I get on the CS4100 midterm?",
+    "kind": "unanswerable"
+  },
+  {
+    "id": "u-redis-port",
+    "question": "What port does Redis listen on by default?",
+    "kind": "unanswerable",
+    "forbidden": [
+      "6379"
+    ]
+  },
+  {
+    "id": "u-priya-manager",
+    "question": "Who is Priya's manager?",
+    "kind": "unanswerable"
+  },
+  {
+    "id": "u-oracle-python",
+    "question": "Which version of Python does Oracle run on?",
+    "kind": "unanswerable"
+  }
+]
