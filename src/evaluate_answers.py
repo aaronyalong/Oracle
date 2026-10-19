@@ -26,13 +26,16 @@ from query import DEFAULT_K, DEFAULT_PROMPT, LLM_MODEL, PROMPTS, Answer, Generat
 from retrieve import Retriever, vector_retriever
 
 DEFAULT_QUESTIONS = Path("eval/answers.json")
+TOPIC_REFUSAL_MAX_CHARS = 200
 KINDS = ("answerable", "topic", "unanswerable")
 
 # The prompt asks for an exact refusal sentence, but models paraphrase it, so match the common forms.
 REFUSAL_RE = re.compile(
     r"couldn['’]t find|could not find|can['’]t find|cannot find|"
     r"(?:notes|excerpts|context) (?:do not|don['’]t|does not|doesn['’]t) (?:mention|contain|say|include|provide|specify)|"
-    r"no (?:information|mention) (?:about|of|on)",
+    r"no (?:information|mention) (?:about|of|on)|"
+    r"(?:is|are) not (?:explicitly )?(?:stated|mentioned|specified|given)|"
+    r"(?:isn['’]t|aren['’]t) (?:explicitly )?(?:stated|mentioned|specified|given)",
     re.IGNORECASE,
 )
 
@@ -92,7 +95,8 @@ def grade(question: AnswerQuestion, result: Answer, seconds: float) -> AnswerRes
     if question.kind == "answerable":
         refused = refused and not facts_found
     elif question.kind == "topic":
-        refused = refused and not result.cited
+        # A long summary that forgot [n] citations is "uncited", not a refusal.
+        refused = refused and not result.cited and len(result.text) < TOPIC_REFUSAL_MAX_CHARS
 
     made_up = None
     if question.kind == "unanswerable":

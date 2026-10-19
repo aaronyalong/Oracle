@@ -238,3 +238,37 @@ The chosen strategy is **identical to vector** on held-out. Note-level links did
   - `oracle-metric`, `softmax-attention` — answered only one part of a two-part question.
   - `auto-args` — retrieval issue (the chunk-merging bug), not generation.
 - Next experiments should target these: a larger model, and a prompt that asks the model to answer every part of the question and to connect excerpts.
+
+## 2026-10-19 — Answer quality: model × prompt experiment
+
+**Done**
+- Prompt **v2** (`PROMPTS["v2"]` in `query.py`): v1 plus "answer every part of the question", "combine excerpts when one names something and another explains it", and "summarize broad topics". Worded generally, not around specific questions.
+- Ran {llama3.2, qwen2.5:7b} × {v1, v2} on the 42 dev questions, k=5.
+- Grader fixes (classification only, found by reading answers): "X is not explicitly stated" now counts as a refusal; a long topic summary that forgot `[n]` citations counts as *uncited*, not as a refusal. 3 tests added (108 total).
+
+**Selection rule, fixed before seeing the grid:** most fully-correct answers with **zero** made-up answers — a made-up answer with a fake citation is worse than a missing one.
+
+**Dev results**
+| setup | fully correct | wrong refusals | made up | avg time |
+|---|---|---|---|---|
+| llama3.2 + v1 | 0.87 | 0 | 0 | 6.0 s |
+| llama3.2 + v2 | **0.97** | 0 | **1/6** | 7.9 s |
+| qwen2.5:7b + v1 | 0.94 | 1/31 | 0 | 12.9 s |
+| qwen2.5:7b + v2 | 0.94 | 1/31 | 0 | 14.6 s |
+
+- v2 fixed llama3.2's incomplete and unconnected answers (`planner-blocking` now correct) but it **invented Redis's default port and cited the Redis note for it** ("According to excerpt [1], Redis listens on port 6379"). Ruled out.
+- qwen2.5:7b is more accurate with either prompt; v2 added nothing for it. Picked **qwen2.5:7b + v1** (tie with v2, broken on speed).
+
+**Held-out (15 questions, run once)**
+| setup | fully correct | wrong refusals | made up | avg time |
+|---|---|---|---|---|
+| llama3.2 + v1 | 0.90 | 1/10 | 0/3 | 6.4 s |
+| qwen2.5:7b + v1 | **1.00** | 0/10 | **1/3** | 12.9 s |
+
+qwen2.5:7b answered "BRIN stands for Block Range INdex [1]" — true, but not in the notes, and the citation is fabricated.
+
+**Conclusion**
+- qwen2.5:7b is the more accurate model (0.94–1.00 fully correct), at about 2× the latency.
+- **Both models sometimes answer from their own training knowledge and cite a note that doesn't support it** — llama3.2 with v2, qwen2.5:7b on held-out. The prompt alone can't reliably prevent this; the failure moves around rather than disappearing.
+- The two fabrications share a pattern a simple check can catch: the key detail ("6379", "Block Range") does **not** appear in the cited excerpt. Next step: a **grounding check** that flags answers whose specific details (numbers, names, quoted terms) aren't in the excerpts they cite.
+- Default stays llama3.2 + v1 until the grounding check exists; then re-evaluate qwen2.5:7b with it.

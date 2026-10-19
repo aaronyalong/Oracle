@@ -28,6 +28,8 @@ def q(kind: str = "answerable", facts=None, forbidden=None) -> AnswerQuestion:
         "Your notes don't mention a favorite pizza.",
         "The excerpts do not contain this information.",
         "There is no information about GPUs.",
+        "The midterm grade is not explicitly stated.",
+        "Her manager isn't mentioned.",
     ],
 )
 def test_refusals_are_detected(text):
@@ -62,6 +64,12 @@ def test_topic_summary_with_a_caveat_is_not_a_refusal():
     text = "SQLite is embedded [1]. I couldn't find general characteristics of databases."
     assert not grade(q("topic"), Answer(text, [hit(1)]), 1.0).refused
     assert grade(q("topic"), Answer("I couldn't find that in your notes.", [hit(1)]), 1.0).refused
+
+
+def test_long_uncited_topic_summary_is_not_a_refusal():
+    text = "Scala has Futures, Cats Effect, ZIO, and Akka. " * 5 + "Your notes don't mention Loom."
+    result = grade(q("topic"), Answer(text, [hit(1)]), 1.0)
+    assert (result.refused, result.cited) == (False, [])
 
 
 def test_unanswerable_refused_is_not_made_up():

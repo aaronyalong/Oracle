@@ -25,7 +25,7 @@
     },
     "overall": {
       "n": 42,
-      "avg_seconds": 3.0685714285714285
+      "avg_seconds": 6.035238095238095
     }
   },
   "results": [
@@ -49,7 +49,7 @@
         "Courses/CS4100.md > Final project",
         "AI/Learning Rate Schedules.md > Warmup"
       ],
-      "seconds": 4.35
+      "seconds": 6.55
     },
     {
       "id": "nomic-dims",
@@ -70,13 +70,13 @@
         "Project Ideas.md > Oracle",
         "AI/Reranking.md > Cross-encoders"
       ],
-      "seconds": 3.06
+      "seconds": 4.9
     },
     {
       "id": "chroma-index",
       "kind": "answerable",
       "question": "Which index type does Chroma use by default for approximate nearest neighbour search?",
-      "answer": "According to excerpt [1], Chroma uses **HNSW** (Hierarchical Navigable Small World graphs) by default for approximate nearest neighbour search.",
+      "answer": "According to excerpt [1], Chroma uses **HNSW (Hierarchical Navigable Small World graphs)** by default for approximate nearest neighbour search.",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -91,7 +91,7 @@
         "AI/HNSW.md",
         "Databases/Full-Text Search.md > Ranking"
       ],
-      "seconds": 1.52
+      "seconds": 5.3
     },
     {
       "id": "sqrt-dk",
@@ -112,7 +112,7 @@
         "AI/Backpropagation.md > Vanishing gradients",
         "AI/Retrieval-Augmented Generation.md > Evaluation"
       ],
-      "seconds": 1.27
+      "seconds": 4.75
     },
     {
       "id": "chroma-distance",
@@ -133,7 +133,7 @@
         "AI/Vector Databases.md > Options",
         "AI/Fine-tuning.md > LoRA"
       ],
-      "seconds": 0.93
+      "seconds": 4.74
     },
     {
       "id": "adam-defaults",
@@ -154,7 +154,7 @@
         "AI/Adam Optimizer.md > How it works",
         "AI/Gradient Descent.md > Variants"
       ],
-      "seconds": 1.39
+      "seconds": 4.64
     },
     {
       "id": "hnsw-ef-search",
@@ -175,7 +175,7 @@
         "AI/HNSW.md > Structure",
         "AI/Vector Databases.md > Approximate nearest neighbour"
       ],
-      "seconds": 1.31
+      "seconds": 4.21
     },
     {
       "id": "pg-isolation",
@@ -196,7 +196,7 @@
         "Databases/Indexes.md > Types in Postgres",
         "Databases/Transactions.md > ACID"
       ],
-      "seconds": 0.92
+      "seconds": 4.45
     },
     {
       "id": "akka-license",
@@ -217,7 +217,7 @@
         "Databases/Redis.md > Persistence",
         "AI/Adam Optimizer.md"
       ],
-      "seconds": 3.13
+      "seconds": 4.15
     },
     {
       "id": "list-append",
@@ -238,13 +238,13 @@
         "Scala/Implicits and Givens.md > Scala 2: implicit",
         "Scala/Implicits and Givens.md > Scala 3: given / using"
       ],
-      "seconds": 1.06
+      "seconds": 4.85
     },
     {
       "id": "train-vs-new",
       "kind": "answerable",
       "question": "My model does great on the data it learned from but badly on anything new. What can I do about it?",
-      "answer": "Based on your notes, it seems like your model is experiencing overfitting. According to [2], a model overfits when it memorizes the training data and generalizes poorly. The tell-tale sign is training loss that keeps falling while validation loss starts rising.\n\nTo address this, you can try the remedies mentioned in [5], such as:\n\n* More data or data augmentation\n* Regularization (e.g., L2 weight decay, L1 encourages sparsity)\n* Dropout (randomly zero activations during training)\n* Early stopping (stop when validation loss hasn't improved for a set number of epochs)\n\nThese techniques can help prevent overfitting and improve your model's performance on new, unseen data.",
+      "answer": "Based on your notes, it seems like your model is experiencing overfitting. According to [2], a model overfits when it memorizes the training data and generalizes poorly. The tell-tale sign is training loss that keeps falling while validation loss starts rising.\n\nTo address this, you can try the remedies mentioned in [5], such as:\n\n* More data or data augmentation\n* Regularization (e.g., L2 weight decay or L1)\n* Dropout (randomly zero activations during training)\n* Early stopping (stop when validation loss hasn't improved for a set number of epochs)\n\nThese techniques can help prevent overfitting and improve your model's performance on new, unseen data.",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -260,7 +260,7 @@
         "AI/Overfitting.md > Underfitting",
         "AI/Overfitting.md > Remedies"
       ],
-      "seconds": 6.25
+      "seconds": 10.67
     },
     {
       "id": "auto-args",
@@ -281,7 +281,7 @@
         "Scala/Traits.md > Scala 3",
         "Scala/Scala.md > Scala 2 vs Scala 3"
       ],
-      "seconds": 1.24
+      "seconds": 4.34
     },
     {
       "id": "eager-async",
@@ -302,7 +302,7 @@
         "Scala/sbt.md > build.sbt",
         "Scala/ZIO.md > Blocking calls"
       ],
-      "seconds": 4.74
+      "seconds": 6.16
     },
     {
       "id": "server-free-store",
@@ -323,13 +323,13 @@
         "AI/Vector Databases.md > Metadata filtering",
         "AI/Embeddings.md > Embedding models"
       ],
-      "seconds": 1.5
+      "seconds": 5.53
     },
     {
       "id": "middle-ignored",
       "kind": "answerable",
       "question": "Why might a language model overlook information placed in the middle of a long prompt?",
-      "answer": "According to your notes, a language model might overlook information placed in the middle of a long prompt because of the phenomenon known as \"Lost in the Middle\" [3]. This is a common failure mode in Retrieval-Augmented Generation (RAG), where LLMs pay less attention to context in the middle of a long prompt.",
+      "answer": "According to your notes, a language model might overlook information placed in the middle of a long prompt because of the phenomenon of \"Lost in the middle\" [3]. This is a common failure mode in Retrieval-Augmented Generation (RAG), where LLMs pay less attention to context in the middle of a long prompt.",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -344,7 +344,7 @@
         "AI/Fine-tuning.md > Catastrophic forgetting",
         "AI/Overfitting.md"
       ],
-      "seconds": 3.03
+      "seconds": 7.14
     },
     {
       "id": "warmup",
@@ -365,13 +365,13 @@
         "AI/Neural Networks.md > Training tricks",
         "AI/Fine-tuning.md > Catastrophic forgetting"
       ],
-      "seconds": 5.6
+      "seconds": 7.71
     },
     {
       "id": "sqlite-writers",
       "kind": "answerable",
       "question": "Why does an embedded single-file database struggle when many users save changes at once?",
-      "answer": "According to your notes, an embedded single-file database like SQLite struggles when many users save changes at once because it allows only one writer at a time, and a write locks the whole database. This means that when multiple users try to save changes simultaneously, they will queue up or time out due to the serialization of writes. [3]",
+      "answer": "According to your notes, an embedded single-file database like SQLite struggles when many users save changes at once because it allows only one writer at a time, and a write locks the whole database. This means that when multiple users try to save changes simultaneously, they will have to wait for each other to finish, resulting in timeouts or \"database is locked\" errors. [3]",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -386,13 +386,13 @@
         "Databases/Redis.md > Persistence",
         "Databases/Transactions.md > Isolation levels"
       ],
-      "seconds": 4.81
+      "seconds": 7.3
     },
     {
       "id": "merge-rankings",
       "kind": "answerable",
       "question": "How can I combine the ranked lists from keyword search and vector search into one list?",
-      "answer": "You can use Reciprocal Rank Fusion (RRF) to combine the ranked lists from keyword search and vector search. RRF merges the two ranked lists by scoring each document as the sum of 1 / (60 + rank) over the lists it appears in. This method only uses ranks, so the two systems' scores don't need to be on the same scale. [3]",
+      "answer": "You can use Reciprocal Rank Fusion (RRF) to combine the ranked lists from keyword search and vector search into one list. [3]",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -407,7 +407,7 @@
         "Databases/Full-Text Search.md > Ranking",
         "AI/Hybrid Search.md > BM25"
       ],
-      "seconds": 3.49
+      "seconds": 4.81
     },
     {
       "id": "slow-first-answer",
@@ -428,13 +428,13 @@
         "AI/Fine-tuning.md > Catastrophic forgetting",
         "AI/Attention Mechanism.md > Scaled dot-product attention"
       ],
-      "seconds": 3.3
+      "seconds": 8.09
     },
     {
       "id": "what-is-rag",
       "kind": "answerable",
       "question": "What is RAG?",
-      "answer": "RAG (Retrieval-Augmented Generation) is a method for answering questions by first retrieving relevant passages from a document collection, then giving them to an LLM as context, grounding answers in your own data and working around the context window limit [1].",
+      "answer": "RAG (Retrieval-Augmented Generation) is a method for answering questions that first retrieves relevant passages from a document collection, then gives them to an LLM as context, grounding answers in your own data and working around the context window limit [1].",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -449,13 +449,13 @@
         "AI/LLM Evaluation.md > RAG-specific metrics",
         "AI/Retrieval-Augmented Generation.md > Common failure modes"
       ],
-      "seconds": 2.4
+      "seconds": 6.62
     },
     {
       "id": "what-is-ml",
       "kind": "answerable",
       "question": "Give me an overview of ML.",
-      "answer": "Here's an overview of Machine Learning (ML) based on your notes:\n\nMachine Learning is the study of algorithms that improve at a task by learning from data rather than following hand-written rules [1]. It involves creating models that can make predictions or take actions based on input data.\n\nMost modern systems turn inputs into vectors, which is related to [[Embeddings]] [2]. A model has parameters that are fit to training data by minimizing a loss function, with the most common optimizer being [[Gradient Descent]] [3]. However, the central risk in ML is [[Overfitting]], where the model performs well on training data but poorly on new data.\n\nI couldn't find any information on a specific overview of ML in your notes, but I've provided a general summary based on the provided excerpts.",
+      "answer": "Here's an overview of Machine Learning based on your notes:\n\nMachine Learning is the study of algorithms that improve at a task by learning from data rather than following hand-written rules [1]. It involves creating models that can make predictions or take actions based on input data.\n\nMost modern systems turn inputs into vectors, which is related to [[Embeddings]] [2]. A model has parameters that are fit to training data by minimizing a loss function, with the most common optimizer being [[Gradient Descent]] [3]. However, the central risk in Machine Learning is [[Overfitting]], where the model does well on training data but poorly on new data.\n\nTo give you a better understanding, I couldn't find any specific information on the core ideas of Machine Learning in your notes. However, I can tell you that it's related to [[Linear and logistic regression]], [[Neural Networks]], and [[Transformers]] [2].",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -472,7 +472,7 @@
         "Reading List.md > Read",
         "AI/Overfitting.md > Underfitting"
       ],
-      "seconds": 7.02
+      "seconds": 13.48
     },
     {
       "id": "what-is-lora",
@@ -493,7 +493,7 @@
         "AI/Ollama.md",
         "Project Ideas.md > Oracle"
       ],
-      "seconds": 2.48
+      "seconds": 7.09
     },
     {
       "id": "oracle-metric",
@@ -514,7 +514,7 @@
         "AI/Attention Mechanism.md > Scaled dot-product attention",
         "AI/LLM Evaluation.md > RAG-specific metrics"
       ],
-      "seconds": 4.32
+      "seconds": 6.77
     },
     {
       "id": "oracle-dims",
@@ -535,7 +535,7 @@
         "AI/Embeddings.md > Gotcha",
         "AI/Embeddings.md"
       ],
-      "seconds": 3.65
+      "seconds": 4.74
     },
     {
       "id": "softmax-attention",
@@ -556,7 +556,7 @@
         "AI/Overfitting.md > Remedies",
         "AI/Regularization.md > L2 (ridge)"
       ],
-      "seconds": 2.38
+      "seconds": 6.33
     },
     {
       "id": "planner-blocking",
@@ -577,13 +577,13 @@
         "Daily/2026-09-20.md > Study Planner sync",
         "Scala/Futures.md > ExecutionContext"
       ],
-      "seconds": 1.7
+      "seconds": 6.11
     },
     {
       "id": "planner-search-index",
       "kind": "answerable",
       "question": "Which index type speeds up task search in my Study Planner's database?",
-      "answer": "According to excerpt [2], task search uses the database's built-in full-text search, which is enabled by a GIN index on the tsvector column. Excerpt [5] mentions that creating a GIN index on the tsvector column speeds up search, as it allows for ranking matches by term frequency.",
+      "answer": "According to excerpt [2], task search uses the database's built-in full-text search, which is enabled by a GIN index on the tsvector column. Excerpt [5] mentions that without this GIN index, every search scans the whole table. Therefore, the GIN index speeds up task search in your Study Planner's database.",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
@@ -599,7 +599,7 @@
         "Databases/Indexes.md > Types in Postgres",
         "Databases/Full-Text Search.md > Ranking"
       ],
-      "seconds": 2.88
+      "seconds": 7.66
     },
     {
       "id": "cs4100-professor",
@@ -620,7 +620,7 @@
         "AI/Learning Rate Schedules.md > One-cycle",
         "AI/Gradient Descent.md > Learning rate"
       ],
-      "seconds": 3.22
+      "seconds": 4.14
     },
     {
       "id": "oracle-reranker",
@@ -641,7 +641,7 @@
         "AI/Reranking.md > Cross-encoders",
         "AI/Reranking.md > Typical pipeline"
       ],
-      "seconds": 3.2
+      "seconds": 4.11
     },
     {
       "id": "planner-db-why",
@@ -663,7 +663,7 @@
         "AI/Vector Databases.md > Options",
         "AI/Fine-tuning.md > Catastrophic forgetting"
       ],
-      "seconds": 4.98
+      "seconds": 6.39
     },
     {
       "id": "cs4100-layers",
@@ -684,7 +684,7 @@
         "AI/Backpropagation.md > Vanishing gradients",
         "Scala/Pattern Matching.md"
       ],
-      "seconds": 3.01
+      "seconds": 7.17
     },
     {
       "id": "t-ai",
@@ -705,7 +705,7 @@
         "AI/Machine Learning.md",
         "AI/Adam Optimizer.md"
       ],
-      "seconds": 3.09
+      "seconds": 3.92
     },
     {
       "id": "t-databases",
@@ -728,7 +728,7 @@
         "AI/Retrieval-Augmented Generation.md",
         "AI/Vector Databases.md > Options"
       ],
-      "seconds": 5.78
+      "seconds": 10.95
     },
     {
       "id": "t-scala-concurrency",
@@ -749,7 +749,7 @@
         "Scala/Collections.md > List",
         "Scala/Scala.md > Tooling"
       ],
-      "seconds": 2.98
+      "seconds": 3.89
     },
     {
       "id": "t-evaluation",
@@ -770,7 +770,7 @@
         "AI/LLM Evaluation.md > Reference-based",
         "AI/Hallucination.md > Mitigations"
       ],
-      "seconds": 3.01
+      "seconds": 6.64
     },
     {
       "id": "t-study-planner",
@@ -794,7 +794,7 @@
         "Reading List.md > To read",
         "AI/Retrieval-Augmented Generation.md > Pipeline"
       ],
-      "seconds": 9.16
+      "seconds": 16.25
     },
     {
       "id": "u-pizza",
@@ -813,7 +813,7 @@
         "AI/Neural Networks.md > Activation functions",
         "AI/Vector Databases.md > Options"
       ],
-      "seconds": 0.57
+      "seconds": 4.89
     },
     {
       "id": "u-gpu",
@@ -832,7 +832,7 @@
         "Scala/sbt.md > build.sbt",
         "AI/Adam Optimizer.md > Default hyperparameters"
       ],
-      "seconds": 2.55
+      "seconds": 3.3
     },
     {
       "id": "u-midterm-grade",
@@ -851,7 +851,7 @@
         "AI/Adam Optimizer.md > Default hyperparameters",
         "AI/Backpropagation.md > Vanishing gradients"
       ],
-      "seconds": 2.05
+      "seconds": 2.67
     },
     {
       "id": "u-redis-port",
@@ -870,7 +870,7 @@
         "AI/Neural Networks.md > Activation functions",
         "Databases/Transactions.md > Isolation levels"
       ],
-      "seconds": 0.52
+      "seconds": 3.39
     },
     {
       "id": "u-priya-manager",
@@ -889,7 +889,7 @@
         "Scala/Akka.md > Actors",
         "AI/Fine-tuning.md > Full fine-tuning"
       ],
-      "seconds": 2.44
+      "seconds": 3.27
     },
     {
       "id": "u-oracle-python",
@@ -908,7 +908,7 @@
         "Scala/Futures.md > Pitfall",
         "AI/Vector Databases.md > Options"
       ],
-      "seconds": 2.59
+      "seconds": 3.41
     }
   ]
 }
