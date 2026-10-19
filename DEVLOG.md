@@ -346,3 +346,33 @@ Of the remaining 12 flags, ~10 are genuinely outside knowledge but harmless — 
 - **Best setup: qwen2.5:7b + v1 + strict grounding.** Cost: ~2× latency vs llama3.2 (~13 s vs ~6 s on CPU).
 
 **Design tension for the UI:** strict mode needs the whole answer before showing anything, which conflicts with streaming. Warn mode streams fine (warnings appear at the end). Likely UI design: stream, then mark unsupported sentences.
+
+## 2026-10-19 — Keyword, Obsidian-like, and hybrid search
+
+**Why:** Obsidian already has a search bar (lexical). How does Oracle's retrieval compare, and does adding keyword matching fix vector search's weakness on exact terms?
+
+**Done** (`src/retrieve.py`)
+- `BM25` (Okapi, k1=1.5, b=0.75) implemented directly (~25 lines, no dependency) over the same chunks the vector index holds; simple tokenizer with an English stopword list.
+- `keyword_retriever` — BM25 ranking.
+- `obsidian_like_retriever` — approximates the search bar: a note matches only if it contains *every* term (case-insensitive substring, as Obsidian does); matching chunks ranked by BM25. Drops stopwords, which the real search bar doesn't, so it's an upper bound on typing the question in.
+- `hybrid_retriever` — vector + BM25 merged with Reciprocal Rank Fusion (score = Σ 1/(60 + rank), each list's top 30). Rank-based, so no score scaling and no weights to tune. Hits record `via` = vector / keyword / both.
+- 11 tests (155 total). One caught a real bug: the Obsidian-like matcher accepted "expire" ⊂ "expired" but then ranked by whole-word BM25 and dropped it; ranking is now substring-aware too.
+
+**Results (evidence score)**
+| strategy | dev k=1 | dev k=3 | dev k=5 | held-out k=1 | held-out k=3 | held-out k=5 |
+|---|---|---|---|---|---|---|
+| Obsidian-like (question typed into search) | 0.15 | 0.15 | 0.15 | 0.00 | 0.00 | 0.10 |
+| keyword (BM25) | 0.50 | 0.85 | 0.90 | 0.55 | 0.75 | 0.90 |
+| vector | 0.56 | **0.89** | **0.97** | 0.55 | 0.80 | 0.90 |
+| **hybrid** | **0.60** | **0.89** | 0.92 | **0.65** | **0.90** | **1.00** |
+
+By type (dev, k=3): keyword matches vector on direct questions (1.00) but trails on paraphrases (0.67 vs 0.78); hybrid is ≥ vector on every type. Obsidian-like scores 0.00 on paraphrases.
+
+**Findings**
+- Typing a natural-language question into an all-terms-must-match search finds the answer section for ~15% of questions. Caveat: people type keywords into a search bar, not questions — this measures the question-answering use case, not the search bar at its own job.
+- BM25 alone is a strong baseline (top-1 note hit 0.77 dev vs vector's 0.74) — the questions often share exact terms with the notes.
+- Hybrid is best for the **top results** (k=1 on both sets, k=3 on held-out), which is what a search UI shows first. At k=5 it's mixed: worse on dev (0.92 vs 0.97; lost `train-vs-new`, `cs4100-professor`), better on held-out (1.00 vs 0.90). Differences are 1–2 questions.
+
+**Decisions**
+- **Search mode** (ranked sections, no LLM) will use **hybrid**.
+- **Ask mode** keeps **vector** at k=5: tied overall, and the answer-quality results were measured with it. Re-testing answers with hybrid is an optional follow-up.

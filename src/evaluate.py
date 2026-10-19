@@ -21,14 +21,21 @@ import ollama
 
 from index import DEFAULT_DB, EMBED_MODEL, get_collection, ollama_embedder
 from ingest import Note, load_vault
-from retrieve import Hit, Retriever, graph_retriever, vector_retriever
+from retrieve import (
+    Hit, Retriever, graph_retriever, hybrid_retriever, keyword_retriever, obsidian_like_retriever, vector_retriever,
+)
 
 DEFAULT_QUESTIONS = Path("eval/questions.json")
 
 
 def build_strategies(collection, embed, notes: dict[str, Note]) -> dict[str, Retriever]:
     """Every strategy to compare. Graph variants differ in seed count and how much linked notes are favoured."""
-    strategies: dict[str, Retriever] = {"vector": vector_retriever(collection, embed)}
+    strategies: dict[str, Retriever] = {
+        "vector": vector_retriever(collection, embed),
+        "keyword": keyword_retriever(collection),
+        "obsidian-like": obsidian_like_retriever(collection),
+        "hybrid": hybrid_retriever(collection, embed),
+    }
     for links in ("note", "chunk", "chunk+back"):
         for seeds in (1, 2):
             for boost in (0.05, 1.0):

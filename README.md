@@ -57,7 +57,7 @@ oracle/
 │   ├── ingest.py        # parse notes, frontmatter, tags, links, backlinks
 │   ├── chunking.py      # heading-based, size-capped chunks for embedding
 │   ├── index.py         # embed chunks into Chroma; re-embeds only changed notes
-│   ├── retrieve.py      # retrieval strategies: vector search, graph expansion
+│   ├── retrieve.py      # retrieval: vector, BM25 keyword, hybrid, graph expansion
 │   ├── query.py         # answer(question) -> answer + cited sources
 │   ├── evaluate.py      # score retrieval strategies: hit@k, recall@k, MRR
 │   └── evaluate_answers.py  # score answers: facts, refusals, made-up answers, citations
@@ -127,6 +127,19 @@ Retrieval is evaluated on a 59-note sample vault with 31 development questions a
 | + chunk-level link expansion | **0.90** | 0.92 | 0.80 | 0.90 |
 
 **Finding:** at a fixed context budget, link expansion does not reliably beat vector search — differences are one or two questions in either direction. Linked notes are usually also semantically similar to the question, so vector search already finds them, and following links from the wrong section displaces good results. Following only the links inside the retrieved section is clearly better than following every link in the note. Full analysis in [`DEVLOG.md`](DEVLOG.md); raw results in [`eval/results/`](eval/results/).
+
+### Compared with keyword search
+
+How often each approach retrieves the passage containing the answer (evidence score, top 3 results):
+
+| Search | Dev | Held-out |
+|---|---|---|
+| Obsidian-style search (every term must match) | 0.15 | 0.00 |
+| Keyword ranking (BM25) | 0.85 | 0.75 |
+| Vector search | **0.89** | 0.80 |
+| **Hybrid** (vector + BM25, Reciprocal Rank Fusion) | **0.89** | **0.90** |
+
+Typing a natural-language question into an all-terms-must-match search rarely finds the answer, and never for paraphrased questions; that's the gap semantic search fills. Hybrid search is the most accurate for the top few results and is used for ranked search; answers use vector search, which tied with hybrid at five results.
 
 ### Answer quality
 

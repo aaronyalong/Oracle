@@ -1,0 +1,5723 @@
+{
+  "questions": "eval/questions.json",
+  "embed_model": "nomic-embed-text",
+  "runs": [
+    {
+      "strategy": "obsidian-like",
+      "k": 1,
+      "summary": {
+        "hit": 0.16129032258064516,
+        "recall": 0.14516129032258066,
+        "mrr": 0.16129032258064516,
+        "evidence": 0.14516129032258066
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        }
+      ]
+    },
+    {
+      "strategy": "keyword",
+      "k": 1,
+      "summary": {
+        "hit": 0.7741935483870968,
+        "recall": 0.6290322580645161,
+        "mrr": 0.7741935483870968,
+        "evidence": 0.5
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/ZIO.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Overfitting.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "AI/Reranking.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        }
+      ]
+    },
+    {
+      "strategy": "vector",
+      "k": 1,
+      "summary": {
+        "hit": 0.7419354838709677,
+        "recall": 0.6290322580645161,
+        "mrr": 0.7419354838709677,
+        "evidence": 0.5645161290322581
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Scala.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Scala/Cats Effect.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        }
+      ]
+    },
+    {
+      "strategy": "hybrid",
+      "k": 1,
+      "summary": {
+        "hit": 0.8064516129032258,
+        "recall": 0.6935483870967742,
+        "mrr": 0.8064516129032258,
+        "evidence": 0.5967741935483871
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Scala.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Scala/Cats Effect.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        }
+      ]
+    },
+    {
+      "strategy": "obsidian-like",
+      "k": 3,
+      "summary": {
+        "hit": 0.16129032258064516,
+        "recall": 0.14516129032258066,
+        "mrr": 0.16129032258064516,
+        "evidence": 0.14516129032258066
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Chunking Strategies.md",
+            "AI/LLM Evaluation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        }
+      ]
+    },
+    {
+      "strategy": "keyword",
+      "k": 3,
+      "summary": {
+        "hit": 0.9032258064516129,
+        "recall": 0.8870967741935484,
+        "mrr": 0.8387096774193549,
+        "evidence": 0.8548387096774194
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "Project Ideas.md",
+            "Courses/CS4100.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/HNSW.md",
+            "Databases/Indexes.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md",
+            "AI/Attention Mechanism.md",
+            "AI/Hybrid Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md",
+            "Databases/Indexes.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md",
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md",
+            "Databases/PostgreSQL.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md",
+            "Databases/PostgreSQL.md",
+            "Scala/Scala.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md",
+            "Reading List.md",
+            "Scala/Futures.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md",
+            "AI/Quantization.md",
+            "AI/Ollama.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/sbt.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/ZIO.md",
+            "Scala/Futures.md",
+            "Scala/Scala.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md",
+            "AI/Vector Databases.md",
+            "Scala/Akka.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md",
+            "AI/Prompt Engineering.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Adam Optimizer.md",
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md",
+            "Scala/Scala.md",
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md",
+            "Scala/Collections.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "Daily/2026-10-02.md",
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Chunking Strategies.md",
+            "AI/LLM Evaluation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Overfitting.md",
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Hallucination.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Daily/2026-09-14.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md",
+            "Scala/Cats Effect.md",
+            "Scala/ZIO.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md",
+            "Daily/2026-10-02.md",
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "AI/Reranking.md",
+            "Project Ideas.md",
+            "AI/Hallucination.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md",
+            "Scala/Pattern Matching.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "vector",
+      "k": 3,
+      "summary": {
+        "hit": 1.0,
+        "recall": 0.967741935483871,
+        "mrr": 0.8709677419354839,
+        "evidence": 0.8870967741935484
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Gradient Descent.md",
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "Databases/Indexes.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md",
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md",
+            "Databases/PostgreSQL.md",
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md",
+            "AI/Ollama.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md",
+            "Scala/Scala.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/Scala.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Scala.md",
+            "Scala/Futures.md",
+            "Scala/Traits.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "Databases/SQLite.md",
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md",
+            "AI/BERT.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Gradient Descent.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md",
+            "Databases/SQLite.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md",
+            "AI/Reranking.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Ollama.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Ollama.md",
+            "AI/Recurrent Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/BERT.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Scala/Cats Effect.md",
+            "Scala/ZIO.md",
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md",
+            "Projects/Study Planner.md",
+            "Databases/Indexes.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 0.5,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "Courses/CS4100.md",
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 0.5,
+          "evidence": 0.5
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Reranking.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md",
+            "Daily/2026-10-02.md",
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "hybrid",
+      "k": 3,
+      "summary": {
+        "hit": 0.967741935483871,
+        "recall": 0.9516129032258065,
+        "mrr": 0.8763440860215054,
+        "evidence": 0.8870967741935484
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md",
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md",
+            "Databases/PostgreSQL.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md",
+            "AI/Ollama.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md",
+            "Reading List.md",
+            "Scala/Implicits and Givens.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Machine Learning.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.3333333333333333,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/Scala.md",
+            "Scala/sbt.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Scala.md",
+            "Scala/Futures.md",
+            "Scala/ZIO.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "Databases/SQLite.md",
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Gradient Descent.md",
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md",
+            "Databases/Redis.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md",
+            "AI/Reranking.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md",
+            "AI/Gradient Descent.md",
+            "AI/Ollama.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.3333333333333333,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/LLM Evaluation.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Ollama.md",
+            "AI/Recurrent Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/LLM Evaluation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Scala/Cats Effect.md",
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md",
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 0.5,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md",
+            "Projects/Study Planner.md",
+            "Daily/2026-10-02.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "obsidian-like",
+      "k": 5,
+      "summary": {
+        "hit": 0.16129032258064516,
+        "recall": 0.14516129032258066,
+        "mrr": 0.16129032258064516,
+        "evidence": 0.14516129032258066
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Chunking Strategies.md",
+            "AI/LLM Evaluation.md",
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        }
+      ]
+    },
+    {
+      "strategy": "keyword",
+      "k": 5,
+      "summary": {
+        "hit": 0.9354838709677419,
+        "recall": 0.9032258064516129,
+        "mrr": 0.8548387096774194,
+        "evidence": 0.9032258064516129
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "Project Ideas.md",
+            "Courses/CS4100.md",
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/HNSW.md",
+            "Databases/Indexes.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md",
+            "AI/Attention Mechanism.md",
+            "AI/Hybrid Search.md",
+            "AI/Transformers.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md",
+            "AI/Cross-Validation.md",
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md",
+            "Databases/Indexes.md",
+            "AI/Gradient Descent.md",
+            "Scala/Collections.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md",
+            "AI/Adam Optimizer.md",
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md",
+            "Databases/PostgreSQL.md",
+            "Scala/Collections.md",
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md",
+            "Databases/PostgreSQL.md",
+            "Scala/Scala.md",
+            "AI/Ollama.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md",
+            "Reading List.md",
+            "Scala/Futures.md",
+            "Scala/Implicits and Givens.md",
+            "Daily/2026-10-02.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md",
+            "AI/Quantization.md",
+            "AI/Ollama.md",
+            "AI/Fine-tuning.md",
+            "AI/Cross-Validation.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/sbt.md",
+            "Project Ideas.md",
+            "Scala/Scala.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/ZIO.md",
+            "Scala/Futures.md",
+            "Scala/Scala.md",
+            "Scala/Cats Effect.md",
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md",
+            "AI/Vector Databases.md",
+            "Scala/Akka.md",
+            "Databases/Full-Text Search.md",
+            "Scala/For Comprehensions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md",
+            "AI/Prompt Engineering.md",
+            "AI/Recurrent Neural Networks.md",
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Adam Optimizer.md",
+            "AI/Gradient Descent.md",
+            "AI/Recurrent Neural Networks.md",
+            "Scala/Cats Effect.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md",
+            "Scala/Scala.md",
+            "AI/Vector Databases.md",
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md",
+            "Scala/Collections.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "Daily/2026-10-02.md",
+            "AI/Learning Rate Schedules.md",
+            "AI/LLM Evaluation.md",
+            "Scala/Type Classes.md"
+          ],
+          "hit": false,
+          "recall": 0.0,
+          "reciprocal_rank": 0.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Chunking Strategies.md",
+            "AI/LLM Evaluation.md",
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Overfitting.md",
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Hallucination.md",
+            "AI/LLM Evaluation.md",
+            "Daily/2026-09-14.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Daily/2026-09-14.md",
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md",
+            "AI/Hybrid Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md",
+            "Scala/Cats Effect.md",
+            "Scala/ZIO.md",
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md",
+            "Daily/2026-10-02.md",
+            "Daily/2026-09-20.md",
+            "AI/Machine Learning.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.5
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 0.5,
+          "evidence": 0.5
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "AI/Reranking.md",
+            "Project Ideas.md",
+            "AI/Hallucination.md",
+            "Scala/Collections.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md",
+            "Daily/2026-10-02.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md",
+            "Scala/Pattern Matching.md",
+            "AI/Machine Learning.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "vector",
+      "k": 5,
+      "summary": {
+        "hit": 1.0,
+        "recall": 1.0,
+        "mrr": 0.8709677419354839,
+        "evidence": 0.967741935483871
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Gradient Descent.md",
+            "AI/Adam Optimizer.md",
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "Databases/Indexes.md",
+            "AI/HNSW.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md",
+            "Reading List.md",
+            "AI/Backpropagation.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md",
+            "AI/Gradient Descent.md",
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md",
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md",
+            "Databases/Full-Text Search.md",
+            "AI/Vector Databases.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md",
+            "Databases/PostgreSQL.md",
+            "Daily/2026-09-20.md",
+            "Databases/Indexes.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md",
+            "AI/Ollama.md",
+            "Databases/Redis.md",
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md",
+            "Scala/Scala.md",
+            "Reading List.md",
+            "Scala/Implicits and Givens.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/Scala.md",
+            "Scala/Traits.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Scala.md",
+            "Scala/Futures.md",
+            "Scala/Traits.md",
+            "Scala/sbt.md",
+            "Scala/ZIO.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "Databases/SQLite.md",
+            "AI/Embeddings.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md",
+            "AI/BERT.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Fine-tuning.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Gradient Descent.md",
+            "AI/Overfitting.md",
+            "AI/Neural Networks.md",
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md",
+            "Databases/SQLite.md",
+            "Databases/Redis.md",
+            "Databases/Transactions.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md",
+            "AI/Reranking.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Ollama.md",
+            "AI/Fine-tuning.md",
+            "AI/Attention Mechanism.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md",
+            "AI/LLM Evaluation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md",
+            "Reading List.md",
+            "AI/Overfitting.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Ollama.md",
+            "AI/Recurrent Neural Networks.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/HNSW.md",
+            "AI/Attention Mechanism.md",
+            "AI/LLM Evaluation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/BERT.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md",
+            "AI/Overfitting.md",
+            "AI/Regularization.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Scala/Cats Effect.md",
+            "Scala/ZIO.md",
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md",
+            "Scala/Futures.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md",
+            "Projects/Study Planner.md",
+            "Databases/Indexes.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "Courses/CS4100.md",
+            "AI/Adam Optimizer.md",
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Reranking.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md",
+            "Daily/2026-10-02.md",
+            "Projects/Study Planner.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md",
+            "AI/Backpropagation.md",
+            "Scala/Pattern Matching.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        }
+      ]
+    },
+    {
+      "strategy": "hybrid",
+      "k": 5,
+      "summary": {
+        "hit": 1.0,
+        "recall": 0.9838709677419355,
+        "mrr": 0.8924731182795699,
+        "evidence": 0.9193548387096774
+      },
+      "results": [
+        {
+          "id": "lr-best",
+          "type": "direct",
+          "expected": [
+            "AI/Gradient Descent.md"
+          ],
+          "retrieved": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md",
+            "AI/Learning Rate Schedules.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "nomic-dims",
+          "type": "direct",
+          "expected": [
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-index",
+          "type": "direct",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "AI/HNSW.md",
+            "Databases/Indexes.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqrt-dk",
+          "type": "direct",
+          "expected": [
+            "AI/Attention Mechanism.md"
+          ],
+          "retrieved": [
+            "AI/Attention Mechanism.md",
+            "Reading List.md",
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "chroma-distance",
+          "type": "direct",
+          "expected": [
+            "AI/Cosine Similarity.md"
+          ],
+          "retrieved": [
+            "AI/Cosine Similarity.md",
+            "AI/Vector Databases.md",
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "adam-defaults",
+          "type": "direct",
+          "expected": [
+            "AI/Adam Optimizer.md"
+          ],
+          "retrieved": [
+            "AI/Adam Optimizer.md",
+            "AI/Gradient Descent.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "hnsw-ef-search",
+          "type": "direct",
+          "expected": [
+            "AI/HNSW.md"
+          ],
+          "retrieved": [
+            "AI/HNSW.md",
+            "AI/Vector Databases.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "pg-isolation",
+          "type": "direct",
+          "expected": [
+            "Databases/Transactions.md"
+          ],
+          "retrieved": [
+            "Databases/Transactions.md",
+            "Databases/PostgreSQL.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "akka-license",
+          "type": "direct",
+          "expected": [
+            "Scala/Akka.md"
+          ],
+          "retrieved": [
+            "Scala/Akka.md",
+            "AI/Ollama.md",
+            "Scala/Scala.md",
+            "Databases/Redis.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "list-append",
+          "type": "direct",
+          "expected": [
+            "Scala/Collections.md"
+          ],
+          "retrieved": [
+            "Scala/Collections.md",
+            "Reading List.md",
+            "Scala/Implicits and Givens.md",
+            "Scala/Scala.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "train-vs-new",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Overfitting.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Machine Learning.md",
+            "AI/Overfitting.md",
+            "AI/Cross-Validation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.3333333333333333,
+          "evidence": 0.0
+        },
+        {
+          "id": "auto-args",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Implicits and Givens.md"
+          ],
+          "retrieved": [
+            "Scala/Implicits and Givens.md",
+            "Scala/Scala.md",
+            "Scala/sbt.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 0.0
+        },
+        {
+          "id": "eager-async",
+          "type": "paraphrase",
+          "expected": [
+            "Scala/Futures.md"
+          ],
+          "retrieved": [
+            "Scala/Scala.md",
+            "Scala/Futures.md",
+            "Scala/ZIO.md",
+            "Scala/Cats Effect.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "server-free-store",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Vector Databases.md"
+          ],
+          "retrieved": [
+            "AI/Vector Databases.md",
+            "Databases/SQLite.md",
+            "AI/Embeddings.md",
+            "Databases/Redis.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "middle-ignored",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md",
+            "Reading List.md"
+          ],
+          "retrieved": [
+            "Reading List.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/Fine-tuning.md",
+            "AI/BERT.md",
+            "AI/Prompt Engineering.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "warmup",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Learning Rate Schedules.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Gradient Descent.md",
+            "AI/Adam Optimizer.md",
+            "AI/Neural Networks.md",
+            "AI/Fine-tuning.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "sqlite-writers",
+          "type": "paraphrase",
+          "expected": [
+            "Databases/SQLite.md"
+          ],
+          "retrieved": [
+            "Databases/SQLite.md",
+            "Databases/Redis.md",
+            "AI/Vector Databases.md",
+            "Daily/2026-09-20.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "merge-rankings",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Hybrid Search.md"
+          ],
+          "retrieved": [
+            "AI/Hybrid Search.md",
+            "AI/Reranking.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "slow-first-answer",
+          "type": "paraphrase",
+          "expected": [
+            "AI/Ollama.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md",
+            "AI/Gradient Descent.md",
+            "AI/Ollama.md",
+            "AI/Reranking.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.3333333333333333,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-rag",
+          "type": "alias",
+          "expected": [
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/LLM Evaluation.md",
+            "Reading List.md",
+            "AI/Chunking Strategies.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-ml",
+          "type": "alias",
+          "expected": [
+            "AI/Machine Learning.md"
+          ],
+          "retrieved": [
+            "AI/Machine Learning.md",
+            "AI/Overfitting.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "what-is-lora",
+          "type": "alias",
+          "expected": [
+            "AI/Fine-tuning.md"
+          ],
+          "retrieved": [
+            "AI/Fine-tuning.md",
+            "AI/Ollama.md",
+            "AI/Recurrent Neural Networks.md",
+            "Project Ideas.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-metric",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Retrieval-Augmented Generation.md",
+            "AI/LLM Evaluation.md",
+            "AI/Vector Databases.md",
+            "Reading List.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "oracle-dims",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Embeddings.md"
+          ],
+          "retrieved": [
+            "AI/Embeddings.md",
+            "Project Ideas.md",
+            "AI/HNSW.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "softmax-attention",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Attention Mechanism.md",
+            "AI/Neural Networks.md"
+          ],
+          "retrieved": [
+            "AI/Neural Networks.md",
+            "AI/Attention Mechanism.md",
+            "AI/Regularization.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-blocking",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md"
+          ],
+          "retrieved": [
+            "Scala/Cats Effect.md",
+            "Projects/Study Planner.md",
+            "Scala/ZIO.md",
+            "Daily/2026-09-20.md",
+            "Scala/Futures.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-search-index",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Databases/Full-Text Search.md"
+          ],
+          "retrieved": [
+            "Daily/2026-10-02.md",
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md",
+            "Databases/Full-Text Search.md",
+            "Databases/Indexes.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 0.5,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-professor",
+          "type": "multi-hop",
+          "expected": [
+            "AI/Gradient Descent.md",
+            "Courses/CS4100.md"
+          ],
+          "retrieved": [
+            "AI/Learning Rate Schedules.md",
+            "AI/Gradient Descent.md",
+            "AI/Adam Optimizer.md"
+          ],
+          "hit": true,
+          "recall": 0.5,
+          "reciprocal_rank": 0.5,
+          "evidence": 0.5
+        },
+        {
+          "id": "oracle-reranker",
+          "type": "multi-hop",
+          "expected": [
+            "Project Ideas.md",
+            "AI/Reranking.md"
+          ],
+          "retrieved": [
+            "Project Ideas.md",
+            "AI/Reranking.md",
+            "Databases/Full-Text Search.md",
+            "Daily/2026-10-02.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "planner-db-why",
+          "type": "multi-hop",
+          "expected": [
+            "Projects/Study Planner.md",
+            "Daily/2026-09-20.md"
+          ],
+          "retrieved": [
+            "Daily/2026-09-20.md",
+            "Projects/Study Planner.md",
+            "Daily/2026-10-02.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        },
+        {
+          "id": "cs4100-layers",
+          "type": "multi-hop",
+          "expected": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md"
+          ],
+          "retrieved": [
+            "Courses/CS4100.md",
+            "AI/Convolutional Neural Networks.md",
+            "AI/Gradient Descent.md",
+            "AI/Backpropagation.md"
+          ],
+          "hit": true,
+          "recall": 1.0,
+          "reciprocal_rank": 1.0,
+          "evidence": 1.0
+        }
+      ]
+    }
+  ]
+}
