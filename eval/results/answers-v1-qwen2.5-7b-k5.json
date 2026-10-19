@@ -3,18 +3,20 @@
     "questions": "eval/answers.json",
     "model": "qwen2.5:7b",
     "prompt": "v1",
-    "k": 5
+    "k": 5,
+    "rewrite": false
   },
   "summary": {
     "answerable": {
-      "n": 31,
-      "facts": 0.9516129032258065,
-      "fully_correct": 0.9354838709677419,
-      "wrong_refusals": 0.03225806451612903,
-      "citations_supported": 1.0
+      "n": 32,
+      "facts": 0.9375,
+      "fully_correct": 0.90625,
+      "wrong_refusals": 0.03125,
+      "citations_supported": 1.0,
+      "outdated": 0.0
     },
     "topic": {
-      "n": 5,
+      "n": 8,
       "wrong_refusals": 0.0,
       "cited": 1.0
     },
@@ -24,8 +26,8 @@
       "made_up": 0.0
     },
     "overall": {
-      "n": 42,
-      "avg_seconds": 12.925476190476191
+      "n": 46,
+      "avg_seconds": 12.61695652173913
     }
   },
   "results": [
@@ -37,6 +39,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2
       ],
@@ -48,7 +51,7 @@
         "Courses/CS4100.md > Final project",
         "AI/Learning Rate Schedules.md > Warmup"
       ],
-      "seconds": 19.5
+      "seconds": 11.03
     },
     {
       "id": "nomic-dims",
@@ -58,6 +61,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -69,7 +73,7 @@
         "Project Ideas.md > Oracle",
         "AI/Reranking.md > Cross-encoders"
       ],
-      "seconds": 11.5
+      "seconds": 10.1
     },
     {
       "id": "chroma-index",
@@ -79,6 +83,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -90,7 +95,7 @@
         "AI/HNSW.md",
         "Databases/Full-Text Search.md > Ranking"
       ],
-      "seconds": 12.28
+      "seconds": 10.94
     },
     {
       "id": "sqrt-dk",
@@ -100,6 +105,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -111,7 +117,7 @@
         "AI/Backpropagation.md > Vanishing gradients",
         "AI/Retrieval-Augmented Generation.md > Evaluation"
       ],
-      "seconds": 10.6
+      "seconds": 9.64
     },
     {
       "id": "chroma-distance",
@@ -121,6 +127,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -132,7 +139,7 @@
         "AI/Vector Databases.md > Options",
         "AI/Fine-tuning.md > LoRA"
       ],
-      "seconds": 10.79
+      "seconds": 10.17
     },
     {
       "id": "adam-defaults",
@@ -142,6 +149,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -153,7 +161,7 @@
         "AI/Adam Optimizer.md > How it works",
         "AI/Gradient Descent.md > Variants"
       ],
-      "seconds": 10.98
+      "seconds": 10.5
     },
     {
       "id": "hnsw-ef-search",
@@ -163,6 +171,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -174,7 +183,7 @@
         "AI/HNSW.md > Structure",
         "AI/Vector Databases.md > Approximate nearest neighbour"
       ],
-      "seconds": 10.28
+      "seconds": 9.85
     },
     {
       "id": "pg-isolation",
@@ -184,6 +193,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -195,7 +205,7 @@
         "Databases/Indexes.md > Types in Postgres",
         "Databases/Transactions.md > ACID"
       ],
-      "seconds": 10.08
+      "seconds": 10.1
     },
     {
       "id": "akka-license",
@@ -205,6 +215,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -216,7 +227,7 @@
         "Databases/Redis.md > Persistence",
         "AI/Adam Optimizer.md"
       ],
-      "seconds": 9.51
+      "seconds": 9.42
     },
     {
       "id": "list-append",
@@ -226,6 +237,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -237,7 +249,7 @@
         "Scala/Implicits and Givens.md > Scala 2: implicit",
         "Scala/Implicits and Givens.md > Scala 3: given / using"
       ],
-      "seconds": 14.47
+      "seconds": 13.99
     },
     {
       "id": "train-vs-new",
@@ -247,6 +259,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2,
         5
@@ -259,7 +272,7 @@
         "AI/Overfitting.md > Underfitting",
         "AI/Overfitting.md > Remedies"
       ],
-      "seconds": 21.5
+      "seconds": 20.22
     },
     {
       "id": "auto-args",
@@ -269,6 +282,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         3,
         5
@@ -281,7 +295,7 @@
         "Scala/Traits.md > Scala 3",
         "Scala/Scala.md > Scala 2 vs Scala 3"
       ],
-      "seconds": 10.72
+      "seconds": 10.27
     },
     {
       "id": "eager-async",
@@ -291,6 +305,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2
       ],
@@ -302,7 +317,7 @@
         "Scala/sbt.md > build.sbt",
         "Scala/ZIO.md > Blocking calls"
       ],
-      "seconds": 13.19
+      "seconds": 12.57
     },
     {
       "id": "server-free-store",
@@ -312,6 +327,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -323,7 +339,7 @@
         "AI/Vector Databases.md > Metadata filtering",
         "AI/Embeddings.md > Embedding models"
       ],
-      "seconds": 12.03
+      "seconds": 11.43
     },
     {
       "id": "middle-ignored",
@@ -333,6 +349,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         3
       ],
@@ -344,7 +361,7 @@
         "AI/Fine-tuning.md > Catastrophic forgetting",
         "AI/Overfitting.md"
       ],
-      "seconds": 12.48
+      "seconds": 11.92
     },
     {
       "id": "warmup",
@@ -354,6 +371,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -365,7 +383,7 @@
         "AI/Neural Networks.md > Training tricks",
         "AI/Fine-tuning.md > Catastrophic forgetting"
       ],
-      "seconds": 13.56
+      "seconds": 12.94
     },
     {
       "id": "sqlite-writers",
@@ -375,6 +393,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         3,
@@ -388,7 +407,7 @@
         "Databases/Redis.md > Persistence",
         "Databases/Transactions.md > Isolation levels"
       ],
-      "seconds": 17.03
+      "seconds": 15.93
     },
     {
       "id": "merge-rankings",
@@ -398,6 +417,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         3
       ],
@@ -409,7 +429,7 @@
         "Databases/Full-Text Search.md > Ranking",
         "AI/Hybrid Search.md > BM25"
       ],
-      "seconds": 12.37
+      "seconds": 11.7
     },
     {
       "id": "slow-first-answer",
@@ -419,6 +439,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2
       ],
@@ -430,7 +451,7 @@
         "AI/Fine-tuning.md > Catastrophic forgetting",
         "AI/Attention Mechanism.md > Scaled dot-product attention"
       ],
-      "seconds": 12.3
+      "seconds": 11.78
     },
     {
       "id": "what-is-rag",
@@ -440,6 +461,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -451,7 +473,7 @@
         "AI/LLM Evaluation.md > RAG-specific metrics",
         "AI/Retrieval-Augmented Generation.md > Common failure modes"
       ],
-      "seconds": 14.87
+      "seconds": 14.12
     },
     {
       "id": "what-is-ml",
@@ -461,6 +483,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2,
@@ -474,7 +497,7 @@
         "Reading List.md > Read",
         "AI/Overfitting.md > Underfitting"
       ],
-      "seconds": 19.16
+      "seconds": 17.98
     },
     {
       "id": "what-is-lora",
@@ -484,6 +507,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -495,7 +519,7 @@
         "AI/Ollama.md",
         "Project Ideas.md > Oracle"
       ],
-      "seconds": 15.02
+      "seconds": 14.18
     },
     {
       "id": "oracle-metric",
@@ -505,6 +529,7 @@
       "refused": false,
       "facts_found": 0.5,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2
       ],
@@ -516,7 +541,7 @@
         "AI/Attention Mechanism.md > Scaled dot-product attention",
         "AI/LLM Evaluation.md > RAG-specific metrics"
       ],
-      "seconds": 13.5
+      "seconds": 12.66
     },
     {
       "id": "oracle-dims",
@@ -526,6 +551,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2
@@ -538,7 +564,7 @@
         "AI/Embeddings.md > Gotcha",
         "AI/Embeddings.md"
       ],
-      "seconds": 10.48
+      "seconds": 9.95
     },
     {
       "id": "softmax-attention",
@@ -548,6 +574,7 @@
       "refused": true,
       "facts_found": 0.0,
       "made_up": null,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
@@ -557,16 +584,17 @@
         "AI/Overfitting.md > Remedies",
         "AI/Regularization.md > L2 (ridge)"
       ],
-      "seconds": 8.41
+      "seconds": 8.21
     },
     {
       "id": "planner-blocking",
       "kind": "answerable",
       "question": "What should I use for blocking calls in the effect library my Study Planner backend is built on?",
-      "answer": "For the effect library your Study Planner backend is built on (ZIO), you should use `ZIO.attemptBlocking(...)` for blocking I/O such as JDBC calls. This runs on ZIO's dedicated blocking thread pool, allowing the main pool to keep serving fibers. [2]",
+      "answer": "For the effect library your Study Planner backend is built on, which is ZIO, you should use `ZIO.attemptBlocking(...)` for blocking I/O such as JDBC calls. This runs on ZIO's dedicated blocking thread pool, allowing the main pool to keep serving fibers. [2]",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2
       ],
@@ -578,16 +606,17 @@
         "Daily/2026-09-20.md > Study Planner sync",
         "Scala/Futures.md > ExecutionContext"
       ],
-      "seconds": 15.91
+      "seconds": 15.09
     },
     {
       "id": "planner-search-index",
       "kind": "answerable",
       "question": "Which index type speeds up task search in my Study Planner's database?",
-      "answer": "The task search in your Study Planner's database uses a GIN index [4][5]. Specifically, a GIN index is created on the tsvector column to speed up full-text searches [5].",
+      "answer": "The task search in your Study Planner's database uses a GIN index, as it is suitable for text search documents [4][5].",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         4,
         5
@@ -600,7 +629,7 @@
         "Databases/Indexes.md > Types in Postgres",
         "Databases/Full-Text Search.md > Ranking"
       ],
-      "seconds": 13.55
+      "seconds": 11.17
     },
     {
       "id": "cs4100-professor",
@@ -610,6 +639,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2
       ],
@@ -621,7 +651,7 @@
         "AI/Learning Rate Schedules.md > One-cycle",
         "AI/Gradient Descent.md > Learning rate"
       ],
-      "seconds": 9.33
+      "seconds": 8.83
     },
     {
       "id": "oracle-reranker",
@@ -631,6 +661,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         2,
         4
@@ -643,30 +674,29 @@
         "AI/Reranking.md > Cross-encoders",
         "AI/Reranking.md > Typical pipeline"
       ],
-      "seconds": 18.57
+      "seconds": 17.2
     },
     {
       "id": "planner-db-why",
       "kind": "answerable",
       "question": "Why did the Study Planner move off its original database?",
-      "answer": "The Study Planner moved off its original database because reminder jobs were timing out with \"database is locked\" errors due to SQLite's limitations, which only allow one writer at a time, blocking reminder jobs and user edits [1]. The team decided to migrate to PostgreSQL to resolve these issues [2][3].",
+      "answer": "The Study Planner moved off its original database to PostgreSQL because the original database was experiencing \"database is locked\" errors during write operations, which were blocking reminder jobs and user edits [1]. The decision was made during the 2026-09-20 meeting [1], and Priya was assigned to handle the migration [1].",
       "refused": false,
-      "facts_found": 1.0,
+      "facts_found": 0.5,
       "made_up": null,
+      "outdated": null,
       "cited": [
-        1,
-        2,
-        3
+        1
       ],
       "citation_supported": true,
       "sources": [
         "Daily/2026-09-20.md > Study Planner sync",
         "Daily/2026-10-02.md",
         "Projects/Study Planner.md > Stack",
-        "AI/Vector Databases.md > Options",
-        "AI/Fine-tuning.md > Catastrophic forgetting"
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
       ],
-      "seconds": 15.08
+      "seconds": 13.53
     },
     {
       "id": "cs4100-layers",
@@ -676,6 +706,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2
@@ -688,7 +719,7 @@
         "AI/Backpropagation.md > Vanishing gradients",
         "Scala/Pattern Matching.md"
       ],
-      "seconds": 17.12
+      "seconds": 16.06
     },
     {
       "id": "t-ai",
@@ -698,6 +729,7 @@
       "refused": false,
       "facts_found": null,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -709,16 +741,17 @@
         "AI/Machine Learning.md",
         "AI/Adam Optimizer.md"
       ],
-      "seconds": 7.81
+      "seconds": 7.31
     },
     {
       "id": "t-databases",
       "kind": "topic",
       "question": "Tell me about databases.",
-      "answer": "Databases discussed in your notes include SQLite and PostgreSQL.\n\n- SQLite is an embedded database stored in a single file, without a server; it runs inside your application [1].\n\n- PostgreSQL (Postgres) is an open-source relational database known for correctness and extensibility, with a default port of 5432 [3].\n\nI couldn't find that in your notes.",
+      "answer": "Databases discussed in your notes include SQLite and PostgreSQL.\n\n- SQLite is an embedded database stored in a single file, without a server; it runs inside your application [1].\n\n- PostgreSQL (Postgres) is an open-source relational database known for correctness and extensibility, with a default port of 5432 [3].",
       "refused": false,
       "facts_found": null,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         3
@@ -731,7 +764,7 @@
         "AI/Retrieval-Augmented Generation.md",
         "AI/Vector Databases.md > Options"
       ],
-      "seconds": 17.63
+      "seconds": 16.53
     },
     {
       "id": "t-scala-concurrency",
@@ -741,6 +774,7 @@
       "refused": false,
       "facts_found": null,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -752,7 +786,7 @@
         "Scala/Collections.md > List",
         "Scala/Scala.md > Tooling"
       ],
-      "seconds": 6.66
+      "seconds": 6.28
     },
     {
       "id": "t-evaluation",
@@ -762,6 +796,7 @@
       "refused": false,
       "facts_found": null,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2,
@@ -777,29 +812,129 @@
         "AI/LLM Evaluation.md > Reference-based",
         "AI/Hallucination.md > Mitigations"
       ],
-      "seconds": 27.17
+      "seconds": 25.03
     },
     {
       "id": "t-study-planner",
       "kind": "topic",
       "question": "Summarize my Study Planner project.",
-      "answer": "The Study Planner is a web app for planning study sessions and tracking coursework deadlines. It uses Scala 3 with ZIO for the backend and was built with sbt. Initially, the project used a database, but it was moved to PostgreSQL after the 2026-09-20 meeting due to write-blocking issues with the original database. The app's task search leverages PostgreSQL's full-text search capabilities. The project is currently working on calendar sync functionality. [1][3]",
+      "answer": "Your Study Planner project is a web app for planning study sessions and tracking coursework deadlines. Here are the key points:\n\n- **Backend**: Built with Scala 3 and ZIO, managed with sbt.\n- **Database**: Initially used SQLite but was migrated to PostgreSQL after the 2026-09-20 meeting due to \"database is locked\" errors.\n- **Task Search**: Utilizes PostgreSQL's built-in full-text search.\n- **Reminders**: Currently use browser push notifications, scheduled with ZIO's `Schedule`. Previous plans involved a cron job for email reminders, but it was dropped due to spam issues and the frequency being too coarse.\n- **Development**: Recently, ZIO's typed errors were introduced, and an index was added to the tasks table to improve search performance.\n\n[1][2][3][4][5]",
       "refused": false,
       "facts_found": null,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
-        3
+        2,
+        3,
+        4,
+        5
       ],
       "citation_supported": null,
       "sources": [
         "Projects/Study Planner.md > Stack",
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
         "Daily/2026-10-02.md",
-        "Daily/2026-09-20.md > Study Planner sync",
-        "Reading List.md > To read",
-        "AI/Retrieval-Augmented Generation.md > Pipeline"
+        "Daily/2026-09-20.md > Study Planner sync"
       ],
-      "seconds": 22.47
+      "seconds": 27.15
+    },
+    {
+      "id": "planner-reminders",
+      "kind": "answerable",
+      "question": "How does the Study Planner send reminders?",
+      "answer": "The Study Planner sends reminders using browser push notifications, scheduled with ZIO's `Schedule` to fire at exact times. [1]",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": false,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Daily/2026-10-02.md"
+      ],
+      "seconds": 10.72
+    },
+    {
+      "id": "t-word-scala",
+      "kind": "topic",
+      "question": "Scala",
+      "answer": "Scala is a JVM language that combines object-oriented and functional programming [1]. It is also referred to as Dotty in the context of its compiler [2].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/Scala.md",
+        "Scala/Scala.md > Tooling",
+        "Scala/sbt.md > build.sbt",
+        "Reading List.md > To read",
+        "Scala/Scala.md > Key features"
+      ],
+      "seconds": 10.32
+    },
+    {
+      "id": "t-word-postgres",
+      "kind": "topic",
+      "question": "PostgreSQL",
+      "answer": "PostgreSQL, also known as Postgres, is an open-source relational database known for its correctness and extensibility [1]. It uses Multi-Version Concurrency Control (MVCC) to ensure that readers never block writers, with each transaction seeing a snapshot of the database [1]. PostgreSQL supports various extensions such as **pgvector** for vector similarity search, **PostGIS** for geographic data, and **pg_trgm** for fuzzy text search [2]. It also offers different isolation levels for transactions, including Read Committed, Repeatable Read, and Serializable [3]. The database supports multiple index types like B-tree, Hash, GIN, GiST, and BRIN, with guidelines on when not to use indexes [4]. Additionally, PostgreSQL includes built-in full-text search capabilities [5].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Databases/PostgreSQL.md > MVCC",
+        "Databases/PostgreSQL.md > Extensions",
+        "Databases/Transactions.md > Isolation levels",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/Full-Text Search.md > tsvector and tsquery"
+      ],
+      "seconds": 25.9
+    },
+    {
+      "id": "t-tell-everything",
+      "kind": "topic",
+      "question": "tell me everything about Scala",
+      "answer": "Scala is a JVM language that combines object-oriented and functional programming [1]. It is also known as Dotty during the development phase of Scala 3 [3]. Key features include:\n\n- Immutable data by default with case classes [4].\n- Powerful pattern matching [4].\n- Contextual abstractions through implicits and givens [4].\n- Concurrency support with futures, Cats Effect, ZIO, or Akka [4].\n- It can be built using sbt, with `sbt ~compile` recompiling on every save [3].\n\nScala 3 is the latest version and is built with the scala-cli for single-file scripts [3]. The standard build tool for Scala is sbt, and it can be configured in a `build.sbt` file, as shown in the example [5].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/Scala.md",
+        "Reading List.md > To read",
+        "Scala/Scala.md > Tooling",
+        "Scala/Scala.md > Key features",
+        "Scala/sbt.md > build.sbt"
+      ],
+      "seconds": 24.93
     },
     {
       "id": "u-pizza",
@@ -809,6 +944,7 @@
       "refused": true,
       "facts_found": null,
       "made_up": false,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
@@ -818,7 +954,7 @@
         "AI/Neural Networks.md > Activation functions",
         "AI/Vector Databases.md > Options"
       ],
-      "seconds": 10.51
+      "seconds": 10.02
     },
     {
       "id": "u-gpu",
@@ -828,6 +964,7 @@
       "refused": true,
       "facts_found": null,
       "made_up": false,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
@@ -837,7 +974,7 @@
         "Scala/sbt.md > build.sbt",
         "AI/Adam Optimizer.md > Default hyperparameters"
       ],
-      "seconds": 7.35
+      "seconds": 7.01
     },
     {
       "id": "u-midterm-grade",
@@ -847,6 +984,7 @@
       "refused": true,
       "facts_found": null,
       "made_up": false,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
@@ -856,7 +994,7 @@
         "AI/Adam Optimizer.md > Default hyperparameters",
         "AI/Backpropagation.md > Vanishing gradients"
       ],
-      "seconds": 5.93
+      "seconds": 5.61
     },
     {
       "id": "u-redis-port",
@@ -866,6 +1004,7 @@
       "refused": true,
       "facts_found": null,
       "made_up": false,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
@@ -875,7 +1014,7 @@
         "AI/Neural Networks.md > Activation functions",
         "Databases/Transactions.md > Isolation levels"
       ],
-      "seconds": 7.17
+      "seconds": 6.82
     },
     {
       "id": "u-priya-manager",
@@ -885,16 +1024,17 @@
       "refused": true,
       "facts_found": null,
       "made_up": false,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
         "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
         "Scala/Akka.md > License change",
         "AI/Attention Mechanism.md > Scaled dot-product attention",
-        "Scala/Akka.md > Actors",
-        "AI/Fine-tuning.md > Full fine-tuning"
+        "Scala/Akka.md > Actors"
       ],
-      "seconds": 6.79
+      "seconds": 6.45
     },
     {
       "id": "u-oracle-python",
@@ -904,6 +1044,7 @@
       "refused": true,
       "facts_found": null,
       "made_up": false,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
@@ -913,7 +1054,7 @@
         "Scala/Futures.md > Pitfall",
         "AI/Vector Databases.md > Options"
       ],
-      "seconds": 7.21
+      "seconds": 6.82
     }
   ]
 }

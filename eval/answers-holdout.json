@@ -144,6 +144,16 @@
     "kind": "topic"
   },
   {
+    "id": "ht-word-sbt",
+    "question": "sbt",
+    "kind": "topic"
+  },
+  {
+    "id": "ht-tell-everything-zio",
+    "question": "tell me everything about ZIO",
+    "kind": "topic"
+  },
+  {
     "id": "hu-calendar-date",
     "question": "When is the Study Planner's calendar sync launching?",
     "kind": "unanswerable"

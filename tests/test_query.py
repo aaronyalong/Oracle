@@ -4,7 +4,7 @@ import pytest
 
 from index import get_collection, index_vault
 from ingest import load_vault
-from query import NO_RESULTS, SYSTEM_PROMPT, Answer, answer, build_prompt
+from query import NO_RESULTS, REFUSAL, SYSTEM_PROMPT, Answer, answer, build_prompt, rewrite_query
 from retrieve import QUERY_PREFIX, Hit, vector_retriever
 
 # Two-dimensional "embeddings": texts mentioning Scala point one way, everything else the other.
@@ -98,3 +98,64 @@ def test_answer_passes_k_to_retriever():
 def test_cited_ignores_out_of_range_numbers():
     result = Answer("A [2], B [1][2], C [9], D [0].", [make_hit(1), make_hit(2)])
     assert result.cited == [1, 2]
+
+
+# --- Topic rewriting and refusal cleanup ---
+
+
+@pytest.mark.parametrize(
+    "question, expected",
+    [
+        ("Kafka", "Summarize what my notes say about Kafka."),
+        ("Scala concurrency", "Summarize what my notes say about Scala concurrency."),
+        ("tell me everything about Scala", "Summarize everything my notes say about Scala."),
+        ("Tell me about databases.", "Summarize everything my notes say about databases."),
+        ("everything about ZIO?", "Summarize everything my notes say about ZIO."),
+    ],
+)
+def test_topic_inputs_are_rewritten(question, expected):
+    assert rewrite_query(question) == expected
+
+
+@pytest.mark.parametrize(
+    "question",
+    ["What is RAG?", "How do I use sbt", "summarize my Study Planner project", "Why is appending to a List slow?"],
+)
+def test_real_questions_are_unchanged(question):
+    assert rewrite_query(question) == question
+
+
+def test_answer_searches_with_original_words_but_asks_the_rewrite():
+    searched, prompts = [], []
+
+    def retrieve(q, k):
+        searched.append(q)
+        return [make_hit(1)]
+
+    def generate(system, prompt):
+        prompts.append(prompt)
+        return "Summary [1]."
+
+    answer("Kafka", retrieve, generate)
+    assert searched == ["Kafka"]
+    assert prompts[0].endswith("Question: Summarize what my notes say about Kafka.")
+
+
+def test_rewrite_can_be_turned_off():
+    prompts = []
+    answer("Kafka", lambda q, k: [make_hit(1)], lambda s, p: prompts.append(p) or "x", rewrite=False)
+    assert prompts[0].endswith("Question: Kafka")
+
+
+def test_trailing_refusal_is_removed_from_a_cited_answer():
+    text = f"Kafka stores events in topics [1].\n\n{REFUSAL}"
+    assert answer("Kafka", lambda q, k: [make_hit(1)], lambda s, p: text).text == "Kafka stores events in topics [1]."
+
+
+def test_plain_refusal_is_kept():
+    assert answer("Kafka", lambda q, k: [make_hit(1)], lambda s, p: REFUSAL).text == REFUSAL
+
+
+def test_uncited_text_with_refusal_is_kept_as_is():
+    text = f"Something vague. {REFUSAL}"
+    assert answer("Kafka", lambda q, k: [make_hit(1)], lambda s, p: text).text == text

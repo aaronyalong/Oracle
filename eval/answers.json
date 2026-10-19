@@ -410,6 +410,37 @@
     "kind": "topic"
   },
   {
+    "id": "planner-reminders",
+    "question": "How does the Study Planner send reminders?",
+    "kind": "answerable",
+    "facts": [
+      [
+        "push notification",
+        "browser notification"
+      ]
+    ],
+    "forbidden": [
+      "every 15 minutes",
+      "cron",
+      "email"
+    ]
+  },
+  {
+    "id": "t-word-scala",
+    "question": "Scala",
+    "kind": "topic"
+  },
+  {
+    "id": "t-word-postgres",
+    "question": "PostgreSQL",
+    "kind": "topic"
+  },
+  {
+    "id": "t-tell-everything",
+    "question": "tell me everything about Scala",
+    "kind": "topic"
+  },
+  {
     "id": "u-pizza",
     "question": "What is my favorite pizza topping?",
     "kind": "unanswerable"

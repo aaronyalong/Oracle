@@ -272,3 +272,41 @@ qwen2.5:7b answered "BRIN stands for Block Range INdex [1]" — true, but not in
 - **Both models sometimes answer from their own training knowledge and cite a note that doesn't support it** — llama3.2 with v2, qwen2.5:7b on held-out. The prompt alone can't reliably prevent this; the failure moves around rather than disappearing.
 - The two fabrications share a pattern a simple check can catch: the key detail ("6379", "Block Range") does **not** appear in the cited excerpt. Next step: a **grounding check** that flags answers whose specific details (numbers, names, quoted terms) aren't in the excerpts they cite.
 - Default stays llama3.2 + v1 until the grounding check exists; then re-evaluate qwen2.5:7b with it.
+
+## 2026-10-19 — Real-vault test, topic rewrite, prompt v3
+
+**First run on a real vault** (a private work vault; content not shared or committed). Retrieval worked well: right notes, nested heading paths intact. Generation exposed problems the sample vault hadn't:
+1. **One-word topic queries are refused** ("X" → "I couldn't find that in your notes") by llama3.2 + v1, even with perfect excerpts.
+2. **Long answers drop their citations** (llama3.2 + v2).
+3. **Contradictory trailing refusal**: qwen2.5:7b answered with citations, then appended the refusal sentence.
+4. **Superseded content**: real notes contain sections marked as old or wrong theories that the model may present as current.
+
+**Changes**
+- `rewrite_query()` in `query.py`: topic-style input (≤ 4 words, no `?`, no leading question word, or "tell me (everything) about X") is rewritten to "Summarize what my notes say about X." for the LLM only; retrieval still uses the original words. `--no-rewrite` disables it.
+- `_drop_trailing_refusal()`: removes the refusal sentence from an answer that still cites sources without it.
+- Prompt **v3** = v1 + "cite every fact" + "if excerpts disagree, trust the newer / non-superseded one and say the plan changed".
+- Sample vault: a superseded plan in Study Planner (reminders first planned as cron + email, now push notifications). Grader: `forbidden` on answerable questions flags *outdated* answers unless they say the plan changed.
+- Benchmark: +3 dev topic questions phrased like real usage ("Scala", "PostgreSQL", "tell me everything about Scala"), +1 superseded question; +2 held-out topic questions. Written before any run.
+- 20 tests added (125 total). Work-vault terms that slipped into test examples were replaced with neutral ones.
+- The vault change shifted held-out *retrieval* scores slightly (vector k=3 0.75→0.80, k=5 0.95→0.90); README table re-run and updated, conclusion unchanged.
+
+**Results (46 dev / 17 held-out questions, k=5)**
+| setup | dev fully correct | held-out fully correct | topic refusals | topic answers cited (dev) | made up (dev + held-out) | avg time |
+|---|---|---|---|---|---|---|
+| llama3.2 + v1 | 0.88 | — | **2/8** | 0.62 | 0/6 | 5.9 s |
+| **llama3.2 + v1 + rewrite** | 0.88 | 0.80 | **0** | 0.62 | **0/9** | 5.7 s |
+| qwen2.5:7b + v1 | 0.91 | 0.90 | 0 | **1.00** | 2/9 | 12.6 s |
+| qwen2.5:7b + v1 + rewrite | 0.91 | — | 0 | 0.88 | 0/6 | 8.7 s |
+| qwen2.5:7b + v3 + rewrite | **0.94** | 0.90 | 0 | 0.50 | 1/9 | 13.5 s |
+
+- The rewrite fixes the small model's topic refusals (2 → 0) without changing anything else; qwen2.5:7b doesn't need it, and the "Summarize…" wording slightly reduces its citations.
+- Every setup handled the superseded plan correctly (0 outdated answers), so v3's conflict rule wasn't needed here.
+- v3's "cite every fact" backfired on topics: half its summaries had no citations at all.
+- qwen2.5:7b fabricated "BRIN stands for Block Range INdex [1]" on held-out **under both prompts**, citing a note that doesn't say it — the third fabricated citation across experiments, all from outside knowledge.
+- `hu-calendar-date` (qwen + v1, counted as made up) answered "calendar sync is next", which the notes do say. It's a too-strict label rather than a fabrication.
+
+**Selection.** The pre-set rule (zero made-up, zero topic refusals, zero outdated, then most fully correct) picked qwen + v3 + rewrite on dev. It didn't consider citations, and that setup left half its topic summaries uncited, so "topic answers cited" was added **after seeing the results**. Held-out then disqualified both qwen setups anyway (BRIN).
+
+**Default: llama3.2 + v1 + rewrite** — the only setup with zero made-up answers across all dev and held-out runs, and twice as fast. qwen2.5:7b stays available (`--model qwen2.5:7b`) as the more accurate but less trustworthy option.
+
+**Next:** a grounding check — verify that the specific details in an answer (numbers, names, expansions like "Block Range") appear in the excerpts it cites. All three fabrications so far would have failed it. Then re-evaluate qwen2.5:7b with the check on. Smaller follow-up: make the rewrite ask for citations ("…, citing the excerpts").

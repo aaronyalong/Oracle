@@ -3,29 +3,31 @@
     "questions": "eval/answers-holdout.json",
     "model": "qwen2.5:7b",
     "prompt": "v1",
-    "k": 5
+    "k": 5,
+    "rewrite": false
   },
   "summary": {
     "answerable": {
       "n": 10,
-      "facts": 1.0,
-      "fully_correct": 1.0,
+      "facts": 0.95,
+      "fully_correct": 0.9,
       "wrong_refusals": 0.0,
-      "citations_supported": 1.0
+      "citations_supported": 1.0,
+      "outdated": null
     },
     "topic": {
-      "n": 2,
+      "n": 4,
       "wrong_refusals": 0.0,
       "cited": 1.0
     },
     "unanswerable": {
       "n": 3,
-      "correct_refusals": 0.6666666666666666,
-      "made_up": 0.3333333333333333
+      "correct_refusals": 0.3333333333333333,
+      "made_up": 0.6666666666666666
     },
     "overall": {
-      "n": 15,
-      "avg_seconds": 12.927333333333333
+      "n": 17,
+      "avg_seconds": 13.82235294117647
     }
   },
   "results": [
@@ -37,6 +39,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2
@@ -49,7 +52,7 @@
         "Databases/PostgreSQL.md > MVCC",
         "Daily/2026-10-02.md"
       ],
-      "seconds": 16.56
+      "seconds": 22.31
     },
     {
       "id": "h-sbt-percent",
@@ -59,6 +62,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -70,19 +74,19 @@
         "Scala/Scala.md > Key features",
         "Scala/Case Classes.md > Sealed traits"
       ],
-      "seconds": 10.87
+      "seconds": 10.0
     },
     {
       "id": "h-stop-early",
       "kind": "answerable",
       "question": "How do I stop a training run before the model starts memorizing the training set?",
-      "answer": "To stop a training run before the model starts memorizing the training set, you can use **early stopping** [2]. This involves stopping the training when the validation loss hasn't improved for a set number of epochs, which helps prevent the model from overfitting [4][2].",
+      "answer": "To stop a training run before the model starts memorizing the training set, you can use **early stopping** [2]. This involves stopping the training when the validation loss has not improved for a set number of epochs, which helps prevent overfitting by avoiding unnecessary training on memorized data.",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
-        2,
-        4
+        2
       ],
       "citation_supported": true,
       "sources": [
@@ -92,7 +96,7 @@
         "AI/Overfitting.md",
         "AI/BERT.md > Pre-training"
       ],
-      "seconds": 13.02
+      "seconds": 13.33
     },
     {
       "id": "h-actor-locks",
@@ -102,6 +106,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         4
       ],
@@ -113,7 +118,7 @@
         "Scala/Akka.md > Actors",
         "Databases/PostgreSQL.md > MVCC"
       ],
-      "seconds": 16.39
+      "seconds": 14.58
     },
     {
       "id": "h-what-is-cnn",
@@ -123,6 +128,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -134,7 +140,7 @@
         "AI/Neural Networks.md",
         "Courses/CS4100.md > Final project"
       ],
-      "seconds": 17.29
+      "seconds": 14.3
     },
     {
       "id": "h-cs4100-optimizer",
@@ -144,6 +150,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -155,38 +162,39 @@
         "AI/Adam Optimizer.md",
         "AI/Adam Optimizer.md > AdamW"
       ],
-      "seconds": 12.56
+      "seconds": 12.8
     },
     {
       "id": "h-planner-build",
       "kind": "answerable",
       "question": "What builds my Study Planner backend, and how do I make it re-run tests on every change?",
-      "answer": "My Study Planner backend is built using sbt with Scala 3.5.0 and ZIO 2.1.9 [4]. To make it re-run tests on every file change, you can use the command `sbt ~test` [5].",
+      "answer": "The backend of the Study Planner is built with Scala 3 using ZIO, and it is developed with sbt. To make it re-run tests on every change, you would configure sbt to enable fast reload or similar functionality, but this is not detailed in the provided notes.\n\n[1]",
       "refused": false,
-      "facts_found": 1.0,
+      "facts_found": 0.5,
       "made_up": null,
+      "outdated": null,
       "cited": [
-        4,
-        5
+        1
       ],
       "citation_supported": true,
       "sources": [
         "Projects/Study Planner.md > Stack",
         "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — current",
         "Daily/2026-10-02.md",
-        "Scala/sbt.md > build.sbt",
-        "Scala/sbt.md > Useful commands"
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
       ],
-      "seconds": 14.37
+      "seconds": 14.89
     },
     {
       "id": "h-planner-isolation",
       "kind": "answerable",
       "question": "What transaction isolation level does my Study Planner's database use by default?",
-      "answer": "The Study Planner's database, PostgreSQL, uses the Read Committed isolation level by default [1].",
+      "answer": "Based on the information provided, your Study Planner's database uses the **Read Committed** isolation level by default, as it is mentioned that PostgreSQL's default is Read Committed [1].",
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -194,11 +202,11 @@
       "sources": [
         "Databases/Transactions.md > Isolation levels",
         "Daily/2026-09-20.md > Study Planner sync",
-        "Daily/2026-10-02.md",
         "Projects/Study Planner.md > Stack",
+        "Daily/2026-10-02.md",
         "Databases/SQLite.md > Concurrency"
       ],
-      "seconds": 10.89
+      "seconds": 13.04
     },
     {
       "id": "h-long-context-advice",
@@ -208,6 +216,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2
@@ -220,7 +229,7 @@
         "AI/Attention Mechanism.md > Cost",
         "AI/Retrieval-Augmented Generation.md > Common failure modes"
       ],
-      "seconds": 13.0
+      "seconds": 11.95
     },
     {
       "id": "h-oracle-index-m",
@@ -230,6 +239,7 @@
       "refused": false,
       "facts_found": 1.0,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2,
@@ -243,7 +253,7 @@
         "AI/Vector Databases.md > Metadata filtering",
         "Project Ideas.md > Oracle"
       ],
-      "seconds": 13.52
+      "seconds": 14.89
     },
     {
       "id": "ht-optimizers",
@@ -253,6 +263,7 @@
       "refused": false,
       "facts_found": null,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2,
@@ -266,7 +277,7 @@
         "AI/Adam Optimizer.md > AdamW",
         "AI/Adam Optimizer.md > Default hyperparameters"
       ],
-      "seconds": 13.51
+      "seconds": 13.07
     },
     {
       "id": "ht-search",
@@ -276,6 +287,7 @@
       "refused": false,
       "facts_found": null,
       "made_up": null,
+      "outdated": null,
       "cited": [
         1,
         2,
@@ -291,26 +303,75 @@
         "AI/Vector Databases.md > Metadata filtering",
         "Databases/Full-Text Search.md > tsvector and tsquery"
       ],
-      "seconds": 20.54
+      "seconds": 21.27
+    },
+    {
+      "id": "ht-word-sbt",
+      "kind": "topic",
+      "question": "sbt",
+      "answer": "sbt is the standard build tool for Scala. It provides commands like `sbt compile`, `sbt test`, and `sbt run`. Prefixing these commands with `~` allows them to re-run on every file change, such as `sbt ~test`. Additionally, `sbt console` opens a REPL with your project on the classpath. [2][3]",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2,
+        3
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/sbt.md > build.sbt",
+        "Scala/sbt.md > Useful commands",
+        "Scala/Scala.md > Tooling",
+        "Scala/Case Classes.md > Sealed traits",
+        "Scala/Traits.md > Linearization"
+      ],
+      "seconds": 13.54
+    },
+    {
+      "id": "ht-tell-everything-zio",
+      "kind": "topic",
+      "question": "tell me everything about ZIO",
+      "answer": "ZIO is an effect system in Scala that uses the type `ZIO[R, E, A]` to represent effects. It handles errors through typed errors, where the compiler can show which failures need to be handled [2][4]. ZIO provides `ZIO.attemptBlocking(...)` for blocking I/O operations, ensuring the main thread pool remains available for other tasks [2]. Additionally, ZIO supports dependency injection via `ZLayer`, which helps in building services from other services at startup [2].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2,
+        4
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/ZIO.md",
+        "Scala/ZIO.md > Blocking calls",
+        "Projects/Study Planner.md > Reminders — current",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Stack"
+      ],
+      "seconds": 18.98
     },
     {
       "id": "hu-calendar-date",
       "kind": "unanswerable",
       "question": "When is the Study Planner's calendar sync launching?",
-      "answer": "I couldn't find that in your notes.",
-      "refused": true,
+      "answer": "According to the notes, the calendar sync for the Study Planner is next in the status update [2][2].",
+      "refused": false,
       "facts_found": null,
-      "made_up": false,
-      "cited": [],
+      "made_up": true,
+      "outdated": null,
+      "cited": [
+        2
+      ],
       "citation_supported": null,
       "sources": [
         "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — current",
         "Projects/Study Planner.md > Stack",
         "Daily/2026-10-02.md",
-        "AI/Learning Rate Schedules.md > Decay",
-        "AI/Learning Rate Schedules.md > Warmup"
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
       ],
-      "seconds": 8.29
+      "seconds": 10.6
     },
     {
       "id": "hu-sam-next",
@@ -320,16 +381,17 @@
       "refused": true,
       "facts_found": null,
       "made_up": false,
+      "outdated": null,
       "cited": [],
       "citation_supported": null,
       "sources": [
         "Daily/2026-09-20.md > Study Planner sync",
         "Projects/Study Planner.md > Stack",
-        "Daily/2026-10-02.md",
-        "AI/Fine-tuning.md > Catastrophic forgetting",
-        "AI/Transformers.md"
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
+        "Daily/2026-10-02.md"
       ],
-      "seconds": 4.2
+      "seconds": 6.75
     },
     {
       "id": "hu-brin",
@@ -339,6 +401,7 @@
       "refused": false,
       "facts_found": null,
       "made_up": true,
+      "outdated": null,
       "cited": [
         1
       ],
@@ -350,7 +413,7 @@
         "AI/Hybrid Search.md > BM25",
         "AI/Regularization.md > Choosing the strength"
       ],
-      "seconds": 8.9
+      "seconds": 8.68
     }
   ]
 }

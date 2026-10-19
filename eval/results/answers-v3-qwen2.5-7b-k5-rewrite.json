@@ -1,0 +1,1044 @@
+{
+  "config": {
+    "questions": "eval/answers.json",
+    "model": "qwen2.5:7b",
+    "prompt": "v3",
+    "k": 5,
+    "rewrite": true
+  },
+  "summary": {
+    "answerable": {
+      "n": 32,
+      "facts": 0.953125,
+      "fully_correct": 0.9375,
+      "wrong_refusals": 0.03125,
+      "citations_supported": 0.967741935483871,
+      "outdated": 0.0
+    },
+    "topic": {
+      "n": 8,
+      "wrong_refusals": 0.0,
+      "cited": 0.5
+    },
+    "unanswerable": {
+      "n": 6,
+      "correct_refusals": 1.0,
+      "made_up": 0.0
+    },
+    "overall": {
+      "n": 46,
+      "avg_seconds": 13.468695652173912
+    }
+  },
+  "results": [
+    {
+      "id": "lr-best",
+      "kind": "answerable",
+      "question": "What learning rate worked best in my CS4100 project?",
+      "answer": "A learning rate of 0.001 with Adam worked best in your CS4100 project [2].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Courses/CS4100.md > Topics",
+        "AI/Gradient Descent.md > Learning rate",
+        "AI/Adam Optimizer.md > Default hyperparameters",
+        "Courses/CS4100.md > Final project",
+        "AI/Learning Rate Schedules.md > Warmup"
+      ],
+      "seconds": 12.33
+    },
+    {
+      "id": "nomic-dims",
+      "kind": "answerable",
+      "question": "How many dimensions does nomic-embed-text produce?",
+      "answer": "nomic-embed-text produces embeddings with 768 dimensions [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Embeddings.md > Embedding models",
+        "AI/Embeddings.md > Gotcha",
+        "AI/Embeddings.md",
+        "Project Ideas.md > Oracle",
+        "AI/Reranking.md > Cross-encoders"
+      ],
+      "seconds": 11.78
+    },
+    {
+      "id": "chroma-index",
+      "kind": "answerable",
+      "question": "Which index type does Chroma use by default for approximate nearest neighbour search?",
+      "answer": "Chroma uses **[[HNSW]]** (Hierarchical Navigable Small World graphs) by default for approximate nearest neighbour search [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Vector Databases.md > Approximate nearest neighbour",
+        "AI/Vector Databases.md > Options",
+        "Databases/Indexes.md > Types in Postgres",
+        "AI/HNSW.md",
+        "Databases/Full-Text Search.md > Ranking"
+      ],
+      "seconds": 12.44
+    },
+    {
+      "id": "sqrt-dk",
+      "kind": "answerable",
+      "question": "Why are attention scores divided by the square root of d_k?",
+      "answer": "Attention scores are divided by the square root of \\( d_k \\) to prevent the softmax function from saturating [1]. This scaling ensures that the attention scores remain within a reasonable range, which is important for the stability and effectiveness of the model [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Attention Mechanism.md > Scaled dot-product attention",
+        "AI/Attention Mechanism.md > Cost",
+        "Reading List.md > Read",
+        "AI/Backpropagation.md > Vanishing gradients",
+        "AI/Retrieval-Augmented Generation.md > Evaluation"
+      ],
+      "seconds": 14.85
+    },
+    {
+      "id": "chroma-distance",
+      "kind": "answerable",
+      "question": "Does Chroma report similarity or distance, and is lower better?",
+      "answer": "Chroma reports distances, and lower is better [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Cosine Similarity.md",
+        "AI/Vector Databases.md > Approximate nearest neighbour",
+        "AI/Gradient Descent.md > Learning rate",
+        "AI/Vector Databases.md > Options",
+        "AI/Fine-tuning.md > LoRA"
+      ],
+      "seconds": 11.42
+    },
+    {
+      "id": "adam-defaults",
+      "kind": "answerable",
+      "question": "What are Adam's default beta values?",
+      "answer": "The default beta values for Adam are beta1 = 0.9 and beta2 = 0.999 [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Adam Optimizer.md > Default hyperparameters",
+        "AI/Adam Optimizer.md > AdamW",
+        "AI/Adam Optimizer.md",
+        "AI/Adam Optimizer.md > How it works",
+        "AI/Gradient Descent.md > Variants"
+      ],
+      "seconds": 10.75
+    },
+    {
+      "id": "hnsw-ef-search",
+      "kind": "answerable",
+      "question": "What does the ef_search parameter control in HNSW?",
+      "answer": "The ef_search parameter controls how many candidates are kept during a query in HNSW [1]. It trades speed for recall at query time [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/HNSW.md > Parameters",
+        "AI/HNSW.md",
+        "Databases/Full-Text Search.md > tsvector and tsquery",
+        "AI/HNSW.md > Structure",
+        "AI/Vector Databases.md > Approximate nearest neighbour"
+      ],
+      "seconds": 10.05
+    },
+    {
+      "id": "pg-isolation",
+      "kind": "answerable",
+      "question": "What is PostgreSQL's default transaction isolation level?",
+      "answer": "PostgreSQL's default transaction isolation level is Read Committed [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Databases/Transactions.md > Isolation levels",
+        "Databases/PostgreSQL.md > MVCC",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/Transactions.md > ACID"
+      ],
+      "seconds": 9.66
+    },
+    {
+      "id": "akka-license",
+      "kind": "answerable",
+      "question": "What happened to Akka's license, and what is the open-source fork called?",
+      "answer": "Akka's license was changed to the Business Source License in 2022 [1]. The Apache-licensed community fork is called Apache Pekko [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Scala/Akka.md > License change",
+        "Scala/Akka.md > Actors",
+        "AI/Ollama.md",
+        "Databases/Redis.md > Persistence",
+        "AI/Adam Optimizer.md"
+      ],
+      "seconds": 9.26
+    },
+    {
+      "id": "list-append",
+      "kind": "answerable",
+      "question": "Why is appending to a Scala List slow?",
+      "answer": "Appending to a Scala List is slow because the operation requires copying the entire list, which is an O(n) operation [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Scala/Collections.md > List",
+        "Scala/Scala.md > Key features",
+        "Reading List.md > To read",
+        "Scala/Implicits and Givens.md > Scala 2: implicit",
+        "Scala/Implicits and Givens.md > Scala 3: given / using"
+      ],
+      "seconds": 11.16
+    },
+    {
+      "id": "train-vs-new",
+      "kind": "answerable",
+      "question": "My model does great on the data it learned from but badly on anything new. What can I do about it?",
+      "answer": "Based on your description, it sounds like your model is overfitting [2]. To address this issue, you can try the following remedies:\n\n- **More data** or data augmentation [2].\n- **Regularization** — consider using L2 weight decay or L1 regularization [2].\n- **Dropout** — apply dropout during training with a common rate of 0.1–0.5 [2].\n- **Early stopping** — monitor validation loss and stop training if it stops improving [2].\n\nThese strategies can help your model generalize better to new data.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": false,
+      "sources": [
+        "AI/Fine-tuning.md > Catastrophic forgetting",
+        "AI/Overfitting.md",
+        "AI/Fine-tuning.md > Full fine-tuning",
+        "AI/Overfitting.md > Underfitting",
+        "AI/Overfitting.md > Remedies"
+      ],
+      "seconds": 19.48
+    },
+    {
+      "id": "auto-args",
+      "kind": "answerable",
+      "question": "How do I get the compiler to fill in an argument automatically in Scala 3?",
+      "answer": "In Scala 3, you can get the compiler to fill in an argument automatically using `given`. This is part of the contextual abstractions feature [3][5].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        3,
+        5
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Scala/Implicits and Givens.md > Scala 2: implicit",
+        "Scala/Scala.md > Tooling",
+        "Scala/Scala.md > Key features",
+        "Scala/Traits.md > Scala 3",
+        "Scala/Scala.md > Scala 2 vs Scala 3"
+      ],
+      "seconds": 10.14
+    },
+    {
+      "id": "eager-async",
+      "kind": "answerable",
+      "question": "Why is Scala's built-in async type harder to retry than Cats Effect or ZIO?",
+      "answer": "Futures in Scala are eager, meaning they start running as soon as they're created [2]. Libraries like Cats Effect `IO` and ZIO are lazy instead, which makes them easier to reason about and retry [2].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Scala/Scala.md > Key features",
+        "Scala/Futures.md > Pitfall",
+        "Scala/Traits.md > Linearization",
+        "Scala/sbt.md > build.sbt",
+        "Scala/ZIO.md > Blocking calls"
+      ],
+      "seconds": 12.34
+    },
+    {
+      "id": "server-free-store",
+      "kind": "answerable",
+      "question": "Which place to store vectors needs no server and suits a single-user app?",
+      "answer": "Chroma — embedded Python library, persists to a local folder, no server. Good for single-user local apps. [1]",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Vector Databases.md > Options",
+        "Databases/SQLite.md",
+        "AI/Embeddings.md > Gotcha",
+        "AI/Vector Databases.md > Metadata filtering",
+        "AI/Embeddings.md > Embedding models"
+      ],
+      "seconds": 11.36
+    },
+    {
+      "id": "middle-ignored",
+      "kind": "answerable",
+      "question": "Why might a language model overlook information placed in the middle of a long prompt?",
+      "answer": "According to the notes, a language model might overlook information placed in the middle of a long prompt due to the \"Lost in the middle\" failure mode, as described in [3]. This issue is highlighted by the paper \"Lost in the Middle\" (Liu et al., 2023), which indicates that LLMs pay less attention to context in the middle of a long prompt.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        3
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Reading List.md > Read",
+        "AI/BERT.md > Pre-training",
+        "AI/Retrieval-Augmented Generation.md > Common failure modes",
+        "AI/Fine-tuning.md > Catastrophic forgetting",
+        "AI/Overfitting.md"
+      ],
+      "seconds": 16.73
+    },
+    {
+      "id": "warmup",
+      "kind": "answerable",
+      "question": "Why start training with a tiny step size and increase it over the first steps?",
+      "answer": "To start training with a tiny step size and increase it over the first steps is part of a learning rate schedule called warmup. This approach avoids large, unstable updates while the optimizer's running statistics are still poor, which is standard for transformers [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Learning Rate Schedules.md > Warmup",
+        "AI/Gradient Descent.md > Variants",
+        "AI/Overfitting.md > Remedies",
+        "AI/Neural Networks.md > Training tricks",
+        "AI/Fine-tuning.md > Catastrophic forgetting"
+      ],
+      "seconds": 14.74
+    },
+    {
+      "id": "sqlite-writers",
+      "kind": "answerable",
+      "question": "Why does an embedded single-file database struggle when many users save changes at once?",
+      "answer": "An embedded single-file database like SQLite struggles when many users save changes at once because SQLite allows only one writer at a time, and a write locks the whole database [3][5]. This means that reminder jobs and user edits can block each other, leading to \"database is locked\" errors [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        3,
+        5
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Databases/SQLite.md",
+        "Databases/SQLite.md > Concurrency",
+        "Databases/Redis.md > Persistence",
+        "Databases/Transactions.md > Isolation levels"
+      ],
+      "seconds": 14.14
+    },
+    {
+      "id": "merge-rankings",
+      "kind": "answerable",
+      "question": "How can I combine the ranked lists from keyword search and vector search into one list?",
+      "answer": "You can combine the ranked lists from keyword search and vector search using Reciprocal Rank Fusion (RRF). Each document scores the sum of 1 / (60 + rank) over the lists it appears in [3]. This method only uses ranks, so the two systems' scores don't need to be on the same scale.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        3
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Hybrid Search.md > Why",
+        "AI/Reranking.md > Typical pipeline",
+        "AI/Hybrid Search.md > Combining rankings",
+        "Databases/Full-Text Search.md > Ranking",
+        "AI/Hybrid Search.md > BM25"
+      ],
+      "seconds": 14.53
+    },
+    {
+      "id": "slow-first-answer",
+      "kind": "answerable",
+      "question": "Why is the first answer slow after I haven't asked anything for a while?",
+      "answer": "Ollama unloads a model after 5 minutes without requests, so the next request has to load it again and is noticeably slower [2].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Retrieval-Augmented Generation.md",
+        "AI/Ollama.md > Memory behaviour",
+        "AI/Retrieval-Augmented Generation.md > Common failure modes",
+        "AI/Fine-tuning.md > Catastrophic forgetting",
+        "AI/Attention Mechanism.md > Scaled dot-product attention"
+      ],
+      "seconds": 11.74
+    },
+    {
+      "id": "what-is-rag",
+      "kind": "answerable",
+      "question": "What is RAG?",
+      "answer": "RAG, or Retrieval-Augmented Generation, answers a question by first retrieving relevant passages from a document collection, then providing those passages to an LLM as context. This method grounds answers in your own data and helps circumvent the context window limit of LLMs [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Retrieval-Augmented Generation.md",
+        "Reading List.md > To read",
+        "AI/Retrieval-Augmented Generation.md > Pipeline",
+        "AI/LLM Evaluation.md > RAG-specific metrics",
+        "AI/Retrieval-Augmented Generation.md > Common failure modes"
+      ],
+      "seconds": 13.99
+    },
+    {
+      "id": "what-is-ml",
+      "kind": "answerable",
+      "question": "Give me an overview of ML.",
+      "answer": "Machine learning is the study of algorithms that improve at a task by learning from data rather than following hand-written rules [1]. It includes various model families such as linear and logistic regression, neural networks, and transformers [2]. Modern systems often convert inputs into vectors, a process that can be seen in embeddings [2]. A model's parameters are fit to training data by minimizing a loss function, with gradient descent being a common optimizer [3]. A key risk in ML is overfitting, where a model performs well on training data but poorly on new data [3].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Machine Learning.md",
+        "AI/Machine Learning.md > Model families",
+        "AI/Machine Learning.md > Core ideas",
+        "Reading List.md > Read",
+        "AI/Overfitting.md > Underfitting"
+      ],
+      "seconds": 19.24
+    },
+    {
+      "id": "what-is-lora",
+      "kind": "answerable",
+      "question": "What is LoRA?",
+      "answer": "LoRA is a technique for fine-tuning that freezes the original weights and trains small low-rank matrices added to selected layers. It trains a tiny fraction of the parameters, and the adapters are only a few megabytes [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Fine-tuning.md > LoRA",
+        "AI/Ollama.md > Memory behaviour",
+        "AI/Recurrent Neural Networks.md > LSTM and GRU",
+        "AI/Ollama.md",
+        "Project Ideas.md > Oracle"
+      ],
+      "seconds": 13.25
+    },
+    {
+      "id": "oracle-metric",
+      "kind": "answerable",
+      "question": "Which metrics should I use to check whether link expansion helps in Oracle, and what do they measure?",
+      "answer": "To check whether link expansion helps in Oracle, you should use **recall@k** [2]. This metric measures whether the right document is among the top k results [2].",
+      "refused": false,
+      "facts_found": 0.5,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Project Ideas.md > Oracle",
+        "AI/Retrieval-Augmented Generation.md > Evaluation",
+        "AI/HNSW.md > Parameters",
+        "AI/Attention Mechanism.md > Scaled dot-product attention",
+        "AI/LLM Evaluation.md > RAG-specific metrics"
+      ],
+      "seconds": 12.83
+    },
+    {
+      "id": "oracle-dims",
+      "kind": "answerable",
+      "question": "How many dimensions do the embeddings in my Oracle project have?",
+      "answer": "The embeddings in your Oracle project have 768 dimensions, as they use the nomic-embed-text model [1][2].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Embeddings.md > Embedding models",
+        "Project Ideas.md > Oracle",
+        "AI/BERT.md > Uses",
+        "AI/Embeddings.md > Gotcha",
+        "AI/Embeddings.md"
+      ],
+      "seconds": 9.91
+    },
+    {
+      "id": "softmax-attention",
+      "kind": "answerable",
+      "question": "Which activation function turns attention scores into weights, and what does it do?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": 0.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "AI/Neural Networks.md > Activation functions",
+        "AI/Attention Mechanism.md > Scaled dot-product attention",
+        "AI/Attention Mechanism.md",
+        "AI/Overfitting.md > Remedies",
+        "AI/Regularization.md > L2 (ridge)"
+      ],
+      "seconds": 8.11
+    },
+    {
+      "id": "planner-blocking",
+      "kind": "answerable",
+      "question": "What should I use for blocking calls in the effect library my Study Planner backend is built on?",
+      "answer": "For the effect library your Study Planner backend is built on, which is ZIO, you should use `ZIO.attemptBlocking(...)` for blocking I/O such as JDBC calls. This runs on ZIO's dedicated blocking thread pool, ensuring the main pool can continue serving fibers. [2]",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Scala/Cats Effect.md > Blocking work",
+        "Scala/ZIO.md > Blocking calls",
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Scala/Futures.md > ExecutionContext"
+      ],
+      "seconds": 14.91
+    },
+    {
+      "id": "planner-search-index",
+      "kind": "answerable",
+      "question": "Which index type speeds up task search in my Study Planner's database?",
+      "answer": "The task search in your Study Planner's database uses a GIN index [4][5]. Specifically, a GIN index is created on the tsvector column to speed up full-text searches [5].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        4,
+        5
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Stack",
+        "Databases/Indexes.md",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/Full-Text Search.md > Ranking"
+      ],
+      "seconds": 12.38
+    },
+    {
+      "id": "cs4100-professor",
+      "kind": "answerable",
+      "question": "Who teaches the course where I ran my learning-rate experiments?",
+      "answer": "According to your notes, Professor Lena Rao teaches CS4100, where you ran your learning-rate experiments [2].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Learning Rate Schedules.md > Warmup",
+        "Courses/CS4100.md > Topics",
+        "AI/Adam Optimizer.md > Default hyperparameters",
+        "AI/Learning Rate Schedules.md > One-cycle",
+        "AI/Gradient Descent.md > Learning rate"
+      ],
+      "seconds": 8.25
+    },
+    {
+      "id": "oracle-reranker",
+      "kind": "answerable",
+      "question": "How does the model I planned to use for reordering Oracle's search results score passages?",
+      "answer": "The model I planned to use for reordering Oracle's search results, specifically the bge-reranker-base, scores passages by running a cross-encoder that scores the query and passage together in one forward pass. This allows it to model their interaction directly, making it more accurate [4][5].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        4,
+        5
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Project Ideas.md > Oracle",
+        "AI/Reranking.md",
+        "Databases/Full-Text Search.md > Ranking",
+        "AI/Reranking.md > Cross-encoders",
+        "AI/Reranking.md > Typical pipeline"
+      ],
+      "seconds": 12.22
+    },
+    {
+      "id": "planner-db-why",
+      "kind": "answerable",
+      "question": "Why did the Study Planner move off its original database?",
+      "answer": "The Study Planner moved off its original database to migrate to PostgreSQL after encountering \"database is locked\" errors due to SQLite's limitations on allowing only one writer at a time [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Stack",
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
+      ],
+      "seconds": 11.89
+    },
+    {
+      "id": "cs4100-layers",
+      "kind": "answerable",
+      "question": "What accuracy did my CS4100 final project reach, and what kind of layers does that model use to detect local patterns?",
+      "answer": "Your CS4100 final project reached 84% test accuracy after adding data augmentation [1]. The model used convolution layers, which are part of Convolutional Neural Networks (CNNs), to detect local patterns like edges and textures in the images [2]. These convolution layers slide small learned filters (e.g., 3×3) across the image, applying the same filter at every position to identify local patterns [2].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Courses/CS4100.md > Final project",
+        "AI/Convolutional Neural Networks.md > Convolution layers",
+        "Courses/CS4100.md > Topics",
+        "AI/Backpropagation.md > Vanishing gradients",
+        "Scala/Pattern Matching.md"
+      ],
+      "seconds": 17.05
+    },
+    {
+      "id": "t-ai",
+      "kind": "topic",
+      "question": "artificial intelligence",
+      "answer": "CS4100, an Artificial Intelligence course taught by Professor Lena Rao in Fall 2025, covers topics such as search and planning, probabilistic reasoning, machine learning basics, and neural networks [1]. Specifically, neural networks are described as stacks of layers computing linear transformations followed by nonlinear activation functions [2]. The course also touches on convolutional neural networks, including notable architectures like LeNet, AlexNet, and ResNet [3], and machine learning, which involves algorithms that improve through data rather than hand-written rules [4]. Additionally, the Adam optimizer, which combines momentum and adaptive step sizes, is noted as the default for most deep learning tasks [5].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Courses/CS4100.md > Topics",
+        "AI/Neural Networks.md",
+        "AI/Convolutional Neural Networks.md > Architectures",
+        "AI/Machine Learning.md",
+        "AI/Adam Optimizer.md"
+      ],
+      "seconds": 19.97
+    },
+    {
+      "id": "t-databases",
+      "kind": "topic",
+      "question": "Tell me about databases.",
+      "answer": "My notes cover several aspects of databases:\n\n- **SQLite** is an embedded database stored in a single file, with no server; the library runs inside your application [1].\n\n- **PostgreSQL (Postgres)** is an open-source relational database known for correctness and extensibility, running on port 5432. It uses Multi-Version Concurrency Control (MVCC), where readers never block writers, and old row versions are cleaned up later by VACUUM [3].\n\n- **Indexes** in Postgres include B-tree, Hash, GIN, GiST, and BRIN, each suited for different types of data and queries [2].\n\n- **Vector Databases** store embeddings and find nearest neighbors, with options like Chroma, pgvector, FAISS, and Pinecone, each with its own characteristics and use cases [5].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Databases/SQLite.md",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/PostgreSQL.md > MVCC",
+        "AI/Retrieval-Augmented Generation.md",
+        "AI/Vector Databases.md > Options"
+      ],
+      "seconds": 27.91
+    },
+    {
+      "id": "t-scala-concurrency",
+      "kind": "topic",
+      "question": "Scala concurrency",
+      "answer": "Scala supports concurrency through several libraries and constructs:\n\n- Futures [4]\n- Cats Effect [4]\n- ZIO [4]\n- Akka [4]",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        4
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/Scala.md > Key features",
+        "Scala/Scala.md",
+        "Scala/Traits.md > Linearization",
+        "Scala/Collections.md > List",
+        "Scala/Scala.md > Tooling"
+      ],
+      "seconds": 7.85
+    },
+    {
+      "id": "t-evaluation",
+      "kind": "topic",
+      "question": "What do my notes say about evaluation?",
+      "answer": "Your notes discuss several aspects of evaluation, particularly for Retrieval-Augmented Generation (RAG) and Language Models (LMs):\n\n- **Retrieval-Augmented Generation (RAG) Evaluation**: \n  - Measure retrieval separately from generation using metrics like **recall@k** and **MRR** [1].\n  - The RAGAS library implements additional metrics such as **faithfulness**, **answer relevance**, and **context precision** [3].\n\n- **Language Model Evaluation**:\n  - **LLM-as-judge**: Using a strong model to grade answers against a rubric, though this method favors longer answers and the model's own style [2].\n  - **Reference-based Evaluation**: Comparing the output with a known correct answer using exact match, F1 over tokens, or a required key phrase [4].\n\nThese evaluations help ensure that the generated content is accurate, relevant, and well-supported by the retrieved context.",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "citation_supported": null,
+      "sources": [
+        "AI/Retrieval-Augmented Generation.md > Evaluation",
+        "AI/LLM Evaluation.md > LLM-as-judge",
+        "AI/LLM Evaluation.md > RAG-specific metrics",
+        "AI/LLM Evaluation.md > Reference-based",
+        "AI/Hallucination.md > Mitigations"
+      ],
+      "seconds": 26.27
+    },
+    {
+      "id": "t-study-planner",
+      "kind": "topic",
+      "question": "Summarize my Study Planner project.",
+      "answer": "Your Study Planner project is a web app for planning study sessions and tracking coursework deadlines. Here are the key points:\n\n- **Backend**: Built with Scala 3 and ZIO, managed with sbt.\n- **Database**: Initially used SQLite but was migrated to PostgreSQL after the 2026-09-20 meeting due to write blocking issues.\n- **Task Search**: Utilizes PostgreSQL's full-text search capabilities.\n- **Reminders**: Currently implemented with browser push notifications, scheduled using ZIO's `Schedule`. Deadlines and reminders work, with calendar sync pending.\n- **Development Notes**: Introduced ZIO's typed errors, which helped catch two unhandled failure cases. Improved search performance by adding the right index to the tasks table.\n\nThe project has evolved from an initial plan that involved email reminders to the current browser push notification system.",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Projects/Study Planner.md > Stack",
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
+        "Daily/2026-10-02.md",
+        "Daily/2026-09-20.md > Study Planner sync"
+      ],
+      "seconds": 26.42
+    },
+    {
+      "id": "planner-reminders",
+      "kind": "answerable",
+      "question": "How does the Study Planner send reminders?",
+      "answer": "The Study Planner sends reminders using browser push notifications, scheduled per user with ZIO's `Schedule` so each one fires at the exact time [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": false,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Daily/2026-10-02.md"
+      ],
+      "seconds": 11.15
+    },
+    {
+      "id": "t-word-scala",
+      "kind": "topic",
+      "question": "Scala",
+      "answer": "My notes indicate that Scala is a JVM language that integrates object-oriented and functional programming. It is currently referred to as Dotty, specifically version 3.0. The standard build tool for Scala projects is sbt, which can automatically recompile code on every save with `sbt ~compile`. Scala 3 features immutable data by default, powerful pattern matching, and contextual abstractions through implicits and givens. It supports concurrency through various libraries like Futures, Cats Effect, ZIO, or Akka.",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Scala/Scala.md",
+        "Scala/Scala.md > Tooling",
+        "Scala/sbt.md > build.sbt",
+        "Reading List.md > To read",
+        "Scala/Scala.md > Key features"
+      ],
+      "seconds": 18.25
+    },
+    {
+      "id": "t-word-postgres",
+      "kind": "topic",
+      "question": "PostgreSQL",
+      "answer": "PostgreSQL, also known as Postgres, is an open-source relational database noted for its correctness and extensibility, using port 5432 by default. It supports various isolation levels including Read Committed, Repeatable Read, and Serializable. PostgreSQL offers several index types such as B-tree, Hash, GIN, GiST, and BRIN, with guidance on when not to use indexes. It includes extensions like pgvector for vector similarity search, PostGIS for geographic data, and pg_trgm for fuzzy text search. Additionally, PostgreSQL has built-in full-text search capabilities using `tsvector` and `tsquery`.",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Databases/PostgreSQL.md > MVCC",
+        "Databases/PostgreSQL.md > Extensions",
+        "Databases/Transactions.md > Isolation levels",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/Full-Text Search.md > tsvector and tsquery"
+      ],
+      "seconds": 21.86
+    },
+    {
+      "id": "t-tell-everything",
+      "kind": "topic",
+      "question": "tell me everything about Scala",
+      "answer": "Scala is a JVM language that integrates object-oriented and functional programming. It is referred to as Dotty in its compiler form and is known for its 3rd edition, which is the focus of your coursework. Key features include immutable data by default with case classes, powerful pattern matching, contextual abstractions through implicits and givens, concurrency support with futures, and various libraries like Cats Effect, ZIO, or Akka. The standard build tool is sbt, where `scalaVersion := \"3.5.0\"` and `libraryDependencies` are used to define dependencies, with `%%` appending the correct Scala version to the artifact name. Scala 3 is also known as Dotty, and tools like `sbt ~compile` and `scala-cli` are mentioned for development.",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Scala/Scala.md",
+        "Reading List.md > To read",
+        "Scala/Scala.md > Tooling",
+        "Scala/Scala.md > Key features",
+        "Scala/sbt.md > build.sbt"
+      ],
+      "seconds": 24.13
+    },
+    {
+      "id": "u-pizza",
+      "kind": "unanswerable",
+      "question": "What is my favorite pizza topping?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Scala/Futures.md > Pitfall",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/Full-Text Search.md > Ranking",
+        "AI/Neural Networks.md > Activation functions",
+        "AI/Vector Databases.md > Options"
+      ],
+      "seconds": 9.97
+    },
+    {
+      "id": "u-gpu",
+      "kind": "unanswerable",
+      "question": "What GPU did I train my CS4100 project on?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Courses/CS4100.md > Topics",
+        "Courses/CS4100.md > Final project",
+        "AI/Fine-tuning.md > Full fine-tuning",
+        "Scala/sbt.md > build.sbt",
+        "AI/Adam Optimizer.md > Default hyperparameters"
+      ],
+      "seconds": 7.04
+    },
+    {
+      "id": "u-midterm-grade",
+      "kind": "unanswerable",
+      "question": "What grade did I get on the CS4100 midterm?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Courses/CS4100.md > Topics",
+        "Courses/CS4100.md > Final project",
+        "AI/Gradient Descent.md > Learning rate",
+        "AI/Adam Optimizer.md > Default hyperparameters",
+        "AI/Backpropagation.md > Vanishing gradients"
+      ],
+      "seconds": 5.63
+    },
+    {
+      "id": "u-redis-port",
+      "kind": "unanswerable",
+      "question": "What port does Redis listen on by default?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Databases/Redis.md",
+        "Databases/Redis.md > Persistence",
+        "Databases/Redis.md > Expiry",
+        "AI/Neural Networks.md > Activation functions",
+        "Databases/Transactions.md > Isolation levels"
+      ],
+      "seconds": 6.77
+    },
+    {
+      "id": "u-priya-manager",
+      "kind": "unanswerable",
+      "question": "Who is Priya's manager?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
+        "Scala/Akka.md > License change",
+        "AI/Attention Mechanism.md > Scaled dot-product attention",
+        "Scala/Akka.md > Actors"
+      ],
+      "seconds": 6.39
+    },
+    {
+      "id": "u-oracle-python",
+      "kind": "unanswerable",
+      "question": "Which version of Python does Oracle run on?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Project Ideas.md > Oracle",
+        "AI/Ollama.md",
+        "AI/Adam Optimizer.md > Default hyperparameters",
+        "Scala/Futures.md > Pitfall",
+        "AI/Vector Databases.md > Options"
+      ],
+      "seconds": 7.02
+    }
+  ]
+}

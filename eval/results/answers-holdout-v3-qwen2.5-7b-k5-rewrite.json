@@ -1,0 +1,423 @@
+{
+  "config": {
+    "questions": "eval/answers-holdout.json",
+    "model": "qwen2.5:7b",
+    "prompt": "v3",
+    "k": 5,
+    "rewrite": true
+  },
+  "summary": {
+    "answerable": {
+      "n": 10,
+      "facts": 0.95,
+      "fully_correct": 0.9,
+      "wrong_refusals": 0.0,
+      "citations_supported": 1.0,
+      "outdated": null
+    },
+    "topic": {
+      "n": 4,
+      "wrong_refusals": 0.0,
+      "cited": 1.0
+    },
+    "unanswerable": {
+      "n": 3,
+      "correct_refusals": 0.6666666666666666,
+      "made_up": 0.3333333333333333
+    },
+    "overall": {
+      "n": 17,
+      "avg_seconds": 14.668235294117649
+    }
+  },
+  "results": [
+    {
+      "id": "h-ts-rank",
+      "kind": "answerable",
+      "question": "How does Postgres's built-in text ranking differ from BM25?",
+      "answer": "Postgres's built-in text ranking, provided by `ts_rank`, scores matches by term frequency [1]. It is not BM25 — Postgres has no BM25 built in, so true BM25 needs an extension or a separate search engine [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Databases/Full-Text Search.md > Ranking",
+        "AI/Hybrid Search.md > BM25",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/PostgreSQL.md > MVCC",
+        "Daily/2026-10-02.md"
+      ],
+      "seconds": 16.06
+    },
+    {
+      "id": "h-sbt-percent",
+      "kind": "answerable",
+      "question": "What does %% do in a build.sbt dependency?",
+      "answer": "`%%` appends the Scala version to the artifact name, so you get the build that matches your compiler [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Scala/sbt.md > build.sbt",
+        "Scala/Scala.md > Tooling",
+        "Scala/sbt.md > Useful commands",
+        "Scala/Scala.md > Key features",
+        "Scala/Case Classes.md > Sealed traits"
+      ],
+      "seconds": 9.99
+    },
+    {
+      "id": "h-stop-early",
+      "kind": "answerable",
+      "question": "How do I stop a training run before the model starts memorizing the training set?",
+      "answer": "To stop a training run before the model starts memorizing the training set, you can use **early stopping** [2]. This involves stopping the training when the validation loss has not improved for a set number of epochs, which indicates that the model might be overfitting [4].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2,
+        4
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Fine-tuning.md > Catastrophic forgetting",
+        "AI/Overfitting.md > Remedies",
+        "AI/Fine-tuning.md > Full fine-tuning",
+        "AI/Overfitting.md",
+        "AI/BERT.md > Pre-training"
+      ],
+      "seconds": 13.2
+    },
+    {
+      "id": "h-actor-locks",
+      "kind": "answerable",
+      "question": "How can concurrent components keep private state safe without using locks?",
+      "answer": "According to excerpt [4], in Akka, actors can keep their private state safe without using locks because they process messages one at a time in their mailbox. This means that an actor's state does not need to be locked when messages are being processed [4].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        4
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Databases/SQLite.md > Concurrency",
+        "Databases/Transactions.md > Isolation levels",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Scala/Akka.md > Actors",
+        "Databases/PostgreSQL.md > MVCC"
+      ],
+      "seconds": 13.99
+    },
+    {
+      "id": "h-what-is-cnn",
+      "kind": "answerable",
+      "question": "What is a CNN?",
+      "answer": "A Convolutional Neural Network (CNN) is a type of neural network designed for processing grid-like data such as images [1]. It consists of convolution layers where small learned filters slide across the image, responding to local patterns like edges and textures, with the same filter reused at every position (weight sharing) to reduce the number of parameters [1]. CNNs also include pooling layers, such as max pooling, which shrink the feature map and make the network tolerant to small shifts [3]. [2] mentions several architectures like LeNet, AlexNet, and ResNet, but the core concept of CNNs remains focused on handling grid data efficiently.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Convolutional Neural Networks.md > Convolution layers",
+        "AI/Convolutional Neural Networks.md > Architectures",
+        "AI/Convolutional Neural Networks.md > Pooling",
+        "AI/Neural Networks.md",
+        "Courses/CS4100.md > Final project"
+      ],
+      "seconds": 21.03
+    },
+    {
+      "id": "h-cs4100-optimizer",
+      "kind": "answerable",
+      "question": "Which optimizer did I train my CS4100 final project with, and what are its default beta values?",
+      "answer": "Based on the notes, the optimizer used for the CS4100 final project was not explicitly stated. However, given the context of the course and the default settings for Adam Optimizer, it is reasonable to infer that Adam was likely used, as it is the default optimizer for most deep learning work [4][1].\n\nThe default beta values for Adam Optimizer are beta1 = 0.9 and beta2 = 0.999 [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        4
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Adam Optimizer.md > Default hyperparameters",
+        "Courses/CS4100.md > Topics",
+        "Courses/CS4100.md > Final project",
+        "AI/Adam Optimizer.md",
+        "AI/Adam Optimizer.md > AdamW"
+      ],
+      "seconds": 17.68
+    },
+    {
+      "id": "h-planner-build",
+      "kind": "answerable",
+      "question": "What builds my Study Planner backend, and how do I make it re-run tests on every change?",
+      "answer": "The backend of the Study Planner is built with Scala 3 using ZIO and sbt [1]. To make it re-run tests on every change, you would configure sbt to enable fast reload or similar functionality, but this is not directly addressed in the provided notes.",
+      "refused": false,
+      "facts_found": 0.5,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — current",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
+      ],
+      "seconds": 14.24
+    },
+    {
+      "id": "h-planner-isolation",
+      "kind": "answerable",
+      "question": "What transaction isolation level does my Study Planner's database use by default?",
+      "answer": "[3][4] [1]\n\nYour Study Planner's database, which is PostgreSQL, uses the **Read Committed** isolation level by default.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        3,
+        4
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Databases/Transactions.md > Isolation levels",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-10-02.md",
+        "Databases/SQLite.md > Concurrency"
+      ],
+      "seconds": 12.13
+    },
+    {
+      "id": "h-long-context-advice",
+      "kind": "answerable",
+      "question": "What did I take away from the long-context paper on my reading list?",
+      "answer": "You took away that the most relevant context should be placed first or last in long contexts, as per the \"Lost in the Middle\" paper [2].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Daily/2026-09-14.md",
+        "Reading List.md > Read",
+        "Reading List.md > To read",
+        "AI/Attention Mechanism.md > Cost",
+        "AI/Retrieval-Augmented Generation.md > Common failure modes"
+      ],
+      "seconds": 12.38
+    },
+    {
+      "id": "h-oracle-index-m",
+      "kind": "answerable",
+      "question": "Which index does the vector store in my Oracle plan use by default, and what does its M parameter control?",
+      "answer": "The vector store in your Oracle plan uses HNSW by default [2], and the M parameter controls the number of links per node, which affects recall and memory usage [3].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2,
+        3
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Vector Databases.md > Options",
+        "AI/Vector Databases.md > Approximate nearest neighbour",
+        "AI/HNSW.md > Parameters",
+        "AI/Vector Databases.md > Metadata filtering",
+        "Project Ideas.md > Oracle"
+      ],
+      "seconds": 13.21
+    },
+    {
+      "id": "ht-optimizers",
+      "kind": "topic",
+      "question": "machine learning optimizers",
+      "answer": "My notes mention that Adam Optimizer is a popular choice for machine learning, combining momentum with per-parameter adaptive step sizes [1]. It is often used as the default optimizer for deep learning work. AdamW, a variant of Adam, is preferred for training transformers due to its decoupling of weight decay from the update process [4]. While gradient descent is the most common optimizer [2], Adam is often combined with learning rate schedules for better performance [4]. The default hyperparameters for Adam, including a learning rate of 0.001, are generally effective without extensive tuning [5].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "citation_supported": null,
+      "sources": [
+        "AI/Adam Optimizer.md",
+        "AI/Machine Learning.md > Core ideas",
+        "AI/Machine Learning.md",
+        "AI/Adam Optimizer.md > AdamW",
+        "AI/Adam Optimizer.md > Default hyperparameters"
+      ],
+      "seconds": 19.62
+    },
+    {
+      "id": "ht-search",
+      "kind": "topic",
+      "question": "What do I know about search?",
+      "answer": "You know that search methods can be combined, such as in hybrid search, which uses both keyword search and vector search [1][3]. Hybrid search combines the strengths of vector search, which handles paraphrases well, and keyword search (BM25), which is good for exact terms like error codes or rare words [1][3].\n\nRetrieval-Augmented Generation (RAG) involves retrieving relevant passages from a document collection and providing them to an LLM as context, which helps in grounding answers in your own data and overcoming context window limitations [2].\n\nPostgreSQL's full-text search uses `to_tsvector` to normalize text and `to_tsquery` to define search queries, utilizing `@@` for matching [5].\n\nVector databases allow metadata filtering before or during similarity searches, often using cosine similarity [4].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "citation_supported": null,
+      "sources": [
+        "AI/Hybrid Search.md > Why",
+        "AI/Retrieval-Augmented Generation.md",
+        "AI/Hybrid Search.md > BM25",
+        "AI/Vector Databases.md > Metadata filtering",
+        "Databases/Full-Text Search.md > tsvector and tsquery"
+      ],
+      "seconds": 24.59
+    },
+    {
+      "id": "ht-word-sbt",
+      "kind": "topic",
+      "question": "sbt",
+      "answer": "sbt is the standard build tool for Scala [1][3]. It supports commands like `sbt compile`, `sbt test`, and `sbt run` [2]. Using `~` before a command, such as `sbt ~test`, will re-run the command every time a file changes [2]. Additionally, `sbt console` opens a REPL with your project on the classpath [2].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/sbt.md > build.sbt",
+        "Scala/sbt.md > Useful commands",
+        "Scala/Scala.md > Tooling",
+        "Scala/Case Classes.md > Sealed traits",
+        "Scala/Traits.md > Linearization"
+      ],
+      "seconds": 14.64
+    },
+    {
+      "id": "ht-tell-everything-zio",
+      "kind": "topic",
+      "question": "tell me everything about ZIO",
+      "answer": "ZIO is an effect system in Scala that uses the type `ZIO[R, E, A]` for handling effects, where `R` is the environment, `E` is the error type, and `A` is the result type [1]. ZIO supports typed errors, which means compiler errors indicate unhandled failure cases [4]. For blocking calls, ZIO provides `ZIO.attemptBlocking(...)` to run them on a dedicated thread pool, ensuring the main pool remains available for other tasks [2]. ZIO also supports dependency injection through `ZLayer`, which helps in building services from other services at startup [2].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        4
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/ZIO.md",
+        "Scala/ZIO.md > Blocking calls",
+        "Projects/Study Planner.md > Reminders — current",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Stack"
+      ],
+      "seconds": 22.1
+    },
+    {
+      "id": "hu-calendar-date",
+      "kind": "unanswerable",
+      "question": "When is the Study Planner's calendar sync launching?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
+      ],
+      "seconds": 9.0
+    },
+    {
+      "id": "hu-sam-next",
+      "kind": "unanswerable",
+      "question": "What did Sam work on after the Study Planner sync meeting?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Stack",
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
+        "Daily/2026-10-02.md"
+      ],
+      "seconds": 6.77
+    },
+    {
+      "id": "hu-brin",
+      "kind": "unanswerable",
+      "question": "What does the BRIN in BRIN index stand for?",
+      "answer": "BRIN in BRIN index stands for Block Range INdex [1].",
+      "refused": false,
+      "facts_found": null,
+      "made_up": true,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/Full-Text Search.md > Ranking",
+        "Databases/Indexes.md",
+        "AI/Hybrid Search.md > BM25",
+        "AI/Regularization.md > Choosing the strength"
+      ],
+      "seconds": 8.73
+    }
+  ]
+}

@@ -1,0 +1,406 @@
+{
+  "config": {
+    "questions": "eval/answers-holdout.json",
+    "model": "llama3.2",
+    "prompt": "v1",
+    "k": 5,
+    "rewrite": true
+  },
+  "summary": {
+    "answerable": {
+      "n": 10,
+      "facts": 0.85,
+      "fully_correct": 0.8,
+      "wrong_refusals": 0.1,
+      "citations_supported": 1.0,
+      "outdated": null
+    },
+    "topic": {
+      "n": 4,
+      "wrong_refusals": 0.0,
+      "cited": 0.75
+    },
+    "unanswerable": {
+      "n": 3,
+      "correct_refusals": 1.0,
+      "made_up": 0.0
+    },
+    "overall": {
+      "n": 17,
+      "avg_seconds": 6.579411764705882
+    }
+  },
+  "results": [
+    {
+      "id": "h-ts-rank",
+      "kind": "answerable",
+      "question": "How does Postgres's built-in text ranking differ from BM25?",
+      "answer": "According to [1], `ts_rank` scores matches by term frequency, which is different from BM25. BM25 is mentioned in [2] as the standard keyword ranking function, but it's not built-in to Postgres.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Databases/Full-Text Search.md > Ranking",
+        "AI/Hybrid Search.md > BM25",
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/PostgreSQL.md > MVCC",
+        "Daily/2026-10-02.md"
+      ],
+      "seconds": 9.25
+    },
+    {
+      "id": "h-sbt-percent",
+      "kind": "answerable",
+      "question": "What does %% do in a build.sbt dependency?",
+      "answer": "[1] According to [1], `%%` appends the Scala version to the artifact name, so you get the build that matches your compiler.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Scala/sbt.md > build.sbt",
+        "Scala/Scala.md > Tooling",
+        "Scala/sbt.md > Useful commands",
+        "Scala/Scala.md > Key features",
+        "Scala/Case Classes.md > Sealed traits"
+      ],
+      "seconds": 5.03
+    },
+    {
+      "id": "h-stop-early",
+      "kind": "answerable",
+      "question": "How do I stop a training run before the model starts memorizing the training set?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": 0.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "AI/Fine-tuning.md > Catastrophic forgetting",
+        "AI/Overfitting.md > Remedies",
+        "AI/Fine-tuning.md > Full fine-tuning",
+        "AI/Overfitting.md",
+        "AI/BERT.md > Pre-training"
+      ],
+      "seconds": 3.72
+    },
+    {
+      "id": "h-actor-locks",
+      "kind": "answerable",
+      "question": "How can concurrent components keep private state safe without using locks?",
+      "answer": "According to excerpt [4], Akka's actor model allows for concurrent components to keep private state safe without using locks. This is because actors have private state and a mailbox, and others send them messages that are processed one at a time, so their state needs no locks. [4]",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        4
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Databases/SQLite.md > Concurrency",
+        "Databases/Transactions.md > Isolation levels",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Scala/Akka.md > Actors",
+        "Databases/PostgreSQL.md > MVCC"
+      ],
+      "seconds": 6.82
+    },
+    {
+      "id": "h-what-is-cnn",
+      "kind": "answerable",
+      "question": "What is a CNN?",
+      "answer": "A Convolutional Neural Network (CNN) is a type of neural network built for grid data, such as images. It uses small learned filters that slide across the image, responding to local patterns like edges and textures, and reusing the same filter at every position (weight sharing) to reduce the number of parameters. [1]",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Convolutional Neural Networks.md > Convolution layers",
+        "AI/Convolutional Neural Networks.md > Architectures",
+        "AI/Convolutional Neural Networks.md > Pooling",
+        "AI/Neural Networks.md",
+        "Courses/CS4100.md > Final project"
+      ],
+      "seconds": 6.67
+    },
+    {
+      "id": "h-cs4100-optimizer",
+      "kind": "answerable",
+      "question": "Which optimizer did I train my CS4100 final project with, and what are its default beta values?",
+      "answer": "According to your notes, you trained your CS4100 final project with the Adam Optimizer. The default hyperparameters for Adam are beta1 = 0.9 and beta2 = 0.999. [1][4]",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        4
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Adam Optimizer.md > Default hyperparameters",
+        "Courses/CS4100.md > Topics",
+        "Courses/CS4100.md > Final project",
+        "AI/Adam Optimizer.md",
+        "AI/Adam Optimizer.md > AdamW"
+      ],
+      "seconds": 5.66
+    },
+    {
+      "id": "h-planner-build",
+      "kind": "answerable",
+      "question": "What builds my Study Planner backend, and how do I make it re-run tests on every change?",
+      "answer": "According to your notes, the Study Planner backend is built with Scala 3 using [[ZIO]] and [[sbt]]. \n\nTo make it re-run tests on every change, I couldn't find any information on this in your notes.",
+      "refused": false,
+      "facts_found": 0.5,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — current",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
+      ],
+      "seconds": 6.27
+    },
+    {
+      "id": "h-planner-isolation",
+      "kind": "answerable",
+      "question": "What transaction isolation level does my Study Planner's database use by default?",
+      "answer": "According to your notes, PostgreSQL's default transaction isolation level is **Read Committed** [1].",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Databases/Transactions.md > Isolation levels",
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-10-02.md",
+        "Databases/SQLite.md > Concurrency"
+      ],
+      "seconds": 5.02
+    },
+    {
+      "id": "h-long-context-advice",
+      "kind": "answerable",
+      "question": "What did I take away from the long-context paper on my reading list?",
+      "answer": "You took away that the most relevant context should be put first or last in a long context. [2]",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": true,
+      "sources": [
+        "Daily/2026-09-14.md",
+        "Reading List.md > Read",
+        "Reading List.md > To read",
+        "AI/Attention Mechanism.md > Cost",
+        "AI/Retrieval-Augmented Generation.md > Common failure modes"
+      ],
+      "seconds": 5.3
+    },
+    {
+      "id": "h-oracle-index-m",
+      "kind": "answerable",
+      "question": "Which index does the vector store in my Oracle plan use by default, and what does its M parameter control?",
+      "answer": "According to [2], the vector store in your Oracle plan uses **HNSW** by default. \n\nAccording to [3], the M parameter in HNSW controls the number of links per node.",
+      "refused": false,
+      "facts_found": 1.0,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2,
+        3
+      ],
+      "citation_supported": true,
+      "sources": [
+        "AI/Vector Databases.md > Options",
+        "AI/Vector Databases.md > Approximate nearest neighbour",
+        "AI/HNSW.md > Parameters",
+        "AI/Vector Databases.md > Metadata filtering",
+        "Project Ideas.md > Oracle"
+      ],
+      "seconds": 6.58
+    },
+    {
+      "id": "ht-optimizers",
+      "kind": "topic",
+      "question": "machine learning optimizers",
+      "answer": "According to your notes, machine learning optimizers are used to minimize a loss function and fit model parameters to training data. The most common optimizer is Gradient Descent, but the central risk is Overfitting. Machine learning is the study of algorithms that improve at a task by learning from data rather than following hand-written rules.\n\nIn the context of optimizers, your notes mention the Adam Optimizer, which combines momentum with per-parameter adaptive step sizes. The Adam Optimizer is the default optimizer for most deep learning work. It has variants, such as AdamW, which decouples weight decay from the update and is preferred for training transformers.\n\n[1][2][3][4][5]",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "citation_supported": null,
+      "sources": [
+        "AI/Adam Optimizer.md",
+        "AI/Machine Learning.md > Core ideas",
+        "AI/Machine Learning.md",
+        "AI/Adam Optimizer.md > AdamW",
+        "AI/Adam Optimizer.md > Default hyperparameters"
+      ],
+      "seconds": 10.36
+    },
+    {
+      "id": "ht-search",
+      "kind": "topic",
+      "question": "What do I know about search?",
+      "answer": "Based on your notes, here's what you know about search:\n\n* Hybrid search combines keyword search (BM25) with vector search.\n* BM25 is a standard keyword ranking function that rewards frequent terms in documents but rare terms across the collection.\n* Vector search handles paraphrases well but can miss exact terms.\n* Vector databases allow metadata filtering before or during similarity search.\n* Similarity is usually measured using Cosine Similarity.\n* PostgreSQL has built-in full-text search capabilities, including the use of `to_tsvector` and `to_tsquery` to normalize and describe text for search.",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "AI/Hybrid Search.md > Why",
+        "AI/Retrieval-Augmented Generation.md",
+        "AI/Hybrid Search.md > BM25",
+        "AI/Vector Databases.md > Metadata filtering",
+        "Databases/Full-Text Search.md > tsvector and tsquery"
+      ],
+      "seconds": 9.33
+    },
+    {
+      "id": "ht-word-sbt",
+      "kind": "topic",
+      "question": "sbt",
+      "answer": "According to your notes, sbt is the standard build tool for Scala. It can be used to compile, test, and run projects. You can also use sbt to open a REPL with your project on the classpath. Additionally, sbt can be used to recompile on every file change, and you can prefix commands with `~` to re-run them on every file change. [2]",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        2
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/sbt.md > build.sbt",
+        "Scala/sbt.md > Useful commands",
+        "Scala/Scala.md > Tooling",
+        "Scala/Case Classes.md > Sealed traits",
+        "Scala/Traits.md > Linearization"
+      ],
+      "seconds": 6.93
+    },
+    {
+      "id": "ht-tell-everything-zio",
+      "kind": "topic",
+      "question": "tell me everything about ZIO",
+      "answer": "Here's a summary of what your notes say about ZIO:\n\n* ZIO is an effect system built around the type `ZIO[R, E, A]`, which represents an effect that needs an environment `R`, may fail with an error `E`, or succeeds with an `A`. [1]\n* ZIO provides a way to handle blocking calls, such as JDBC calls, using `ZIO.attemptBlocking(...)`, which runs on ZIO's dedicated blocking thread pool. [2]\n* ZIO uses dependency injection through `ZLayer` to build services from other services and wires them together at startup. [2]\n* ZIO's typed errors allow the compiler to show which failures still need to be handled, making it easier to write robust code. [2]\n* ZIO is used in the Study Planner project to schedule reminders and handle other tasks. [3]\n\nThat's the summary of what your notes say about ZIO.",
+      "refused": false,
+      "facts_found": null,
+      "made_up": null,
+      "outdated": null,
+      "cited": [
+        1,
+        2,
+        3
+      ],
+      "citation_supported": null,
+      "sources": [
+        "Scala/ZIO.md",
+        "Scala/ZIO.md > Blocking calls",
+        "Projects/Study Planner.md > Reminders — current",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Stack"
+      ],
+      "seconds": 13.97
+    },
+    {
+      "id": "hu-calendar-date",
+      "kind": "unanswerable",
+      "question": "When is the Study Planner's calendar sync launching?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Stack",
+        "Daily/2026-10-02.md",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)"
+      ],
+      "seconds": 4.02
+    },
+    {
+      "id": "hu-sam-next",
+      "kind": "unanswerable",
+      "question": "What did Sam work on after the Study Planner sync meeting?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Daily/2026-09-20.md > Study Planner sync",
+        "Projects/Study Planner.md > Stack",
+        "Projects/Study Planner.md > Reminders — current",
+        "Projects/Study Planner.md > Reminders — first plan (superseded)",
+        "Daily/2026-10-02.md"
+      ],
+      "seconds": 3.16
+    },
+    {
+      "id": "hu-brin",
+      "kind": "unanswerable",
+      "question": "What does the BRIN in BRIN index stand for?",
+      "answer": "I couldn't find that in your notes.",
+      "refused": true,
+      "facts_found": null,
+      "made_up": false,
+      "outdated": null,
+      "cited": [],
+      "citation_supported": null,
+      "sources": [
+        "Databases/Indexes.md > Types in Postgres",
+        "Databases/Full-Text Search.md > Ranking",
+        "Databases/Indexes.md",
+        "AI/Hybrid Search.md > BM25",
+        "AI/Regularization.md > Choosing the strength"
+      ],
+      "seconds": 3.76
+    }
+  ]
+}

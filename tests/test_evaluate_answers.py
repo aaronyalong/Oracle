@@ -138,3 +138,19 @@ def test_load_rejects_answerable_without_facts(tmp_path):
 def test_sample_answer_sets_load_and_cover_every_kind(name):
     questions = load_answer_questions(ROOT / "eval" / name)
     assert {q.kind for q in questions} == {"answerable", "topic", "unanswerable"}
+
+
+def test_superseded_plan_presented_as_current_is_outdated():
+    question = q(facts=[["push notification"]], forbidden=["email"])
+    assert grade(question, Answer("Reminders are sent by email [1].", [hit(1)]), 1.0).outdated is True
+
+
+def test_superseded_plan_mentioned_as_history_is_not_outdated():
+    question = q(facts=[["push notification"]], forbidden=["email"])
+    text = "Reminders were originally emailed, but are now push notifications [1]."
+    result = grade(question, Answer(text, [hit(1)]), 1.0)
+    assert (result.outdated, result.facts_found) == (False, 1.0)
+
+
+def test_outdated_is_none_without_forbidden_details():
+    assert grade(q(facts=[["x"]]), Answer("x [1]", [hit(1)]), 1.0).outdated is None

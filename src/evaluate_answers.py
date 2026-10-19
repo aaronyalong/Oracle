@@ -9,6 +9,9 @@ Question kinds:
 - unanswerable: the notes don't say. The answer should refuse rather than guess. `forbidden` lists
                 outside-knowledge answers (e.g. a real default port) that count as made up even
                 when the answer also says the notes don't mention it.
+
+On answerable questions, `forbidden` lists details of a superseded plan: mentioning them counts as
+*outdated* unless the answer also says the plan changed.
 """
 
 import argparse
@@ -27,6 +30,8 @@ from retrieve import Retriever, vector_retriever
 
 DEFAULT_QUESTIONS = Path("eval/answers.json")
 TOPIC_REFUSAL_MAX_CHARS = 200
+# Words showing an answer presents old information as old ("originally emailed, now pushed").
+CHANGE_MARKERS = ("supersed", "original", "previous", "earlier", "initial", "first plan", "no longer", "dropped", "replaced", "changed", "instead", "used to")
 KINDS = ("answerable", "topic", "unanswerable")
 
 # The prompt asks for an exact refusal sentence, but models paraphrase it, so match the common forms.
@@ -58,6 +63,7 @@ class AnswerResult:
     refused: bool
     facts_found: float | None  # fraction of facts mentioned; None for questions without facts
     made_up: bool | None  # unanswerable questions only: answered anyway, or used forbidden outside knowledge
+    outdated: bool | None  # answerable questions with `forbidden`: presented a superseded plan as current
     cited: list[int]
     citation_supported: bool | None  # does a cited excerpt contain a fact? None without facts or citations
     sources: list[str]  # "note > heading" for each excerpt, in prompt order
@@ -98,9 +104,11 @@ def grade(question: AnswerQuestion, result: Answer, seconds: float) -> AnswerRes
         # A long summary that forgot [n] citations is "uncited", not a refusal.
         refused = refused and not result.cited and len(result.text) < TOPIC_REFUSAL_MAX_CHARS
 
-    made_up = None
+    made_up = outdated = None
     if question.kind == "unanswerable":
         made_up = not refused or _mentions(result.text, question.forbidden)
+    elif question.kind == "answerable" and question.forbidden:
+        outdated = _mentions(result.text, question.forbidden) and not _mentions(result.text, list(CHANGE_MARKERS))
 
     cited = result.cited
     citation_supported = None
@@ -116,6 +124,7 @@ def grade(question: AnswerQuestion, result: Answer, seconds: float) -> AnswerRes
         refused=refused,
         facts_found=facts_found,
         made_up=made_up,
+        outdated=outdated,
         cited=cited,
         citation_supported=citation_supported,
         sources=[f"{h.note_key} > {h.heading}" if h.heading else h.note_key for h in result.sources],
@@ -137,6 +146,7 @@ def summarize_answers(results: list[AnswerResult]) -> dict[str, dict[str, float 
             "fully_correct": _share([r.facts_found == 1 for r in answerable]),
             "wrong_refusals": _share([r.refused for r in answerable]),
             "citations_supported": _share([r.citation_supported for r in answerable if r.citation_supported is not None]),
+            "outdated": _share([r.outdated for r in answerable if r.outdated is not None]),
         },
         "topic": {
             "n": len(topic),
@@ -159,11 +169,12 @@ def run(
     k: int,
     system: str,
     on_result=None,
+    rewrite: bool = True,
 ) -> list[AnswerResult]:
     results = []
     for q in questions:
         start = time.perf_counter()
-        result = answer(q.question, retrieve, generate, k, system)
+        result = answer(q.question, retrieve, generate, k, system, rewrite)
         graded = grade(q, result, time.perf_counter() - start)
         results.append(graded)
         if on_result:
@@ -176,6 +187,8 @@ def _status(r: AnswerResult) -> str:
         return "MADE UP" if r.made_up else "refused (correct)"
     if r.refused:
         return "WRONG REFUSAL"
+    if r.outdated:
+        return "OUTDATED"
     if r.kind == "topic":
         return "answered" + ("" if r.cited else " (no citations)")
     return f"facts {r.facts_found:.0%}" + ("" if r.cited else " (no citations)")
@@ -188,7 +201,8 @@ def _fmt(value: float | None) -> str:
 def _print_summary(summary: dict) -> None:
     a, t, u = summary["answerable"], summary["topic"], summary["unanswerable"]
     print(f"\nanswerable   (n={a['n']:>2})  facts {_fmt(a['facts'])} | fully correct {_fmt(a['fully_correct'])} | "
-          f"wrong refusals {_fmt(a['wrong_refusals'])} | citations supported {_fmt(a['citations_supported'])}")
+          f"wrong refusals {_fmt(a['wrong_refusals'])} | citations supported {_fmt(a['citations_supported'])} | "
+          f"outdated {_fmt(a['outdated'])}")
     print(f"topic        (n={t['n']:>2})  wrong refusals {_fmt(t['wrong_refusals'])} | cited {_fmt(t['cited'])}")
     print(f"unanswerable (n={u['n']:>2})  correct refusals {_fmt(u['correct_refusals'])} | made up {_fmt(u['made_up'])}")
     print(f"average {summary['overall']['avg_seconds']:.1f}s per answer")
@@ -202,6 +216,7 @@ def main() -> None:
     parser.add_argument("--model", default=LLM_MODEL, help="Ollama model that writes the answers")
     parser.add_argument("--prompt", choices=PROMPTS, default=DEFAULT_PROMPT, help="system prompt version")
     parser.add_argument("--k", type=int, default=DEFAULT_K, help="chunks given to the model")
+    parser.add_argument("--no-rewrite", action="store_true", help="don't rewrite topic-style questions")
     parser.add_argument("--limit", type=int, help="only run the first N questions (quick checks)")
     parser.add_argument("--show", action="store_true", help="print every answer")
     parser.add_argument("--save", type=Path, help="write per-question results as JSON")
@@ -216,8 +231,9 @@ def main() -> None:
         questions = load_answer_questions(args.questions)[: args.limit]
         collection = get_collection(args.db, args.embed_model)
         retrieve = vector_retriever(collection, ollama_embedder(args.embed_model))
-        print(f"{len(questions)} questions | model {args.model} | prompt {args.prompt} | k={args.k}\n")
-        results = run(questions, retrieve, ollama_generator(args.model), args.k, PROMPTS[args.prompt], progress)
+        rewrite = not args.no_rewrite
+        print(f"{len(questions)} questions | model {args.model} | prompt {args.prompt} | k={args.k} | rewrite {rewrite}\n")
+        results = run(questions, retrieve, ollama_generator(args.model), args.k, PROMPTS[args.prompt], progress, rewrite)
     except ValueError as e:
         sys.exit(str(e))
     except ConnectionError:
@@ -228,7 +244,9 @@ def main() -> None:
     summary = summarize_answers(results)
     _print_summary(summary)
     if args.save:
-        config = {"questions": str(args.questions), "model": args.model, "prompt": args.prompt, "k": args.k}
+        config = {
+            "questions": str(args.questions), "model": args.model, "prompt": args.prompt, "k": args.k, "rewrite": rewrite,
+        }
         report = {"config": config, "summary": summary, "results": [asdict(r) for r in results]}
         args.save.parent.mkdir(parents=True, exist_ok=True)
         args.save.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

@@ -122,8 +122,19 @@ Retrieval is evaluated on a 59-note sample vault with 31 development questions a
 
 | Strategy | Dev, k=3 | Dev, k=5 | Held-out, k=3 | Held-out, k=5 |
 |---|---|---|---|---|
-| Vector search | 0.89 | **0.97** | 0.75 | 0.95 |
-| + note-level link expansion | 0.87 | 0.92 | 0.80 | 1.00 |
-| + chunk-level link expansion | **0.90** | 0.92 | 0.75 | 0.95 |
+| Vector search | 0.89 | **0.97** | 0.80 | 0.90 |
+| + note-level link expansion | 0.87 | 0.92 | 0.80 | **0.95** |
+| + chunk-level link expansion | **0.90** | 0.92 | 0.80 | 0.90 |
 
 **Finding:** at a fixed context budget, link expansion does not reliably beat vector search — differences are one or two questions in either direction. Linked notes are usually also semantically similar to the question, so vector search already finds them, and following links from the wrong section displaces good results. Following only the links inside the retrieved section is clearly better than following every link in the note. Full analysis in [`DEVLOG.md`](DEVLOG.md); raw results in [`eval/results/`](eval/results/).
+
+### Answer quality
+
+Answers are graded on 46 development and 17 held-out questions: whether answerable questions mention the key facts, whether broad topics are summarized rather than refused, and whether unanswerable questions are refused rather than answered from the model's own knowledge.
+
+| Setup | Fully correct (dev / held-out) | Made-up answers (all runs) | Avg time |
+|---|---|---|---|
+| **llama3.2 + strict prompt + topic rewrite (default)** | 0.88 / 0.80 | **0 of 9** | **~6 s** |
+| qwen2.5:7b + strict prompt | 0.91 / 0.90 | 2 of 9 | ~13 s |
+
+**Finding:** the larger model is more accurate but repeatedly answered from its training data and cited a note that didn't support the claim — prompting didn't prevent it. Oracle defaults to the smaller model, which never did, until a grounding check that verifies answer details against cited excerpts is in place.
