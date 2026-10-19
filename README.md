@@ -4,7 +4,7 @@ A fully local Retrieval-Augmented Generation (RAG) system over an Obsidian vault
 
 What makes Oracle *Obsidian* RAG rather than generic RAG: it understands the vault's structure — frontmatter, tags, aliases, and the `[[wikilink]]` graph — and measures whether following those links improves retrieval over vector similarity alone (see [Results](#results)).
 
-> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector and graph-aware retrieval, cited answers, and retrieval and answer-quality benchmarks. Next: an Obsidian plugin on top of the local API.
+> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector and graph-aware retrieval, cited answers, and retrieval and answer-quality benchmarks. An Obsidian plugin provides the same features inside Obsidian.
 
 ## Goals
 
@@ -45,7 +45,7 @@ flowchart LR
 | LLM | `qwen2.5:7b` (configurable) | Most accurate in evaluation; `llama3.2` is ~2× faster with lower accuracy |
 | Vector store | Chroma | Embedded, no server to run |
 | Tests | pytest | Parsing and chunking are easy to get subtly wrong |
-| API | FastAPI + Server-Sent Events | Streams answers to the web UI and (planned) Obsidian plugin |
+| API | FastAPI + Server-Sent Events | Streams answers to the web UI and the Obsidian plugin |
 | UI | Single HTML page, plain JavaScript | No build step; same calls the plugin will make |
 
 ## Project Structure
@@ -63,6 +63,7 @@ oracle/
 │   ├── evaluate.py      # score retrieval strategies: hit@k, recall@k, MRR
 │   └── evaluate_answers.py  # score answers: facts, refusals, made-up answers, citations
 ├── web/index.html       # browser UI: Ask and Search tabs
+├── obsidian-plugin/     # Obsidian sidebar panel (TypeScript) that talks to the server
 ├── tests/               # pytest suite
 ├── eval/                # question set and saved results
 ├── DEVLOG.md            # dated progress log and design decisions
@@ -105,6 +106,15 @@ pytest
 ```
 
 **Web interface:** `python src/server.py --vault sample-vault`, then open <http://localhost:8000>. The **Ask** tab streams answers with numbered, clickable sources and flags any detail not found in your notes; the **Search** tab returns ranked sections instantly (hybrid search, no LLM). Sources open directly in Obsidian. The server only listens on `127.0.0.1`.
+
+**Obsidian plugin:** a sidebar panel with the same Ask and Search tabs, inside Obsidian. Sources open the note at the cited section, and the index updates automatically when notes change. To build it (requires Node.js):
+
+```bash
+cd obsidian-plugin && npm install && npm run build   # installs into sample-vault/.obsidian/plugins/oracle
+# for another vault: OBSIDIAN_PLUGIN_DIR="/path/to/vault/.obsidian/plugins/oracle" npm run build
+```
+
+Then in Obsidian: **Settings → Community plugins** → turn on community plugins → enable **Oracle**, and start the server for that vault.
 
 **Guided demo:** `scripts/demo.sh` runs every step above on the sample vault, then lets you ask questions interactively. Pass a vault path to use your own: `scripts/demo.sh ~/path/to/vault`.
 

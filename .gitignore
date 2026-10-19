@@ -10,8 +10,12 @@ chroma-*/
 *.sqlite3
 vaults/
 
-# Obsidian workspace state (keep sample-vault/.obsidian/app.json)
-.obsidian/workspace*.json
+# Obsidian settings and installed plugins in the sample vault (only app.json is part of the fixture)
+sample-vault/.obsidian/*
+!sample-vault/.obsidian/app.json
+
+# Plugin build tooling
+obsidian-plugin/node_modules/
 
 # Editors / OS
 .vscode/

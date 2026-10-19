@@ -117,3 +117,12 @@ def test_obsidian_url_encodes_folders_and_spaces(tmp_path):
     assert obsidian_url(tmp_path / "Notes", "AI/Gradient Descent.md") == (
         "obsidian://open?vault=Notes&file=AI/Gradient%20Descent"
     )
+
+
+def test_obsidian_app_origin_is_allowed(vault, tmp_path):
+    # The plugin's EventSource connects from Obsidian's app origin, so the server must allow it (CORS).
+    client = make_client(vault, tmp_path)
+    allowed = client.get("/api/health", headers={"Origin": "app://obsidian.md"})
+    assert allowed.headers["access-control-allow-origin"] == "app://obsidian.md"
+    other = client.get("/api/health", headers={"Origin": "https://example.com"})
+    assert "access-control-allow-origin" not in other.headers

@@ -1,0 +1,127 @@
+/* Uses Obsidian's theme variables, so the panel matches light, dark, and community themes. */
+
+.oracle-view {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.oracle-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.oracle-status {
+  flex: 1;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.oracle-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.oracle-tabs button.is-active {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+}
+
+.oracle-form {
+  display: flex;
+  gap: 6px;
+}
+
+.oracle-form input {
+  flex: 1;
+  min-width: 0;
+}
+
+.oracle-answer {
+  white-space: pre-wrap;
+  user-select: text;
+  line-height: var(--line-height-normal);
+}
+
+.oracle-answer:empty,
+.oracle-warning:empty,
+.oracle-meta:empty {
+  display: none;
+}
+
+.oracle-cite {
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0 1px;
+  border-radius: var(--radius-s);
+  background: var(--background-modifier-hover);
+  color: var(--text-accent);
+  font-size: var(--font-ui-smaller);
+  text-decoration: none;
+  cursor: pointer;
+  vertical-align: 1px;
+}
+
+.oracle-warning {
+  padding: 6px 10px;
+  border-radius: var(--radius-m);
+  background: rgba(var(--color-yellow-rgb), 0.15);
+  color: var(--text-normal);
+  font-size: var(--font-ui-small);
+}
+
+.oracle-meta {
+  white-space: pre-wrap;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  user-select: text;
+}
+
+.oracle-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.oracle-results li {
+  padding: 8px 10px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+}
+
+.oracle-results li.oracle-cited {
+  border-color: var(--interactive-accent);
+}
+
+.oracle-result-title {
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+}
+
+.oracle-badge {
+  margin-left: 6px;
+  padding: 0 4px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+}
+
+.oracle-results details summary {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  cursor: pointer;
+}
+
+.oracle-results details pre {
+  white-space: pre-wrap;
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  user-select: text;
+}

@@ -397,3 +397,24 @@ By type (dev, k=3): keyword matches vector on direct questions (1.00) but trails
 - **GET for `/api/ask`:** `EventSource` only supports GET; questions fit in a URL.
 
 **Smoke test (real models):** search for "thread pool blocking" returned Cats Effect / Futures / ZIO blocking sections, all found by both vector and keyword search; "What learning rate worked best?" streamed 38 chunks, then the final answer citing Gradient Descent with no unsupported details.
+
+## 2026-10-19 — Obsidian plugin v0.1
+
+**Done** (`obsidian-plugin/`, TypeScript, built with esbuild)
+- **Sidebar panel** with Ask (streamed answer, clickable `[n]` citations, ⚠ unsupported details) and Search (results as you type) tabs, calling the same server endpoints as the web page.
+- **Open at section:** sources and citations open the note at the cited heading with Obsidian's `openLinkText` (Ctrl/Cmd-click for a new tab) — better than `obsidian://` links, which only open the file.
+- **Automatic re-indexing:** listens to vault modify/create/delete/rename events for Markdown files and calls `POST /api/index` after a quiet period (default 5 s). Listeners are registered after layout-ready, because Obsidian reports every existing file as "created" while loading.
+- **Safety checks:** the status line warns if the server is indexing a different vault than the one open; if the server isn't running, the panel shows the exact command to start it for this vault.
+- **Settings tab:** server address, auto re-index on/off, delay.
+- Code split into `format.ts` (pure logic: citation parsing, link text, labels — unit tested with `node --test`, no Obsidian needed), `api.ts` (server client: `requestUrl` for JSON, `EventSource` for the stream), `main.ts` (plugin, view, settings).
+- Server test confirms CORS allows Obsidian's `app://obsidian.md` origin and rejects others (165 Python tests, 4 plugin tests).
+
+**Decisions**
+- **Plain DOM, no React/Svelte:** the panel is small; Obsidian's `createEl` helpers are enough and avoid a framework dependency.
+- **Theme variables only** in `styles.css`, so the panel matches any Obsidian theme.
+- **Build output goes into the vault's plugin folder** (`OBSIDIAN_PLUGIN_DIR`, default the sample vault), which is git-ignored; only source is committed.
+- **Desktop only** (`isDesktopOnly`): it needs a local server.
+
+**Not verified here:** the panel's behaviour inside Obsidian — the build type-checks and the logic is unit tested, but the UI needs a manual check in the app.
+
+**First manual test found a bug:** the view's helper `open(hit, event)` overrode `ItemView.open()`, an undocumented internal method Obsidian calls when it opens the panel, so opening the panel crashed (`Cannot read properties of undefined (reading 'replace')`). TypeScript couldn't catch it because `open` isn't in Obsidian's published type definitions. Renamed to `openHit`. Lesson: prefix plugin-specific method names on classes that extend Obsidian's.
