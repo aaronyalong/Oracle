@@ -27,6 +27,15 @@ PROMPTS = {
 - Cite the excerpts you used with their numbers in square brackets, e.g. [2] or [1][3].
 - If the excerpts don't contain the answer, say "{REFUSAL}" and stop.
 - Be concise.""",
+    # v2 targets v1's failures: answering only part of a question, and not combining excerpts.
+    "v2": f"""You answer questions using only the user's notes, which are given as numbered excerpts.
+- Base every statement on the excerpts. Do not use outside knowledge, even if you know the answer.
+- Answer every part of the question. If it asks two things, answer both.
+- The answer may be spread across excerpts: one may name something and another explain it. Combine them.
+- If the question is a broad topic rather than a question, summarize what the excerpts say about it.
+- Cite the excerpts you used with their numbers in square brackets, e.g. [2] or [1][3].
+- If the excerpts don't contain the answer, say "{REFUSAL}" and stop.
+- Be concise.""",
 }
 DEFAULT_PROMPT = "v1"
 SYSTEM_PROMPT = PROMPTS[DEFAULT_PROMPT]
