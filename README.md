@@ -42,7 +42,7 @@ flowchart LR
 | Language | Python 3 | Best ecosystem for RAG tooling |
 | Model runtime | Ollama | Simple local model serving |
 | Embeddings | `nomic-embed-text` | Small, strong, runs locally |
-| LLM | `llama3.2` (configurable) | Fast enough on a laptop CPU; swap for a larger model if needed |
+| LLM | `qwen2.5:7b` (configurable) | Most accurate in evaluation; `llama3.2` is ~2× faster with lower accuracy |
 | Vector store | Chroma | Embedded, no server to run |
 | Tests | pytest | Parsing and chunking are easy to get subtly wrong |
 | API (planned) | FastAPI | Lightweight Python web server |
@@ -74,7 +74,7 @@ oracle/
 ```bash
 # Models
 ollama pull nomic-embed-text
-ollama pull llama3.2
+ollama pull qwen2.5:7b      # default answer model (~4.7 GB); llama3.2 is a faster alternative
 
 # Environment
 python3 -m venv .venv && source .venv/bin/activate
@@ -132,9 +132,12 @@ Retrieval is evaluated on a 59-note sample vault with 31 development questions a
 
 Answers are graded on 46 development and 17 held-out questions: whether answerable questions mention the key facts, whether broad topics are summarized rather than refused, and whether unanswerable questions are refused rather than answered from the model's own knowledge.
 
-| Setup | Fully correct (dev / held-out) | Made-up answers (all runs) | Avg time |
+| Setup | Fully correct (dev / held-out) | Made-up answers (all runs) | Avg time (CPU) |
 |---|---|---|---|
-| **llama3.2 + strict prompt + topic rewrite (default)** | 0.88 / 0.80 | **0 of 9** | **~6 s** |
+| llama3.2 + strict prompt + topic rewrite | 0.88 / 0.80 | 0 of 9 | ~6 s |
 | qwen2.5:7b + strict prompt | 0.91 / 0.90 | 2 of 9 | ~13 s |
+| **qwen2.5:7b + strict prompt + grounding check (default)** | **0.91 / 0.90** | **1 of 9**¹ | ~13 s |
 
-**Finding:** the larger model is more accurate but repeatedly answered from its training data and cited a note that didn't support the claim — prompting didn't prevent it. Oracle defaults to the smaller model, which never did, until a grounding check that verifies answer details against cited excerpts is in place.
+¹ The remaining case answered "calendar sync is next", which the notes do say; it's counted because the question was labelled unanswerable.
+
+**Findings:** the larger model is more accurate, but it repeatedly answered from its training data and cited a note that didn't support the claim, and prompting didn't prevent it. A deterministic **grounding check** ([`src/grounding.py`](src/grounding.py)) extracts specific details from each sentence — numbers, code, names — and verifies them against the excerpts the sentence cites. It caught every fabrication observed, flagging about 4% of good answers (mostly acronyms the model spelled out itself). In `strict` mode, unsupported sentences are removed; `warn` keeps them and lists the unverified details.

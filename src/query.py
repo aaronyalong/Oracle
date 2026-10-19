@@ -7,15 +7,16 @@ import argparse
 import re
 import sys
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import ollama
 
+from grounding import check_grounding
 from index import DEFAULT_DB, EMBED_MODEL, get_collection, ollama_embedder
 from retrieve import Hit, Retriever, vector_retriever
 
-LLM_MODEL = "llama3.2"
+LLM_MODEL = "qwen2.5:7b"  # most accurate in evaluation; ~2x slower than llama3.2 on CPU (see DEVLOG)
 DEFAULT_K = 5
 
 REFUSAL = "I couldn't find that in your notes."
@@ -45,6 +46,11 @@ PROMPTS = {
 - If the excerpts don't contain the answer, say "{REFUSAL}" and stop.
 - Be concise.""",
 }
+# What to do with answer details that appear in none of the excerpts (see src/grounding.py):
+# off = nothing; warn = keep the answer, report the details; strict = drop those sentences, and
+# refuse if nothing cited is left.
+GROUNDING_MODES = ("off", "warn", "strict")
+DEFAULT_GROUNDING = "strict"
 DEFAULT_PROMPT = "v1"
 SYSTEM_PROMPT = PROMPTS[DEFAULT_PROMPT]
 
@@ -68,6 +74,7 @@ EVERYTHING_ABOUT_RE = re.compile(
 class Answer:
     text: str
     sources: list[Hit]  # in the order they were numbered in the prompt
+    unsupported: list[str] = field(default_factory=list)  # details found in no excerpt (grounding check)
 
     @property
     def cited(self) -> list[int]:
@@ -99,6 +106,20 @@ def _drop_trailing_refusal(text: str, hits: list[Hit]) -> str:
     return cleaned if Answer(cleaned, hits).cited else text
 
 
+def _apply_grounding(text: str, hits: list[Hit], question: str, mode: str) -> tuple[str, list[str]]:
+    if mode == "off" or text == REFUSAL:
+        return text, []
+    claims = check_grounding(text, [h.text for h in hits], question)
+    unsupported = [d for c in claims for d in c.unsupported]
+    if mode == "warn" or not unsupported:
+        return text, unsupported
+    for claim in claims:
+        if claim.unsupported:
+            text = text.replace(claim.sentence, "")
+    text = "\n".join(line for line in text.splitlines() if line.strip(" -*•")).strip()
+    return (text if Answer(text, hits).cited else REFUSAL), unsupported
+
+
 def build_prompt(question: str, hits: list[Hit]) -> str:
     excerpts = "\n\n".join(f"[{i}] (from {hit.note_key})\n{hit.text}" for i, hit in enumerate(hits, 1))
     return f"Notes:\n\n{excerpts}\n\nQuestion: {question}"
@@ -123,14 +144,16 @@ def answer(
     k: int = DEFAULT_K,
     system: str = SYSTEM_PROMPT,
     rewrite: bool = True,
+    grounding: str = DEFAULT_GROUNDING,
 ) -> Answer:
     # Search with the user's own words; the rewrite only changes what the LLM is asked.
     hits = retrieve(question, k)
     if not hits:
         return Answer(NO_RESULTS, [])
     asked = rewrite_query(question) if rewrite else question
-    text = generate(system, build_prompt(asked, hits)).strip()
-    return Answer(_drop_trailing_refusal(text, hits), hits)
+    text = _drop_trailing_refusal(generate(system, build_prompt(asked, hits)).strip(), hits)
+    text, unsupported = _apply_grounding(text, hits, question, grounding)
+    return Answer(text, hits, unsupported)
 
 
 def main() -> None:
@@ -141,13 +164,17 @@ def main() -> None:
     parser.add_argument("--embed-model", default=EMBED_MODEL)
     parser.add_argument("--model", default=LLM_MODEL, help="Ollama model that writes the answer")
     parser.add_argument("--prompt", choices=PROMPTS, default=DEFAULT_PROMPT, help="system prompt version")
+    parser.add_argument("--grounding", choices=GROUNDING_MODES, default=DEFAULT_GROUNDING,
+                        help="check answer details against the excerpts (default: warn)")
     parser.add_argument("--show-context", action="store_true", help="print the retrieved excerpts")
     args = parser.parse_args()
 
     try:
         collection = get_collection(args.db, args.embed_model)
         retrieve = vector_retriever(collection, ollama_embedder(args.embed_model))
-        result = answer(args.question, retrieve, ollama_generator(args.model), args.k, PROMPTS[args.prompt])
+        result = answer(
+            args.question, retrieve, ollama_generator(args.model), args.k, PROMPTS[args.prompt], grounding=args.grounding
+        )
     except ValueError as e:
         sys.exit(str(e))
     except ConnectionError:
@@ -156,6 +183,8 @@ def main() -> None:
         sys.exit(f"Ollama error: {e.error}. Did you `ollama pull` the model?")
 
     print(result.text)
+    if result.unsupported:
+        print(f"\n⚠ Not found in your notes (may come from the model's own knowledge): {', '.join(result.unsupported)}")
     if args.show_context:
         print(f"\n{build_prompt(args.question, result.sources)}")
     if result.sources:

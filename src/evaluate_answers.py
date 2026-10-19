@@ -25,7 +25,10 @@ from pathlib import Path
 import ollama
 
 from index import DEFAULT_DB, EMBED_MODEL, get_collection, ollama_embedder
-from query import DEFAULT_K, DEFAULT_PROMPT, LLM_MODEL, PROMPTS, Answer, GenerateFn, answer, ollama_generator
+from query import (
+    DEFAULT_GROUNDING, DEFAULT_K, DEFAULT_PROMPT, GROUNDING_MODES, LLM_MODEL, PROMPTS, Answer, GenerateFn, answer,
+    ollama_generator,
+)
 from retrieve import Retriever, vector_retriever
 
 DEFAULT_QUESTIONS = Path("eval/answers.json")
@@ -67,6 +70,7 @@ class AnswerResult:
     cited: list[int]
     citation_supported: bool | None  # does a cited excerpt contain a fact? None without facts or citations
     sources: list[str]  # "note > heading" for each excerpt, in prompt order
+    unsupported: list[str]  # details the grounding check found in no excerpt
     seconds: float
 
 
@@ -128,6 +132,7 @@ def grade(question: AnswerQuestion, result: Answer, seconds: float) -> AnswerRes
         cited=cited,
         citation_supported=citation_supported,
         sources=[f"{h.note_key} > {h.heading}" if h.heading else h.note_key for h in result.sources],
+        unsupported=result.unsupported,
         seconds=round(seconds, 2),
     )
 
@@ -147,16 +152,19 @@ def summarize_answers(results: list[AnswerResult]) -> dict[str, dict[str, float 
             "wrong_refusals": _share([r.refused for r in answerable]),
             "citations_supported": _share([r.citation_supported for r in answerable if r.citation_supported is not None]),
             "outdated": _share([r.outdated for r in answerable if r.outdated is not None]),
+            "flagged": _share([bool(r.unsupported) for r in answerable]),
         },
         "topic": {
             "n": len(topic),
             "wrong_refusals": _share([r.refused for r in topic]),
             "cited": _share([bool(r.cited) for r in topic]),
+            "flagged": _share([bool(r.unsupported) for r in topic]),
         },
         "unanswerable": {
             "n": len(unanswerable),
             "correct_refusals": _share([not r.made_up for r in unanswerable]),
             "made_up": _share([r.made_up for r in unanswerable]),
+            "made_up_flagged": _share([bool(r.unsupported) for r in unanswerable if r.made_up]),
         },
         "overall": {"n": len(results), "avg_seconds": _share([r.seconds for r in results])},
     }
@@ -170,11 +178,12 @@ def run(
     system: str,
     on_result=None,
     rewrite: bool = True,
+    grounding: str = DEFAULT_GROUNDING,
 ) -> list[AnswerResult]:
     results = []
     for q in questions:
         start = time.perf_counter()
-        result = answer(q.question, retrieve, generate, k, system, rewrite)
+        result = answer(q.question, retrieve, generate, k, system, rewrite, grounding)
         graded = grade(q, result, time.perf_counter() - start)
         results.append(graded)
         if on_result:
@@ -189,6 +198,8 @@ def _status(r: AnswerResult) -> str:
         return "WRONG REFUSAL"
     if r.outdated:
         return "OUTDATED"
+    if r.unsupported:
+        return f"flagged: {', '.join(r.unsupported)[:40]}"
     if r.kind == "topic":
         return "answered" + ("" if r.cited else " (no citations)")
     return f"facts {r.facts_found:.0%}" + ("" if r.cited else " (no citations)")
@@ -202,9 +213,11 @@ def _print_summary(summary: dict) -> None:
     a, t, u = summary["answerable"], summary["topic"], summary["unanswerable"]
     print(f"\nanswerable   (n={a['n']:>2})  facts {_fmt(a['facts'])} | fully correct {_fmt(a['fully_correct'])} | "
           f"wrong refusals {_fmt(a['wrong_refusals'])} | citations supported {_fmt(a['citations_supported'])} | "
-          f"outdated {_fmt(a['outdated'])}")
-    print(f"topic        (n={t['n']:>2})  wrong refusals {_fmt(t['wrong_refusals'])} | cited {_fmt(t['cited'])}")
-    print(f"unanswerable (n={u['n']:>2})  correct refusals {_fmt(u['correct_refusals'])} | made up {_fmt(u['made_up'])}")
+          f"outdated {_fmt(a['outdated'])} | flagged {_fmt(a['flagged'])}")
+    print(f"topic        (n={t['n']:>2})  wrong refusals {_fmt(t['wrong_refusals'])} | cited {_fmt(t['cited'])} | "
+          f"flagged {_fmt(t['flagged'])}")
+    print(f"unanswerable (n={u['n']:>2})  correct refusals {_fmt(u['correct_refusals'])} | made up {_fmt(u['made_up'])} | "
+          f"made-up answers flagged {_fmt(u['made_up_flagged'])}")
     print(f"average {summary['overall']['avg_seconds']:.1f}s per answer")
 
 
@@ -217,6 +230,7 @@ def main() -> None:
     parser.add_argument("--prompt", choices=PROMPTS, default=DEFAULT_PROMPT, help="system prompt version")
     parser.add_argument("--k", type=int, default=DEFAULT_K, help="chunks given to the model")
     parser.add_argument("--no-rewrite", action="store_true", help="don't rewrite topic-style questions")
+    parser.add_argument("--grounding", choices=GROUNDING_MODES, default=DEFAULT_GROUNDING)
     parser.add_argument("--limit", type=int, help="only run the first N questions (quick checks)")
     parser.add_argument("--show", action="store_true", help="print every answer")
     parser.add_argument("--save", type=Path, help="write per-question results as JSON")
@@ -233,7 +247,10 @@ def main() -> None:
         retrieve = vector_retriever(collection, ollama_embedder(args.embed_model))
         rewrite = not args.no_rewrite
         print(f"{len(questions)} questions | model {args.model} | prompt {args.prompt} | k={args.k} | rewrite {rewrite}\n")
-        results = run(questions, retrieve, ollama_generator(args.model), args.k, PROMPTS[args.prompt], progress, rewrite)
+        results = run(
+            questions, retrieve, ollama_generator(args.model), args.k, PROMPTS[args.prompt], progress, rewrite,
+            args.grounding,
+        )
     except ValueError as e:
         sys.exit(str(e))
     except ConnectionError:
@@ -246,6 +263,7 @@ def main() -> None:
     if args.save:
         config = {
             "questions": str(args.questions), "model": args.model, "prompt": args.prompt, "k": args.k, "rewrite": rewrite,
+            "grounding": args.grounding,
         }
         report = {"config": config, "summary": summary, "results": [asdict(r) for r in results]}
         args.save.parent.mkdir(parents=True, exist_ok=True)

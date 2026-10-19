@@ -105,7 +105,7 @@ def test_summary_by_kind():
     assert s["answerable"]["facts"] == 0.5
     assert s["answerable"]["wrong_refusals"] == 0.5
     assert s["answerable"]["citations_supported"] == 1.0
-    assert s["topic"] == {"n": 1, "wrong_refusals": 0.0, "cited": 1.0}
+    assert s["topic"] == {"n": 1, "wrong_refusals": 0.0, "cited": 1.0, "flagged": 0.0}
     assert s["unanswerable"]["made_up"] == 0.5
     assert s["overall"]["avg_seconds"] == 2.0
 

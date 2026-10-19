@@ -159,3 +159,31 @@ def test_plain_refusal_is_kept():
 def test_uncited_text_with_refusal_is_kept_as_is():
     text = f"Something vague. {REFUSAL}"
     assert answer("Kafka", lambda q, k: [make_hit(1)], lambda s, p: text).text == text
+
+
+# --- Grounding modes ---
+
+
+REDIS_HIT = Hit("R.md::0", "R.md", "Redis", "", "Redis is an in-memory store used for caching.", 0.9)
+
+
+def test_warn_keeps_the_answer_and_reports_unsupported_details():
+    result = answer("port?", lambda q, k: [REDIS_HIT], lambda s, p: "Redis uses port 6379 [1].", grounding="warn")
+    assert result.text == "Redis uses port 6379 [1]."
+    assert result.unsupported == ["6379"]
+
+
+def test_strict_turns_a_fully_unsupported_answer_into_a_refusal():
+    result = answer("port?", lambda q, k: [REDIS_HIT], lambda s, p: "Redis uses port 6379 [1].", grounding="strict")
+    assert (result.text, result.unsupported) == (REFUSAL, ["6379"])
+
+
+def test_strict_drops_only_the_unsupported_sentence():
+    text = "Redis is used for caching [1].\n- It listens on port 6379 [1]."
+    result = answer("Redis", lambda q, k: [REDIS_HIT], lambda s, p: text, grounding="strict")
+    assert result.text == "Redis is used for caching [1]."
+
+
+def test_grounding_off_reports_nothing():
+    result = answer("port?", lambda q, k: [REDIS_HIT], lambda s, p: "Port 6379 [1].", grounding="off")
+    assert result.unsupported == []

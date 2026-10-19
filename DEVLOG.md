@@ -310,3 +310,39 @@ qwen2.5:7b answered "BRIN stands for Block Range INdex [1]" — true, but not in
 **Default: llama3.2 + v1 + rewrite** — the only setup with zero made-up answers across all dev and held-out runs, and twice as fast. qwen2.5:7b stays available (`--model qwen2.5:7b`) as the more accurate but less trustworthy option.
 
 **Next:** a grounding check — verify that the specific details in an answer (numbers, names, expansions like "Block Range") appear in the excerpts it cites. All three fabrications so far would have failed it. Then re-evaluate qwen2.5:7b with the check on. Smaller follow-up: make the rewrite ask for citations ("…, citing the excerpts").
+
+## 2026-10-19 — Grounding check
+
+**Why:** three fabricated citations across experiments (Redis port, BRIN expansion ×2), all from the model's own knowledge, all citing a note that doesn't say it. Prompting moved the failure around but didn't remove it.
+
+**Done**
+- `src/grounding.py`: deterministic check. Splits the answer into sentences, extracts checkable **details** — numbers (multi-digit), code that looks like code, short quotes (≤ 5 words), and multi-word capitalized names — and looks for each in the excerpts the sentence cites (all excerpts if it cites none). Details in the question count as supported.
+  - **unsupported** = in no excerpt → likely outside knowledge.
+  - **miscited** = in a different excerpt than the one cited → fact is in the notes, citation is sloppy; not a warning.
+- Modes in `answer()` / `--grounding`: `off`, `warn` (default: keep the answer, report details; CLI prints ⚠), `strict` (drop sentences with unsupported details; refuse if nothing cited remains).
+- Evaluator records unsupported details per answer and reports flagged rates.
+- 19 tests, including the three real fabrications and correct answers that must not be flagged (144 total).
+
+**Measured on every saved answer** (~470 across all runs; excerpts reconstructed by re-running deterministic retrieval; 10 answers from before the index change skipped):
+| version | fabrications caught | good answers flagged |
+|---|---|---|
+| first draft | 3 / 3 | 24 / 296 (8.1%) |
+| + miscited level, heading/possessive/plain-code/long-quote handling | 3 / 3 | 12 / 296 (4.1%) |
+
+Of the remaining 12 flags, ~10 are genuinely outside knowledge but harmless — mostly spelled-out acronyms the notes don't expand ("Multi-Version Concurrency Control" ×7, "Large Language Model"), an invented example (`myFunction`), an invented version ("3.0"). ~2 are true false alarms. `hu-calendar-date` ("calendar sync is next") isn't flagged, consistent with judging it grounded.
+
+**Caveat:** the checker's rules were refined while looking at these same answers, including held-out ones, so 3/3 and 4.1% are optimistic. Its real test is new answers.
+
+**Strict mode, simulated on saved answers** (strict only edits generated text, so this equals a live run)
+| setup | mode | fully correct dev / held-out | made up | topic refusals | topics cited |
+|---|---|---|---|---|---|
+| llama3.2 + v1 + rewrite | off = strict | 0.88 / 0.80 | 0/9 | 0/12 | 8/12 |
+| qwen2.5:7b + v1 | off | 0.91 / 0.90 | 2/9 | 0/12 | 12/12 |
+| qwen2.5:7b + v1 | **strict** | **0.91 / 0.90** | **1/9** (calendar, judged grounded) | 0/12 | **12/12** |
+| qwen2.5:7b + v3 + rewrite | strict | 0.94 / 0.90 | 0/9 | 2/12 | 8/12 |
+
+- Strict removes qwen2.5:7b + v1's real fabrication (BRIN) with no loss in accuracy, topics, or citations.
+- With v3, strict turns uncited topic summaries into refusals — it depends on the model citing.
+- **Best setup: qwen2.5:7b + v1 + strict grounding.** Cost: ~2× latency vs llama3.2 (~13 s vs ~6 s on CPU).
+
+**Design tension for the UI:** strict mode needs the whole answer before showing anything, which conflicts with streaming. Warn mode streams fine (warnings appear at the end). Likely UI design: stream, then mark unsupported sentences.
