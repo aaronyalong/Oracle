@@ -376,3 +376,24 @@ By type (dev, k=3): keyword matches vector on direct questions (1.00) but trails
 **Decisions**
 - **Search mode** (ranked sections, no LLM) will use **hybrid**.
 - **Ask mode** keeps **vector** at k=5: tied overall, and the answer-quality results were measured with it. Re-testing answers with hybrid is an optional follow-up.
+
+## 2026-10-19 — Local server and web UI
+
+**Done**
+- `src/server.py` (FastAPI), listening on `127.0.0.1` only:
+  - `GET /api/search` — hybrid search, ranked sections with `obsidian://open` links (~0.1–0.5 s, no LLM).
+  - `GET /api/ask` — streams the answer as Server-Sent Events (`token` events as the model writes, then a `done` event with final text, sources, citations, and unsupported details).
+  - `POST /api/index` — incremental re-index; retrievers are rebuilt afterwards because BM25 holds a snapshot of the chunks.
+  - Indexes incrementally on startup, so the index always matches the vault.
+  - CORS allows Obsidian's app origin, ready for the plugin.
+- `query.answer()` split into `prepare()` (retrieve + prompt) and `finish()` (cleanup + grounding) so the server can stream generation in between; `ollama_streamer()` added. Behaviour unchanged (all existing tests pass).
+- `web/index.html`: one file, plain JavaScript, no build step. Ask tab (streamed answer, clickable `[n]` citations, cited sources highlighted, ⚠ for unsupported details) and Search tab (results as you type, debounced). All note text is inserted with `textContent`, never parsed as HTML.
+- 9 server tests with FastAPI's test client and fake models (164 total).
+
+**Decisions**
+- **Ask uses `warn` grounding, not `strict`:** streamed text is already on screen, so unsupported details are flagged at the end rather than removed. The CLI keeps `strict`.
+- **Search uses hybrid, Ask uses vector** — per the keyword/hybrid evaluation.
+- **Server-Sent Events over WebSockets:** one-directional streaming is all that's needed, it's plain HTTP, and browsers support it natively (`EventSource`).
+- **GET for `/api/ask`:** `EventSource` only supports GET; questions fit in a URL.
+
+**Smoke test (real models):** search for "thread pool blocking" returned Cats Effect / Futures / ZIO blocking sections, all found by both vector and keyword search; "What learning rate worked best?" streamed 38 chunks, then the final answer citing Gradient Descent with no unsupported details.

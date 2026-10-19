@@ -4,7 +4,7 @@ A fully local Retrieval-Augmented Generation (RAG) system over an Obsidian vault
 
 What makes Oracle *Obsidian* RAG rather than generic RAG: it understands the vault's structure — frontmatter, tags, aliases, and the `[[wikilink]]` graph — and measures whether following those links improves retrieval over vector similarity alone (see [Results](#results)).
 
-> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector and graph-aware retrieval, cited answers, and retrieval and answer-quality benchmarks. Next: answer-quality experiments and a local API.
+> **Status:** in active development. The end-to-end pipeline works: ingestion, chunking, incremental indexing, vector and graph-aware retrieval, cited answers, and retrieval and answer-quality benchmarks. Next: an Obsidian plugin on top of the local API.
 
 ## Goals
 
@@ -45,8 +45,8 @@ flowchart LR
 | LLM | `qwen2.5:7b` (configurable) | Most accurate in evaluation; `llama3.2` is ~2× faster with lower accuracy |
 | Vector store | Chroma | Embedded, no server to run |
 | Tests | pytest | Parsing and chunking are easy to get subtly wrong |
-| API (planned) | FastAPI | Lightweight Python web server |
-| UI (planned) | Streamlit or Gradio | Chat UI in a few lines |
+| API | FastAPI + Server-Sent Events | Streams answers to the web UI and (planned) Obsidian plugin |
+| UI | Single HTML page, plain JavaScript | No build step; same calls the plugin will make |
 
 ## Project Structure
 
@@ -59,8 +59,10 @@ oracle/
 │   ├── index.py         # embed chunks into Chroma; re-embeds only changed notes
 │   ├── retrieve.py      # retrieval: vector, BM25 keyword, hybrid, graph expansion
 │   ├── query.py         # answer(question) -> answer + cited sources
+│   ├── server.py        # local HTTP API: search, streamed answers, re-index
 │   ├── evaluate.py      # score retrieval strategies: hit@k, recall@k, MRR
 │   └── evaluate_answers.py  # score answers: facts, refusals, made-up answers, citations
+├── web/index.html       # browser UI: Ask and Search tabs
 ├── tests/               # pytest suite
 ├── eval/                # question set and saved results
 ├── DEVLOG.md            # dated progress log and design decisions
@@ -101,6 +103,8 @@ python src/evaluate_answers.py
 # Run the tests
 pytest
 ```
+
+**Web interface:** `python src/server.py --vault sample-vault`, then open <http://localhost:8000>. The **Ask** tab streams answers with numbered, clickable sources and flags any detail not found in your notes; the **Search** tab returns ranked sections instantly (hybrid search, no LLM). Sources open directly in Obsidian. The server only listens on `127.0.0.1`.
 
 **Guided demo:** `scripts/demo.sh` runs every step above on the sample vault, then lets you ask questions interactively. Pass a vault path to use your own: `scripts/demo.sh ~/path/to/vault`.
 

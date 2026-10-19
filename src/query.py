@@ -6,7 +6,7 @@ Usage: python src/query.py "what learning rate worked best?" [--k 5] [--show-con
 import argparse
 import re
 import sys
-from collections.abc import Callable
+from collections.abc import Callable, Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -57,6 +57,7 @@ SYSTEM_PROMPT = PROMPTS[DEFAULT_PROMPT]
 NO_RESULTS = "I couldn't find anything in your notes. Has the vault been indexed? Run src/index.py first."
 
 GenerateFn = Callable[[str, str], str]  # (system prompt, user prompt) -> answer text
+StreamFn = Callable[[str, str], Iterator[str]]  # same, but yields the answer piece by piece
 
 # Short inputs like "Kafka" are topics, not questions; strict prompts make models refuse them.
 MAX_TOPIC_WORDS = 4
@@ -125,16 +126,47 @@ def build_prompt(question: str, hits: list[Hit]) -> str:
     return f"Notes:\n\n{excerpts}\n\nQuestion: {question}"
 
 
+def _messages(system: str, prompt: str) -> list[dict]:
+    return [{"role": "system", "content": system}, {"role": "user", "content": prompt}]
+
+
 def ollama_generator(model: str = LLM_MODEL) -> GenerateFn:
     def generate(system: str, prompt: str) -> str:
-        response = ollama.chat(
-            model=model,
-            messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt}],
-            options={"temperature": 0},  # repeatable answers, which matters for evaluation
-        )
+        # Temperature 0: repeatable answers, which matters for evaluation.
+        response = ollama.chat(model=model, messages=_messages(system, prompt), options={"temperature": 0})
         return response.message.content
 
     return generate
+
+
+def ollama_streamer(model: str = LLM_MODEL) -> StreamFn:
+    def stream(system: str, prompt: str) -> Iterator[str]:
+        for chunk in ollama.chat(
+            model=model, messages=_messages(system, prompt), options={"temperature": 0}, stream=True
+        ):
+            yield chunk.message.content
+
+    return stream
+
+
+# answer() in three steps, so the server can stream the middle one: prepare() retrieves and builds the
+# prompt, the LLM writes the text, finish() cleans it up and runs the grounding check.
+
+
+def prepare(question: str, retrieve: Retriever, k: int = DEFAULT_K, rewrite: bool = True) -> tuple[list[Hit], str]:
+    """Retrieve excerpts and build the prompt. Returns ([], "") if nothing was retrieved."""
+    # Search with the user's own words; the rewrite only changes what the LLM is asked.
+    hits = retrieve(question, k)
+    if not hits:
+        return [], ""
+    asked = rewrite_query(question) if rewrite else question
+    return hits, build_prompt(asked, hits)
+
+
+def finish(text: str, hits: list[Hit], question: str, grounding: str = DEFAULT_GROUNDING) -> Answer:
+    text = _drop_trailing_refusal(text.strip(), hits)
+    text, unsupported = _apply_grounding(text, hits, question, grounding)
+    return Answer(text, hits, unsupported)
 
 
 def answer(
@@ -146,14 +178,10 @@ def answer(
     rewrite: bool = True,
     grounding: str = DEFAULT_GROUNDING,
 ) -> Answer:
-    # Search with the user's own words; the rewrite only changes what the LLM is asked.
-    hits = retrieve(question, k)
+    hits, prompt = prepare(question, retrieve, k, rewrite)
     if not hits:
         return Answer(NO_RESULTS, [])
-    asked = rewrite_query(question) if rewrite else question
-    text = _drop_trailing_refusal(generate(system, build_prompt(asked, hits)).strip(), hits)
-    text, unsupported = _apply_grounding(text, hits, question, grounding)
-    return Answer(text, hits, unsupported)
+    return finish(generate(system, prompt), hits, question, grounding)
 
 
 def main() -> None:

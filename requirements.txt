@@ -2,3 +2,6 @@ chromadb
 ollama
 python-frontmatter
 pytest
+fastapi
+uvicorn
+httpx
