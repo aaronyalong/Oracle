@@ -1,5 +1,6 @@
 // Oracle for Obsidian: a sidebar panel that asks questions of (and searches) this vault through the
-// local Oracle server, plus automatic re-indexing when notes change.
+// local Oracle server, plus automatic re-indexing when notes change. The plugin can start and stop
+// the server itself (desktop only).
 import {
   App,
   FileSystemAdapter,
@@ -16,6 +17,8 @@ import {
 } from "obsidian";
 import { OracleClient } from "./api.ts";
 import { type AskResult, type Hit, label, linktext, segments } from "./format.ts";
+import { serverCommand, slug } from "./serverConfig.ts";
+import { ServerProcess } from "./serverProcess.ts";
 
 const VIEW_TYPE = "oracle-view";
 const SEARCH_DELAY_MS = 250;
@@ -24,17 +27,24 @@ interface OracleSettings {
   serverUrl: string;
   autoReindex: boolean;
   reindexDelaySeconds: number;
+  oracleDir: string; // the cloned oracle repository; needed to start the server
+  pythonPath: string; // "" = <oracleDir>/.venv
+  autoStart: boolean;
 }
 
 const DEFAULT_SETTINGS: OracleSettings = {
   serverUrl: "http://localhost:8000",
   autoReindex: true,
   reindexDelaySeconds: 5,
+  oracleDir: "",
+  pythonPath: "",
+  autoStart: true,
 };
 
 export default class OraclePlugin extends Plugin {
   settings: OracleSettings = DEFAULT_SETTINGS;
   client = new OracleClient(() => this.settings.serverUrl);
+  server = new ServerProcess(() => this.refreshViews());
   private reindexTimer: number | undefined;
 
   async onload() {
@@ -44,10 +54,13 @@ export default class OraclePlugin extends Plugin {
     this.addRibbonIcon("message-square", "Open Oracle", () => this.activateView());
     this.addCommand({ id: "open", name: "Open panel", callback: () => this.activateView() });
     this.addCommand({ id: "reindex", name: "Re-index vault", callback: () => this.reindex(true) });
+    this.addCommand({ id: "start-server", name: "Start server", callback: () => this.startServer() });
+    this.addCommand({ id: "stop-server", name: "Stop server", callback: () => this.server.stop() });
     this.addSettingTab(new OracleSettingTab(this.app, this));
 
     // Obsidian reports every existing file as "created" while it loads, so only listen once that's done.
     this.app.workspace.onLayoutReady(() => {
+      if (this.settings.autoStart && this.settings.oracleDir) void this.startServer();
       const onChange = (file: TAbstractFile) => {
         if (file instanceof TFile && file.extension === "md") this.scheduleReindex();
       };
@@ -60,6 +73,47 @@ export default class OraclePlugin extends Plugin {
 
   onunload() {
     window.clearTimeout(this.reindexTimer);
+    // If Obsidian quits without unloading plugins, the server still exits: it watches Obsidian's
+    // process (--exit-with-parent).
+    this.server.stop();
+  }
+
+  refreshViews() {
+    this.app.workspace.getLeavesOfType(VIEW_TYPE).forEach((leaf) => {
+      if (leaf.view instanceof OracleView) void leaf.view.refreshStatus();
+    });
+  }
+
+  private vaultPath(): string {
+    const adapter = this.app.vault.adapter;
+    return adapter instanceof FileSystemAdapter ? adapter.getBasePath() : "";
+  }
+
+  private command() {
+    return serverCommand({
+      oracleDir: this.settings.oracleDir,
+      pythonPath: this.settings.pythonPath,
+      serverUrl: this.settings.serverUrl,
+      vaultPath: this.vaultPath(),
+      vaultName: this.app.vault.getName(),
+      parentPid: process.pid,
+      platform: process.platform,
+    });
+  }
+
+  async startServer() {
+    const command = this.command();
+    if ("error" in command) {
+      new Notice(`Oracle: ${command.error}`);
+      return;
+    }
+    await this.server.start(command, async () => {
+      try {
+        return (await this.client.health()).ok;
+      } catch {
+        return false;
+      }
+    });
   }
 
   async saveSettings() {
@@ -89,19 +143,16 @@ export default class OraclePlugin extends Plugin {
     try {
       const result = await this.client.reindex();
       if (announce) new Notice(`Oracle: ${result.updated} notes re-indexed, ${result.chunks} chunks.`);
-      this.app.workspace.getLeavesOfType(VIEW_TYPE).forEach((leaf) => {
-        if (leaf.view instanceof OracleView) leaf.view.refreshStatus();
-      });
+      this.refreshViews();
     } catch {
       if (announce) new Notice("Oracle: server not reachable, so nothing was re-indexed.");
     }
   }
 
-  /** Command to start the server for this vault, shown when it isn't running. */
+  /** Command to start the server by hand for this vault, shown when it isn't running. */
   startCommand(): string {
-    const adapter = this.app.vault.adapter;
-    const path = adapter instanceof FileSystemAdapter ? adapter.getBasePath() : "<path to this vault>";
-    return `python src/server.py --vault "${path}"`;
+    const path = this.vaultPath() || "<path to this vault>";
+    return `python src/server.py --vault "${path}" --db chroma-${slug(this.app.vault.getName())}`;
   }
 }
 
@@ -178,6 +229,17 @@ class OracleView extends ItemView {
   }
 
   async refreshStatus() {
+    const state = this.plugin.server.state;
+    if (state.kind === "starting") {
+      this.statusEl.setText("Starting server…");
+      this.metaEl.setText("Indexing changed notes. The first start on a large vault can take a few minutes.");
+      return;
+    }
+    if (state.kind === "failed") {
+      this.statusEl.setText("Server failed to start");
+      this.metaEl.setText(`${state.message}${state.log ? `\n\n${state.log}` : ""}`);
+      return;
+    }
     try {
       const health = await this.plugin.client.health();
       const thisVault = this.app.vault.getName();
@@ -189,7 +251,12 @@ class OracleView extends ItemView {
     } catch {
       this.statusEl.setText("Server not running");
       this.reset();
-      this.metaEl.setText(`Start the Oracle server from the oracle folder:\n${this.plugin.startCommand()}`);
+      const { oracleDir } = this.plugin.settings;
+      this.metaEl.setText(
+        oracleDir
+          ? `Run "Oracle: Start server" from the command palette (Ctrl/Cmd+P), or start it yourself in ${oracleDir}:\n${this.plugin.startCommand()}`
+          : `Start the Oracle server from the oracle folder:\n${this.plugin.startCommand()}\n\nOr set the Oracle folder in the plugin settings to start it automatically.`,
+      );
     }
   }
 
@@ -319,6 +386,48 @@ class OracleSettingTab extends PluginSettingTab {
             await this.plugin.saveSettings();
           }),
       );
+
+    new Setting(containerEl).setName("Server").setHeading();
+
+    new Setting(containerEl)
+      .setName("Oracle folder")
+      .setDesc("Where you cloned the oracle repository, e.g. /home/you/Projects/oracle. Needed to start the server.")
+      .addText((text) =>
+        text
+          .setPlaceholder("/path/to/oracle")
+          .setValue(this.plugin.settings.oracleDir)
+          .onChange(async (value) => {
+            this.plugin.settings.oracleDir = value.trim();
+            await this.plugin.saveSettings();
+          }),
+      );
+
+    new Setting(containerEl)
+      .setName("Python")
+      .setDesc("Leave empty to use the repository's virtual environment (.venv).")
+      .addText((text) =>
+        text
+          .setPlaceholder("<Oracle folder>/.venv/bin/python")
+          .setValue(this.plugin.settings.pythonPath)
+          .onChange(async (value) => {
+            this.plugin.settings.pythonPath = value.trim();
+            await this.plugin.saveSettings();
+          }),
+      );
+
+    new Setting(containerEl)
+      .setName("Start server automatically")
+      .setDesc("Start the server for this vault when Obsidian opens, and stop it when Obsidian closes. Each vault gets its own index folder (chroma-<vault name>).")
+      .addToggle((toggle) =>
+        toggle.setValue(this.plugin.settings.autoStart).onChange(async (value) => {
+          this.plugin.settings.autoStart = value;
+          await this.plugin.saveSettings();
+        }),
+      )
+      .addButton((button) => button.setButtonText("Start now").onClick(() => void this.plugin.startServer()))
+      .addButton((button) => button.setButtonText("Stop").onClick(() => this.plugin.server.stop()));
+
+    new Setting(containerEl).setName("Index").setHeading();
 
     new Setting(containerEl)
       .setName("Re-index automatically")
