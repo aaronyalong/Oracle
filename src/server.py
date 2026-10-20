@@ -2,6 +2,9 @@
 
 Usage: python src/server.py --vault sample-vault [--port 8000]   then open http://localhost:8000
 
+The Obsidian plugin can start this server itself; it passes --exit-with-parent so the server stops
+when Obsidian does, even if Obsidian crashes.
+
 Endpoints (all JSON unless noted):
   GET  /                    the web page
   GET  /api/health          index size and models
@@ -14,8 +17,12 @@ Endpoints (all JSON unless noted):
 
 import argparse
 import json
+import os
+import signal
 import sys
-from collections.abc import Iterator
+import threading
+import time
+from collections.abc import Callable, Iterator
 from dataclasses import dataclass
 from pathlib import Path
 from urllib.parse import quote
@@ -155,6 +162,29 @@ def create_app(
     return app
 
 
+def _process_alive(pid: int) -> bool:
+    try:
+        os.kill(pid, 0)  # signal 0 only checks that the process exists
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True  # exists, owned by someone else
+    return True
+
+
+def watch_parent(pid: int, on_exit: Callable[[], None], interval: float = 2.0) -> threading.Thread:
+    """Call on_exit once the process `pid` is gone. Runs in a background thread."""
+
+    def watch():
+        while _process_alive(pid):
+            time.sleep(interval)
+        on_exit()
+
+    thread = threading.Thread(target=watch, daemon=True, name="parent-watcher")
+    thread.start()
+    return thread
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run Oracle's local server.")
     parser.add_argument("--vault", required=True, type=Path, help="path to the vault folder")
@@ -162,7 +192,13 @@ def main() -> None:
     parser.add_argument("--embed-model", default=EMBED_MODEL)
     parser.add_argument("--model", default=LLM_MODEL, help="Ollama model that writes answers")
     parser.add_argument("--port", type=int, default=8000)
+    parser.add_argument("--exit-with-parent", type=int, metavar="PID",
+                        help="shut down when this process exits (used by the Obsidian plugin)")
     args = parser.parse_args()
+
+    if args.exit_with_parent:
+        # SIGTERM lets uvicorn shut down cleanly, the same as Ctrl+C.
+        watch_parent(args.exit_with_parent, lambda: os.kill(os.getpid(), signal.SIGTERM))
 
     import uvicorn
 

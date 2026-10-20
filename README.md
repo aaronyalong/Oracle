@@ -114,7 +114,7 @@ cd obsidian-plugin && npm install && npm run build   # installs into sample-vaul
 # for another vault: OBSIDIAN_PLUGIN_DIR="/path/to/vault/.obsidian/plugins/oracle" npm run build
 ```
 
-Then in Obsidian: **Settings → Community plugins** → turn on community plugins → enable **Oracle**, and start the server for that vault.
+Then in Obsidian: **Settings → Community plugins** → turn on community plugins → enable **Oracle**. In Oracle's settings, set **Oracle folder** to this repository: the plugin then starts the server for the open vault when Obsidian opens (each vault gets its own index, `chroma-<vault name>`) and stops it when Obsidian closes.
 
 **Guided demo:** `scripts/demo.sh` runs every step above on the sample vault, then lets you ask questions interactively. Pass a vault path to use your own: `scripts/demo.sh ~/path/to/vault`.
 

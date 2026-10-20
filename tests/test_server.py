@@ -126,3 +126,28 @@ def test_obsidian_app_origin_is_allowed(vault, tmp_path):
     assert allowed.headers["access-control-allow-origin"] == "app://obsidian.md"
     other = client.get("/api/health", headers={"Origin": "https://example.com"})
     assert "access-control-allow-origin" not in other.headers
+
+
+def test_watch_parent_fires_when_the_process_is_gone():
+    import subprocess
+    import sys
+    import threading
+
+    from server import watch_parent
+
+    child = subprocess.Popen([sys.executable, "-c", "pass"])
+    child.wait()  # now a pid that no longer exists
+    fired = threading.Event()
+    watch_parent(child.pid, fired.set, interval=0.01)
+    assert fired.wait(timeout=2)
+
+
+def test_watch_parent_waits_while_the_process_is_alive():
+    import os
+    import threading
+
+    from server import watch_parent
+
+    fired = threading.Event()
+    watch_parent(os.getpid(), fired.set, interval=0.01)  # this test process is alive
+    assert not fired.wait(timeout=0.2)

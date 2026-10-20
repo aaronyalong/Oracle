@@ -418,3 +418,18 @@ By type (dev, k=3): keyword matches vector on direct questions (1.00) but trails
 **Not verified here:** the panel's behaviour inside Obsidian — the build type-checks and the logic is unit tested, but the UI needs a manual check in the app.
 
 **First manual test found a bug:** the view's helper `open(hit, event)` overrode `ItemView.open()`, an undocumented internal method Obsidian calls when it opens the panel, so opening the panel crashed (`Cannot read properties of undefined (reading 'replace')`). TypeScript couldn't catch it because `open` isn't in Obsidian's published type definitions. Renamed to `openHit`. Lesson: prefix plugin-specific method names on classes that extend Obsidian's.
+
+## 2026-10-20 — Plugin starts the server
+
+**Why:** using the panel required starting the server in a terminal first, every time.
+
+**Done**
+- Plugin settings: **Oracle folder** (the repository), **Python** (defaults to the repo's `.venv`), **Start server automatically** (on by default), plus Start/Stop buttons and "Oracle: Start server" / "Stop server" commands.
+- On startup the plugin checks `/api/health`; if nothing answers, it spawns `server.py` for the open vault and polls until it's ready (the panel shows "Starting server…"). If startup fails, the panel shows the reason and the last lines of the server's output.
+- **One index per vault, automatically:** `--db <oracle>/chroma-<vault name>`, so switching vaults can't mix or delete another vault's index (the risk with a shared default `--db`).
+- **No orphaned servers:** the plugin stops the server it started on unload, and the server's new `--exit-with-parent PID` option makes it shut down within ~2 s if Obsidian exits without unloading (e.g. a crash). A server you started yourself is never stopped by the plugin.
+- `serverConfig.ts` (pure: command, port, index folder; 5 unit tests) and `serverProcess.ts` (spawn, health polling, log capture). 2 Python tests for the parent watcher (167 total).
+
+**Verified outside Obsidian** with a script driving `ServerProcess` and a `sleep` process standing in for Obsidian: start → ready in 7.1 s (including building the new per-vault index from scratch), a second start reuses the running server, and killing the fake Obsidian stopped the server within 2.0 s. Bad settings (wrong folder, missing Python) produce specific messages.
+
+**Note:** Node's built-in TypeScript support can't run `constructor(private x)` shorthand, so `ServerProcess` spells out its field — that keeps it runnable directly by Node for tests.
