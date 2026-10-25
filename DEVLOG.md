@@ -446,3 +446,26 @@ By type (dev, k=3): keyword matches vector on direct questions (1.00) but trails
 - `ServerProcess` tests (5) with `/bin/sh` standing in for the server: wrong folder, server exiting on its own, timeout, stop during startup, server already running. The timeout test fails on the old code. Startup timeout is now a constructor option so the test doesn't wait 15 minutes (14 plugin tests).
 
 **Note:** renaming the folder also breaks the virtual environment: the scripts in `.venv/bin` (`pip`, `pytest`, `activate`) contain the old absolute path, and `source .venv/bin/activate` silently falls back to the system Python. `.venv/bin/python` itself still works, which hid it. Fix: recreate the venv, or replace the old path in `.venv/bin/*` and `.venv/pyvenv.cfg`.
+
+## 2026-10-25 — MCP server
+
+**Why:** let Claude Code, Claude Desktop, or any MCP client use the vault, without a second pipeline.
+
+**Done**
+- `src/mcp_server.py` (official MCP Python SDK, stdio), with three tools that wrap the existing functions:
+  - `search(query, k=10)` — hybrid search, ranked sections in the same JSON as `/api/search` (note, title, heading, text, score, via, `obsidian://` link).
+  - `answer(question, k=5)` — `query.answer()` with vector retrieval and **strict** grounding, as in the CLI: nothing is streamed, so unsupported sentences can be removed rather than flagged. Returns text, sources, cited numbers, unsupported details.
+  - `reindex()` — re-embeds changed notes and rebuilds the retrievers.
+- Typed results (`TypedDict`), so clients get an output schema and structured content, not just text; `k` is validated (1–50) by the SDK.
+- `server.py`: which retriever Search and Ask use is now one function, `build_retrievers()`, shared by both servers, and `hit_json()` is public, so both servers return the same format.
+- 13 tests (180 total): tools called through the SDK's in-process client with fake models; bad input, Ollama down, first index still running, failed startup index; and the real script over stdio.
+
+**Decisions**
+- **SDK 2.x:** `FastMCP` is now `MCPServer`, and most online examples are 1.x. Read the installed package rather than the examples.
+- **Own index by default** (`chroma-<vault>-mcp`): Chroma's files aren't safe for two processes writing at once, and the plugin's server re-indexes the same vault. Costs one extra embedding of the vault; `--db` can point elsewhere.
+- **Index in the background on startup:** a first index of a large vault can outlast the client's startup timeout. Until it's ready, tools return "indexing the vault for the first time" rather than partial results; an index from a previous run is used while it's brought up to date.
+- **SDK logging at WARNING:** at INFO it logs every Ollama request to stderr, which clients show as the server's log.
+
+**Lesson:** the first stdout test used the SDK's client, and it still passed with a stray `print()` — the client skips lines it can't parse. The test now reads the script's raw stdout and requires every line to be a JSON-RPC message; it fails with the `print()`. (While serving, the 2.x stdio transport also redirects stray output to stderr.)
+
+**Smoke test** (sample vault, real models, over stdio): first index 6.1 s (59 notes, 160 chunks); "thread pool blocking" → Cats Effect, Futures, ZIO blocking sections; "What learning rate worked best in my project?" → "0.001 with Adam", citing Gradient Descent, nothing unsupported, 2.7 s with the model loaded.

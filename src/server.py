@@ -64,7 +64,7 @@ def obsidian_url(vault: Path, note_key: str) -> str:
     return f"obsidian://open?vault={quote(vault.resolve().name)}&file={quote(note_key.removesuffix('.md'))}"
 
 
-def _hit_json(hit: Hit, vault: Path) -> dict:
+def hit_json(hit: Hit, vault: Path) -> dict:
     return {
         "note": hit.note_key,
         "title": hit.note_title,
@@ -81,9 +81,13 @@ def _sse(event: str, data) -> str:
     return f"event: {event}\ndata: {json.dumps(data)}\n\n"
 
 
+def build_retrievers(collection, embed: EmbedFn) -> tuple[Retriever, Retriever]:
+    """(search, ask): hybrid ranks sections best; answers use vector, which the answer benchmarks measured."""
+    return hybrid_retriever(collection, embed), vector_retriever(collection, embed)
+
+
 def _build_retrievers(state: State) -> None:
-    state.search = hybrid_retriever(state.collection, state.embed)
-    state.ask_retrieve = vector_retriever(state.collection, state.embed)  # what the answer benchmarks measured
+    state.search, state.ask_retrieve = build_retrievers(state.collection, state.embed)
 
 
 def create_app(
@@ -118,7 +122,7 @@ def create_app(
     def search(q: str, k: int = SEARCH_K):
         if not q.strip():
             raise HTTPException(400, "Empty query")
-        return {"results": [_hit_json(h, state.vault) for h in state.search(q, k)]}
+        return {"results": [hit_json(h, state.vault) for h in state.search(q, k)]}
 
     @app.get("/api/ask")
     def ask(q: str, k: int = DEFAULT_K):
@@ -140,7 +144,7 @@ def create_app(
                 "done",
                 {
                     "text": result.text,
-                    "sources": [_hit_json(h, state.vault) for h in result.sources],
+                    "sources": [hit_json(h, state.vault) for h in result.sources],
                     "cited": result.cited,
                     "unsupported": result.unsupported,
                 },
