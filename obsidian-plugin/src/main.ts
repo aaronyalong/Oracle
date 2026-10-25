@@ -44,7 +44,11 @@ const DEFAULT_SETTINGS: OracleSettings = {
 export default class OraclePlugin extends Plugin {
   settings: OracleSettings = DEFAULT_SETTINGS;
   client = new OracleClient(() => this.settings.serverUrl);
-  server = new ServerProcess(() => this.refreshViews());
+  server = new ServerProcess((state) => {
+    this.refreshViews();
+    // The panel shows the details, but it may be closed: a wrong Oracle folder used to fail silently.
+    if (state.kind === "failed") new Notice(`Oracle: ${state.message} Open the Oracle panel for details.`, 10000);
+  });
   private reindexTimer: number | undefined;
 
   async onload() {

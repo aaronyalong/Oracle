@@ -21,10 +21,12 @@ export class ServerProcess {
   private log: string[] = [];
 
   private readonly onChange: (state: ServerState) => void;
+  private readonly startTimeoutMs: number;
 
   // Written out (not `constructor(private onChange)`) so Node can run this file directly in tests.
-  constructor(onChange: (state: ServerState) => void) {
+  constructor(onChange: (state: ServerState) => void, startTimeoutMs = START_TIMEOUT_MS) {
     this.onChange = onChange;
+    this.startTimeoutMs = startTimeoutMs;
   }
 
   private setState(state: ServerState) {
@@ -69,12 +71,14 @@ export class ServerProcess {
     let exitCode: number | null | undefined;
     child.on("exit", (code) => {
       exitCode = code;
-      if (this.child === child) this.child = null;
-      // Exiting after stop() is expected; exiting on its own is a failure worth showing.
-      if (this.state.kind !== "stopped") this.fail(`The server stopped (exit code ${code}).`);
+      // stop() clears this.child before killing, so an exit it caused is expected; exiting on its own
+      // is a failure worth showing.
+      if (this.child !== child) return;
+      this.child = null;
+      this.fail(`The server stopped (exit code ${code}).`);
     });
 
-    const deadline = Date.now() + START_TIMEOUT_MS;
+    const deadline = Date.now() + this.startTimeoutMs;
     while (exitCode === undefined && Date.now() < deadline) {
       if (await isUp()) {
         this.setState({ kind: "running", startedByPlugin: true });

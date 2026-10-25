@@ -433,3 +433,16 @@ By type (dev, k=3): keyword matches vector on direct questions (1.00) but trails
 **Verified outside Obsidian** with a script driving `ServerProcess` and a `sleep` process standing in for Obsidian: start → ready in 7.1 s (including building the new per-vault index from scratch), a second start reuses the running server, and killing the fake Obsidian stopped the server within 2.0 s. Bad settings (wrong folder, missing Python) produce specific messages.
 
 **Note:** Node's built-in TypeScript support can't run `constructor(private x)` shorthand, so `ServerProcess` spells out its field — that keeps it runnable directly by Node for tests.
+
+## 2026-10-25 — First test in real Obsidian
+
+**Why:** the plugin starting the server had only been tested with a script standing in for Obsidian.
+
+**Verified in Obsidian** (main vault): the server starts when the vault opens, and Ask streams a cited answer. Still to check: sources opening at the cited heading, re-indexing after an edit, and the server stopping when Obsidian quits or crashes.
+
+**Found: the server didn't start, and nothing said why.** The repository folder had been renamed (`oracle` → `Oracle`), so the plugin's **Oracle folder** setting pointed at a folder that no longer existed. The plugin did detect it ("No src/server.py in …"), but only showed it in the panel, which was closed.
+- The plugin now shows a notification whenever the server fails, at startup or later, so it's visible with the panel closed.
+- Fixed while testing it: when startup timed out, the plugin stopped the server and then reported that stop as a second failure, replacing "didn't become ready in time" with "The server stopped (exit code null)". An exit is now a failure only if the plugin didn't cause it.
+- `ServerProcess` tests (5) with `/bin/sh` standing in for the server: wrong folder, server exiting on its own, timeout, stop during startup, server already running. The timeout test fails on the old code. Startup timeout is now a constructor option so the test doesn't wait 15 minutes (14 plugin tests).
+
+**Note:** renaming the folder also breaks the virtual environment: the scripts in `.venv/bin` (`pip`, `pytest`, `activate`) contain the old absolute path, and `source .venv/bin/activate` silently falls back to the system Python. `.venv/bin/python` itself still works, which hid it. Fix: recreate the venv, or replace the old path in `.venv/bin/*` and `.venv/pyvenv.cfg`.
