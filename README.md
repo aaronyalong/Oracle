@@ -4,7 +4,7 @@ Ask your Obsidian notes questions and get answers that cite the notes they came 
 
 ## Key results
 
-- **Hybrid search finds the answer most often:** 0.90 on held-out questions (top 3), vs 0.80 for vector search and 0.00 for Obsidian's built-in search.
+- **Hybrid search ranks the right note highest:** 0.90 on held-out questions (top 3), vs 0.80 for vector search and 0.00 for Obsidian's built-in search.
 - **A grounding check catches made-up answers.** The best model sometimes answered from its training data and cited a note that didn't support it. A deterministic check now verifies the specific details in each sentence against the cited notes. It caught every fabrication observed.
 - **Following note links didn't help.** Expanding results with `[[linked]]` notes was no better than plain vector search, because linked notes are usually already semantically similar.
 
@@ -15,7 +15,12 @@ flowchart LR
     V[Obsidian vault] --> C[Parse and chunk<br/>by heading]
     C --> E[Embed<br/>nomic-embed-text]
     E --> DB[(Chroma)]
-    Q[Question] --> R[Hybrid search<br/>vector + BM25]
+
+    S[Search query] --> H[Hybrid search<br/>vector + BM25]
+    DB --> H
+    H --> N[Ranked notes]
+
+    Q[Question] --> R[Vector search<br/>k=5]
     DB --> R
     R --> L[Local LLM<br/>qwen2.5 via Ollama]
     L --> G[Grounding check]
